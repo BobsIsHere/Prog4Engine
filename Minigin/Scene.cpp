@@ -26,7 +26,7 @@ void Scene::RemoveAll()
 	m_objects.clear();
 }
 
-void Scene::Update(const float deltaTime)
+void Scene::Update(float deltaTime)
 {
 	for(auto& object : m_objects)
 	{
