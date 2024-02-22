@@ -4,6 +4,8 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
+#include <chrono>
+#include <thread>
 #include "Minigin.h"
 #include "InputManager.h"
 #include "SceneManager.h"
@@ -79,16 +81,29 @@ void dae::Minigin::Run(const std::function<void()>& load)
 {
 	load();
 
+	const int ms_per_frame{ 6 };
+	float lag{ 0.0f };
 	auto& renderer = Renderer::GetInstance();
 	auto& sceneManager = SceneManager::GetInstance();
 	auto& input = InputManager::GetInstance();
 
 	// todo: this update loop could use some work.
 	bool doContinue = true;
+	auto last_time = std::chrono::high_resolution_clock::now();
 	while (doContinue)
 	{
+		auto current_time = std::chrono::high_resolution_clock::now();
+		const float delta_time = std::chrono::duration<float>(current_time - last_time).count();
+
+		last_time = current_time;
+		lag += delta_time;
+		
 		doContinue = input.ProcessInput();
-		sceneManager.Update();
+		sceneManager.Update(delta_time);
 		renderer.Render();
+
+		const auto sleep_time = current_time + std::chrono::milliseconds(ms_per_frame) - std::chrono::high_resolution_clock::now();
+
+		std::this_thread::sleep_for(sleep_time);
 	}
 }
