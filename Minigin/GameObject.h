@@ -1,7 +1,6 @@
 #pragma once
 #include <memory>
 #include <vector>
-#include "Transform.h"
 #include "Component.h"
 #include "TransformComponent.h"
 
@@ -9,8 +8,7 @@ namespace dae
 {
 	class Texture2D;
 
-	// todo: this should become final.
-	class GameObject
+	class GameObject final
 	{
 	public:
 
@@ -21,8 +19,7 @@ namespace dae
 		GameObject(GameObject&& other) = delete;
 		GameObject& operator=(const GameObject& other) = delete;
 		GameObject& operator=(GameObject&& other) = delete;
-
-		//todo : name parameter if used
+		
 		virtual void Update(float deltaTime);
 		virtual void Render() const;
 
@@ -48,7 +45,7 @@ namespace dae
 
 		std::unique_ptr<TransformComponent> m_pTransformComponent{};
 
-		// todo: mmm, every gameobject has a texture? Is that correct?
+		// Mmm, every gameobject has a texture? Is that correct?
 		// No, not every GameObject has a texture
 		// -> Add texture component
 	};
