@@ -1,6 +1,7 @@
 #include "UpdateComponent.h"
 
-dae::UpdateComponent::UpdateComponent()
+dae::UpdateComponent::UpdateComponent(std::weak_ptr<GameObject> pGameObject) :
+	Component{pGameObject}
 {
 }
 

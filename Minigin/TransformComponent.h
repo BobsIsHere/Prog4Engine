@@ -1,13 +1,13 @@
 #pragma once
-#include "UpdateComponent.h"
+#include "Component.h"
 #include <glm/glm.hpp>
 
 namespace dae
 {
-	class TransformComponent final : public UpdateComponent
+	class TransformComponent final : public Component
 	{
 	public:
-		TransformComponent();
+		TransformComponent(std::weak_ptr<GameObject> pGameObject);
 		virtual ~TransformComponent();
 
 		TransformComponent(const TransformComponent& other) = delete;
@@ -18,7 +18,7 @@ namespace dae
 		virtual void Update(float) override;
 		virtual void Render() const override;
 
-		void SetPosition(float x, float y, float z);
+		void SetPosition(float x, float y, float z = {});
 		const glm::vec3& GetPosition() const { return m_Position; }
 
 	private:

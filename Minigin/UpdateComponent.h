@@ -6,7 +6,7 @@ namespace dae
 	class UpdateComponent : public Component
 	{
 	public:
-		UpdateComponent();
+		UpdateComponent(std::weak_ptr<GameObject> pGameObject);
 		virtual ~UpdateComponent();
 
 		UpdateComponent(const UpdateComponent& other) = delete;

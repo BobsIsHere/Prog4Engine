@@ -1,6 +1,7 @@
 #include "RenderComponent.h"
 
-dae::RenderComponent::RenderComponent()
+dae::RenderComponent::RenderComponent(std::weak_ptr<GameObject> pGameObject) :
+	Component{pGameObject}
 {
 }
 

@@ -6,7 +6,7 @@ namespace dae
 	class RenderComponent : public Component
 	{
 	public:
-		RenderComponent();
+		RenderComponent(std::weak_ptr<GameObject> pGameObject);
 		virtual ~RenderComponent();
 
 		RenderComponent(const RenderComponent& other) = delete;

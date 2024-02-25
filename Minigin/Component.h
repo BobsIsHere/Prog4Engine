@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 
 namespace dae
 {
@@ -7,7 +8,7 @@ namespace dae
 	class Component
 	{
 	public:
-		Component();
+		Component(std::weak_ptr<GameObject> pGameObject);
 		virtual ~Component();
 
 		Component(const Component& other) = delete;
@@ -19,7 +20,7 @@ namespace dae
 		virtual void Update(float) = 0;
 
 	protected:
-		GameObject* m_GameObject;
+		std::weak_ptr<GameObject> m_pGameObject;
 	};
 }
 

@@ -8,14 +8,13 @@
 namespace dae
 {
 	class Texture2D;
-	//class Component;
 
 	// todo: this should become final.
 	class GameObject
 	{
 	public:
 
-		GameObject() = default;
+		GameObject();
 		virtual ~GameObject();
 
 		GameObject(const GameObject& other) = delete;
@@ -27,11 +26,12 @@ namespace dae
 		virtual void Update(float);
 		virtual void Render() const;
 
-		//void SetTexture(const std::string& filename);
-		//void SetPosition(float x, float y);
+		void SetPosition(float x, float y);
+
+		TransformComponent& GetTransformComponent();
 
 		template<typename ComponentType>
-		void AddComponent();
+		void AddComponent(std::shared_ptr<ComponentType> comp);
 
 		template<typename ComponentType>
 		void RemoveComponent();
@@ -46,8 +46,7 @@ namespace dae
 		//shared pointers!!!
 		std::vector<std::shared_ptr<Component> > m_pComponents{};
 
-		std::unique_ptr<TransformComponent> m_pTransformComponent;
-		//Transform m_Transform{}; 
+		std::unique_ptr<TransformComponent> m_pTransformComponent{};
 
 		// todo: mmm, every gameobject has a texture? Is that correct?
 		// No, not every GameObject has a texture
@@ -55,9 +54,10 @@ namespace dae
 	};
 
 	template<typename ComponentType>
-	inline void GameObject::AddComponent()
+	inline void GameObject::AddComponent(std::shared_ptr<ComponentType> comp)
 	{
-		m_pComponents.push_back(std::shared_ptr<ComponentType>);
+		static_assert(std::is_base_of<Component, ComponentType>::value, "This item must be of a derived class of Component");
+		m_pComponents.push_back(std::move(comp));
 	}
 
 	template<typename ComponentType>
@@ -87,12 +87,18 @@ namespace dae
 		}
 		return nullptr;*/
 
-		auto findComponent{ std::find(m_pComponents.begin(),m_pComponents.end(), std::shared_ptr<ComponentType>) }; 
-
-		if (findComponent != m_pComponents.end()) 
+		auto findComponent = std::find_if(m_pComponents.begin(), m_pComponents.end(), [](const std::shared_ptr<Component>& ptr)   
 		{
-			return findComponent;
+			return std::dynamic_pointer_cast<ComponentType>(ptr) != nullptr;
+		});
+
+		if (findComponent != m_pComponents.end())
+		{
+			return std::dynamic_pointer_cast<ComponentType>(*findComponent);
 		}
+
+		// Return nullptr if component is not found
+		return nullptr;
 	}
 
 	template<typename ComponentType>

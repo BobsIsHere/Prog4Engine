@@ -1,6 +1,7 @@
 #include "TransformComponent.h"
 
-dae::TransformComponent::TransformComponent() :
+dae::TransformComponent::TransformComponent(std::weak_ptr<GameObject> pGameObject) :
+	Component{ pGameObject },
 	m_Position{}
 {
 }
