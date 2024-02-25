@@ -78,6 +78,9 @@
     <ClInclude Include="TextComponent.h">
       <Filter>Source Files\Components\UpdateComponents</Filter>
     </ClInclude>
+    <ClInclude Include="FPSComponent.h">
+      <Filter>Source Files\Components\UpdateComponents</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ResourceManager.cpp">
@@ -132,6 +135,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TextComponent.cpp">
+      <Filter>Source Files\Components\UpdateComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="FPSComponent.cpp">
       <Filter>Source Files\Components\UpdateComponents</Filter>
     </ClCompile>
   </ItemGroup>
