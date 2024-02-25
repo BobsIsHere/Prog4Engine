@@ -17,7 +17,7 @@ namespace dae
 		Component& operator=(Component&& other) = delete;
 
 		virtual void Render() const = 0;
-		virtual void Update(float) = 0;
+		virtual void Update(float deltaTime) = 0;
 
 	protected:
 		std::weak_ptr<GameObject> m_pGameObject;

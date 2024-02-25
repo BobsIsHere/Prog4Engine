@@ -51,9 +51,6 @@
     <ClInclude Include="SceneManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TextObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Font.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -74,6 +71,12 @@
     </ClInclude>
     <ClInclude Include="TextureComponent.h">
       <Filter>Source Files\Components\RenderComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="TextObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TextComponent.h">
+      <Filter>Source Files\Components\UpdateComponents</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -101,9 +104,6 @@
     <ClCompile Include="SceneManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TextObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Font.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -127,6 +127,12 @@
     </ClCompile>
     <ClCompile Include="TextureComponent.cpp">
       <Filter>Source Files\Components\RenderComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="TextObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TextComponent.cpp">
+      <Filter>Source Files\Components\UpdateComponents</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

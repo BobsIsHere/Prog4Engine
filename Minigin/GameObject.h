@@ -23,7 +23,7 @@ namespace dae
 		GameObject& operator=(GameObject&& other) = delete;
 
 		//todo : name parameter if used
-		virtual void Update(float);
+		virtual void Update(float deltaTime);
 		virtual void Render() const;
 
 		void SetPosition(float x, float y);
@@ -74,19 +74,6 @@ namespace dae
 	template<typename ComponentType>
 	inline std::shared_ptr<ComponentType> GameObject::GetComponent()
 	{
-		/*for (int idx = 0; idx < m_pComponents.size(); ++idx)
-		{
-			if (ComponentType* componentType = dynamic_cast<ComponentType*>(m_pComponents[idx].get())) 
-			{
-				return std::make_unique<ComponentType>(componentType); 
-			}
-			else
-			{
-				return nullptr;
-			}
-		}
-		return nullptr;*/
-
 		auto findComponent = std::find_if(m_pComponents.begin(), m_pComponents.end(), [](const std::shared_ptr<Component>& ptr)   
 		{
 			return std::dynamic_pointer_cast<ComponentType>(ptr) != nullptr;
