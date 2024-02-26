@@ -20,6 +20,9 @@ namespace dae
 		virtual void Update(float deltaTime) = 0;
 
 	protected:
+		std::weak_ptr<GameObject> GetGameObject() const { return m_pGameObject; };
+
+	private:
 		std::weak_ptr<GameObject> m_pGameObject;
 	};
 }
