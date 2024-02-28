@@ -23,10 +23,21 @@ namespace dae
 		virtual void Update(float deltaTime);
 		virtual void Render() const;
 
-		void SetPosition(float x, float y);
+		void UpdateWorldPosition();
 
-		TransformComponent& GetTransformComponent();
+		void SetLocalPosition(float x, float y);
+		void SetIsSetForRemoval();
+		void SetParent(std::shared_ptr<GameObject> pParent, bool keepWorldPosition);
+		void SetPositionDirty();
 
+		TransformComponent& GetTransformComponent() const;
+		std::shared_ptr<GameObject> GetParent() const;
+		std::shared_ptr<GameObject> GetChildAt(unsigned int index) const;
+		size_t GetChildCount() const;
+
+		bool IsChild(const std::shared_ptr<GameObject>& pChild) const;
+
+		// TEMPLATED FUNCTIONS
 		template<typename ComponentType>
 		void AddComponent(std::shared_ptr<ComponentType> comp);
 
@@ -40,10 +51,22 @@ namespace dae
 		bool HasComponent();
 
 	private:
-		//shared pointers!!!
-		std::vector<std::shared_ptr<Component> > m_pComponents{};
+		//FUNCTIONS
+		void AddChild(std::shared_ptr<GameObject> pChild);
+		void RemoveChild(std::shared_ptr<GameObject> pChild);
 
+		const glm::vec3& GetLocalPosition();
+		const glm::vec3& GetWorldPosition();
+
+		//VARIABLES
+		bool m_IsSetForRemoval;
+		bool m_IsPositionDirty;
+
+		std::vector<std::shared_ptr<Component> > m_pComponents{};
 		std::unique_ptr<TransformComponent> m_pTransformComponent{};
+
+		std::shared_ptr<GameObject> m_pParent; 
+		std::vector<std::shared_ptr<GameObject> > m_pChildren;
 
 		// Mmm, every gameobject has a texture? Is that correct?
 		// No, not every GameObject has a texture
@@ -88,9 +111,9 @@ namespace dae
 	template<typename ComponentType>
 	bool GameObject::HasComponent()
 	{
-		auto findComponent{ std::find(m_pComponents.begin(),m_pComponents.end(), std::shared_ptr<ComponentType>) }; 
+		auto findComponent{ std::find(m_pComponents.begin(),m_pComponents.end(), std::shared_ptr<ComponentType>()) };  
 
-		if (findComponent != m_pComponents.end()) 
+		if (findComponent != m_pComponents.end())  
 		{
 			return true;
 		}

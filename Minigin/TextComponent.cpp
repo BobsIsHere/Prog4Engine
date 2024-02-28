@@ -7,12 +7,18 @@
 #include "Texture2D.h"
 #include "Font.h"
 
-dae::TextComponent::TextComponent(std::weak_ptr<GameObject> pGameObject, std::shared_ptr<Font> pFont) :
+dae::TextComponent::TextComponent(std::weak_ptr<GameObject> pGameObject) :
 	UpdateComponent{ pGameObject },
-	m_pFont{ pFont },
+	m_pFont{},
 	m_Text{},
 	m_NeedsUpdate{ false }
 {
+	if (!pGameObject.lock()->HasComponent<TextureComponent>())
+	{
+		pGameObject.lock()->AddComponent<TextureComponent>(std::make_shared<TextureComponent>(pGameObject));
+	}
+
+	m_pTextureComponent = pGameObject.lock()->GetComponent<TextureComponent>();
 }
 
 dae::TextComponent::~TextComponent()
@@ -35,7 +41,7 @@ void dae::TextComponent::Update(float)
 			throw std::runtime_error(std::string("Create text texture from surface failed: ") + SDL_GetError());
 		}
 		SDL_FreeSurface(surf);
-		GetGameObject().lock()->GetComponent<dae::TextureComponent>()->SetTexture(std::make_shared<Texture2D>(texture));
+		m_pTextureComponent->SetTexture(std::make_shared<Texture2D>(texture));
 		m_NeedsUpdate = false;
 	}
 }
@@ -44,4 +50,9 @@ void dae::TextComponent::SetText(const std::string& text)
 {
 	m_Text = text;
 	m_NeedsUpdate = true;
+}
+
+void dae::TextComponent::SetFont(const std::shared_ptr<Font>& font)
+{
+	m_pFont = font;
 }

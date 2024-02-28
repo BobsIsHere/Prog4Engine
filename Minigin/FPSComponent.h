@@ -20,5 +20,7 @@ namespace dae
 	private:
 		int m_FrameCount;
 		float m_TotalTime;
+
+		std::shared_ptr<TextComponent> m_pTextComponent;
 	};
 }

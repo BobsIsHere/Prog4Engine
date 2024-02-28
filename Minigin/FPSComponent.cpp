@@ -1,5 +1,7 @@
 #include <string>
 #include <chrono>
+#include <format>
+#include <iomanip>
 #include "FPSComponent.h"
 #include "GameObject.h"
 
@@ -8,6 +10,12 @@ dae::FPSComponent::FPSComponent(std::weak_ptr<GameObject> pGameObject) :
 	m_FrameCount{},
 	m_TotalTime{}
 {
+	if (!pGameObject.lock()->HasComponent<TextComponent>())
+	{
+		pGameObject.lock()->AddComponent<TextComponent>(std::make_shared<TextComponent>(pGameObject));
+	}
+
+	m_pTextComponent = pGameObject.lock()->GetComponent<TextComponent>();
 }
 
 dae::FPSComponent::~FPSComponent()
@@ -21,9 +29,8 @@ void dae::FPSComponent::Update(float deltaTime)
 
 	if (m_TotalTime > 0.1f)
 	{
-		std::ostringstream fpsString{};
-		fpsString << std::fixed << std::setprecision(1) << (m_FrameCount / m_TotalTime) << " FPS";
-		GetGameObject().lock()->GetComponent<dae::TextComponent>()->SetText(fpsString.str());
+		std::string fpsString = std::format("{:.1f} FPS", static_cast<float>(m_FrameCount) / m_TotalTime);
+		m_pTextComponent->SetText(fpsString);
 
 		m_FrameCount = 0;
 		m_TotalTime = 0.f;

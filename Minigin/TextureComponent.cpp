@@ -20,7 +20,7 @@ void dae::TextureComponent::Render() const
 {
 	if (m_pTexture != nullptr)
 	{
-		const auto& position = GetGameObject().lock()->GetTransformComponent().GetPosition();
+		const auto& position = GetGameObject().lock()->GetTransformComponent().GetLocalPosition();
 		Renderer::GetInstance().RenderTexture(*m_pTexture, position.x, position.y); 
 	}
 }
