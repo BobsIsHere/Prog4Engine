@@ -7,18 +7,18 @@
 #include "Texture2D.h"
 #include "Font.h"
 
-dae::TextComponent::TextComponent(std::weak_ptr<GameObject> pGameObject) :
+dae::TextComponent::TextComponent(GameObject* pGameObject) :
 	UpdateComponent{ pGameObject },
 	m_pFont{},
 	m_Text{},
 	m_NeedsUpdate{ false }
 {
-	if (!pGameObject.lock()->HasComponent<TextureComponent>())
+	if (!pGameObject->HasComponent<TextureComponent>())
 	{
-		pGameObject.lock()->AddComponent<TextureComponent>(std::make_shared<TextureComponent>(pGameObject));
+		pGameObject->AddComponent<TextureComponent>(std::make_shared<TextureComponent>(pGameObject));
 	}
 
-	m_pTextureComponent = pGameObject.lock()->GetComponent<TextureComponent>();
+	m_pTextureComponent = pGameObject->GetComponent<TextureComponent>();
 }
 
 dae::TextComponent::~TextComponent()

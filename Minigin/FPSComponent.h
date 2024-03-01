@@ -7,7 +7,7 @@ namespace dae
 	class FPSComponent final : public UpdateComponent
 	{
 	public:
-		FPSComponent(std::weak_ptr<GameObject> pGameObject);
+		FPSComponent(GameObject* pGameObject);
 		virtual ~FPSComponent();
 
 		FPSComponent(const FPSComponent& other) = delete;

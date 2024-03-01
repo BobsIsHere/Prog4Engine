@@ -7,7 +7,7 @@ namespace dae
 	class TransformComponent final : public Component
 	{
 	public:
-		TransformComponent(std::weak_ptr<GameObject> pGameObject);
+		TransformComponent(GameObject* pGameObject);
 		virtual ~TransformComponent();
 
 		TransformComponent(const TransformComponent& other) = delete;

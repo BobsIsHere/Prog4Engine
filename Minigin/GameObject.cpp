@@ -6,9 +6,10 @@
 
 dae::GameObject::GameObject() :
 	m_IsSetForRemoval{},
-	m_IsPositionDirty{}
+	m_IsPositionDirty{ true },
+	m_pParent{}
 {
-	m_pTransformComponent = std::make_unique<TransformComponent>(std::shared_ptr<GameObject>());
+	m_pTransformComponent = std::make_unique<TransformComponent>(this);
 }
 
 dae::GameObject::~GameObject() = default;
@@ -31,14 +32,17 @@ void dae::GameObject::Render() const
 
 void dae::GameObject::UpdateWorldPosition()
 {
-	if (m_pParent == nullptr)
+	if (m_IsPositionDirty)
 	{
-		m_pTransformComponent->SetWorldPosition(m_pTransformComponent->GetLocalPosition().x, m_pTransformComponent->GetLocalPosition().y);
-	}
-	else
-	{
-		m_pTransformComponent->SetWorldPosition(m_pParent->GetWorldPosition().x + m_pTransformComponent->GetLocalPosition().x, 
-												m_pParent->GetWorldPosition().y + m_pTransformComponent->GetLocalPosition().y);
+		if (m_pParent == nullptr)
+		{
+			m_pTransformComponent->SetWorldPosition(m_pTransformComponent->GetLocalPosition().x, m_pTransformComponent->GetLocalPosition().y);
+		}
+		else
+		{
+			m_pTransformComponent->SetWorldPosition(m_pParent->GetWorldPosition().x + m_pTransformComponent->GetLocalPosition().x, 
+													m_pParent->GetWorldPosition().y + m_pTransformComponent->GetLocalPosition().y); 
+		}
 	}
 
 	m_IsPositionDirty = false;
@@ -47,7 +51,7 @@ void dae::GameObject::UpdateWorldPosition()
 void dae::GameObject::SetLocalPosition(float x, float y)
 {
 	m_pTransformComponent->SetLocalPosition(x, y);
-	SetPositionDirty();
+	SetPositionDirty(); 
 }
 
 void dae::GameObject::SetIsSetForRemoval()
@@ -55,9 +59,9 @@ void dae::GameObject::SetIsSetForRemoval()
 	m_IsSetForRemoval = !m_IsSetForRemoval;
 }
 
-void dae::GameObject::SetParent(std::shared_ptr<GameObject> pParent, bool keepWorldPosition)
+void dae::GameObject::SetParent(GameObject* pParent, bool keepWorldPosition)
 {
-	if (pParent->IsChild(std::shared_ptr<GameObject>(this)) || m_pParent == pParent || pParent.get() == this) 
+	if (pParent->IsChild(this) || m_pParent == pParent || pParent == this) 
 	{
 		return;
 	}
@@ -72,48 +76,46 @@ void dae::GameObject::SetParent(std::shared_ptr<GameObject> pParent, bool keepWo
 		{
 			SetLocalPosition(GetWorldPosition().x - pParent->GetWorldPosition().x, GetWorldPosition().y - pParent->GetWorldPosition().y);
 		}
+
 		SetPositionDirty();
 	}
 
 	if (m_pParent)
 	{
-		m_pParent->RemoveChild(std::shared_ptr<GameObject>(this));
+		m_pParent->RemoveChild(this);
 	}
 
 	m_pParent = pParent;
 
 	if (m_pParent)
 	{
-		m_pParent->AddChild(std::shared_ptr<GameObject>(this));
+		m_pParent->AddChild(this);
 	}
 }
 
 void dae::GameObject::SetPositionDirty()
 {
 	m_IsPositionDirty = true;
+
+	for (auto& child : m_pChildren)
+	{
+		child->SetPositionDirty(); 
+	}
 }
 
-void dae::GameObject::AddChild(std::shared_ptr<GameObject> pChild)
+void dae::GameObject::AddChild(GameObject* pChild)
 {
 	m_pChildren.emplace_back(pChild);
 }
 
-void dae::GameObject::RemoveChild(std::shared_ptr<GameObject> pChild)
+void dae::GameObject::RemoveChild(GameObject* pChild)
 {
 	m_pChildren.erase(std::remove(m_pChildren.begin(), m_pChildren.end(), pChild), m_pChildren.end());
 }
 
-const glm::vec3& dae::GameObject::GetLocalPosition()
-{
-	return m_pTransformComponent->GetLocalPosition();
-}
-
 const glm::vec3& dae::GameObject::GetWorldPosition()
 {
-	if (m_IsPositionDirty)
-	{
-		UpdateWorldPosition();
-	}
+	UpdateWorldPosition();
 	return m_pTransformComponent->GetWorldPosition();
 }
 
@@ -122,12 +124,12 @@ dae::TransformComponent& dae::GameObject::GetTransformComponent() const
 	return *m_pTransformComponent;
 }
 
-std::shared_ptr<dae::GameObject> dae::GameObject::GetParent() const
+dae::GameObject* dae::GameObject::GetParent() const
 {
 	return m_pParent;
 }
 
-std::shared_ptr<dae::GameObject> dae::GameObject::GetChildAt(unsigned int index) const
+dae::GameObject* dae::GameObject::GetChildAt(unsigned int index) const
 {
 	if (index < GetChildCount())
 	{
@@ -141,7 +143,7 @@ size_t dae::GameObject::GetChildCount() const
 	return m_pChildren.size();
 }
 
-bool dae::GameObject::IsChild(const std::shared_ptr<GameObject>& pChild) const
+bool dae::GameObject::IsChild(const GameObject* pChild) const
 {
 	for (const auto& child : m_pChildren) 
 	{

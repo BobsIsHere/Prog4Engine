@@ -1,6 +1,6 @@
 #include "Component.h"
 
-dae::Component::Component(std::weak_ptr<GameObject> pGameObject) :
+dae::Component::Component(GameObject* pGameObject) :
 	m_pGameObject{ pGameObject }
 {
 

@@ -11,7 +11,7 @@ namespace dae
 	class TextureComponent final : public RenderComponent
 	{
 	public:
-		TextureComponent(std::weak_ptr<GameObject> pGameObject);
+		TextureComponent(GameObject* pGameObject);
 		virtual ~TextureComponent();
 
 		TextureComponent(const TextureComponent& other) = delete;

@@ -4,7 +4,7 @@
 #include "Renderer.h"
 #include <SDL.h>
 
-dae::TextureComponent::TextureComponent(std::weak_ptr<GameObject> pGameObject) :
+dae::TextureComponent::TextureComponent(GameObject* pGameObject) :
 	RenderComponent{ pGameObject },
 	m_pTexture{}
 {
@@ -20,7 +20,7 @@ void dae::TextureComponent::Render() const
 {
 	if (m_pTexture != nullptr)
 	{
-		const auto& position = GetGameObject().lock()->GetTransformComponent().GetLocalPosition();
+		const auto& position = GetGameObject()->GetTransformComponent().GetWorldPosition(); 
 		Renderer::GetInstance().RenderTexture(*m_pTexture, position.x, position.y); 
 	}
 }

@@ -5,17 +5,17 @@
 #include "FPSComponent.h"
 #include "GameObject.h"
 
-dae::FPSComponent::FPSComponent(std::weak_ptr<GameObject> pGameObject) :
+dae::FPSComponent::FPSComponent(GameObject* pGameObject) :
 	UpdateComponent{ pGameObject },
 	m_FrameCount{},
 	m_TotalTime{}
 {
-	if (!pGameObject.lock()->HasComponent<TextComponent>())
+	if (!pGameObject->HasComponent<TextComponent>())
 	{
-		pGameObject.lock()->AddComponent<TextComponent>(std::make_shared<TextComponent>(pGameObject));
+		pGameObject->AddComponent<TextComponent>(std::make_shared<TextComponent>(pGameObject));
 	}
 
-	m_pTextComponent = pGameObject.lock()->GetComponent<TextComponent>();
+	m_pTextComponent = pGameObject->GetComponent<TextComponent>();
 }
 
 dae::FPSComponent::~FPSComponent()

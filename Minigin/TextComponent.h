@@ -12,7 +12,7 @@ namespace dae
 	class TextComponent final : public UpdateComponent
 	{
 	public:
-		TextComponent(std::weak_ptr<GameObject> pGameObject);
+		TextComponent(GameObject* pGameObject);
 		virtual ~TextComponent();
 
 		TextComponent(const TextComponent& other) = delete;
