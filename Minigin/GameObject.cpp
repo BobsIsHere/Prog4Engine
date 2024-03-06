@@ -54,11 +54,6 @@ void dae::GameObject::SetLocalPosition(float x, float y)
 	SetPositionDirty(); 
 }
 
-void dae::GameObject::SetIsSetForRemoval()
-{
-	m_IsSetForRemoval = !m_IsSetForRemoval;
-}
-
 void dae::GameObject::SetParent(GameObject* pParent, bool keepWorldPosition)
 {
 	if (pParent->IsChild(this) || m_pParent == pParent || pParent == this) 
@@ -103,6 +98,11 @@ void dae::GameObject::SetPositionDirty()
 	}
 }
 
+void dae::GameObject::SetForRemoval()
+{
+	m_IsSetForRemoval = true;
+}
+
 void dae::GameObject::AddChild(GameObject* pChild)
 {
 	m_pChildren.emplace_back(pChild);
@@ -141,6 +141,11 @@ dae::GameObject* dae::GameObject::GetChildAt(unsigned int index) const
 size_t dae::GameObject::GetChildCount() const
 {
 	return m_pChildren.size();
+}
+
+bool dae::GameObject::GetIsSetForRemoval()
+{
+	return m_IsSetForRemoval;
 }
 
 bool dae::GameObject::IsChild(const GameObject* pChild) const

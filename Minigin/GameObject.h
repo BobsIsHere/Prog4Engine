@@ -26,14 +26,15 @@ namespace dae
 		void UpdateWorldPosition();
 
 		void SetLocalPosition(float x, float y);
-		void SetIsSetForRemoval();
 		void SetParent(GameObject* pParent, bool keepWorldPosition);
 		void SetPositionDirty();
+		void SetForRemoval();
 
 		TransformComponent& GetTransformComponent() const;
 		GameObject* GetParent() const;
 		GameObject* GetChildAt(unsigned int index) const;
 		size_t GetChildCount() const;
+		bool GetIsSetForRemoval();
 
 		bool IsChild(const GameObject* pChild) const;
 

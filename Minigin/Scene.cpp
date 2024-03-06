@@ -28,9 +28,34 @@ void Scene::RemoveAll()
 
 void Scene::Update(float deltaTime)
 {
-	for(auto& object : m_objects)
+	for (auto& object : m_objects)
 	{
 		object->Update(deltaTime);
+	}
+
+	for (auto& object : m_objects)
+	{
+		if (object->GetIsSetForRemoval()) 
+		{
+			// If the object has no parent, set its children's parent to nullptr
+			if (object->GetParent() == nullptr) 
+			{
+				for (int idx = 0; idx < object->GetChildCount(); ++idx)
+				{
+					object->GetChildAt(idx)->SetParent(nullptr, true);
+				}
+			}
+			else
+			{
+				for (int idx = 0; idx < object->GetChildCount(); ++idx) 
+				{
+					object->GetChildAt(idx)->SetParent(object->GetParent(), true);
+				}
+			}
+			
+			object.reset(); 
+			Remove(object); 
+		}
 	}
 }
 
