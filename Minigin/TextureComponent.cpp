@@ -13,7 +13,6 @@ dae::TextureComponent::TextureComponent(GameObject* pGameObject) :
 
 dae::TextureComponent::~TextureComponent()
 {
-	
 }
 
 void dae::TextureComponent::Render() const
@@ -23,6 +22,10 @@ void dae::TextureComponent::Render() const
 		const auto& position = GetGameObject()->GetTransformComponent().GetWorldPosition(); 
 		Renderer::GetInstance().RenderTexture(*m_pTexture, position.x, position.y); 
 	}
+}
+
+void dae::TextureComponent::RenderGui()
+{
 }
 
 void dae::TextureComponent::SetTexture(std::string fileName)

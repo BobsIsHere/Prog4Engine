@@ -82,7 +82,6 @@ void dae::Minigin::Run(const std::function<void()>& load)
 	load();
 
 	const int ms_per_frame{ 6 };
-	float lag{ 0.0f };
 	auto& renderer = Renderer::GetInstance();
 	auto& sceneManager = SceneManager::GetInstance();
 	auto& input = InputManager::GetInstance();
@@ -95,7 +94,6 @@ void dae::Minigin::Run(const std::function<void()>& load)
 		const float delta_time = std::chrono::duration<float>(current_time - last_time).count();
 
 		last_time = current_time;
-		lag += delta_time;
 		
 		doContinue = input.ProcessInput();
 		sceneManager.Update(delta_time);

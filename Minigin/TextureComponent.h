@@ -20,6 +20,7 @@ namespace dae
 		TextureComponent& operator=(TextureComponent&& other) = delete;
 
 		virtual void Render() const override;
+		virtual void RenderGui() override;
 		void SetTexture(std::string fileName);
 		void SetTexture(const std::shared_ptr<Texture2D>& pTexture);
 

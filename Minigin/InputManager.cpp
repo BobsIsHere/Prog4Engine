@@ -12,7 +12,6 @@ bool dae::InputManager::ProcessInput()
 			return false;
 		}
 		//process event for IMGUI
-		ImGui_ImplSDL2_ProcessEvent(&e);
 		if (e.type == SDL_KEYDOWN) 
 		{
 		}
@@ -20,6 +19,7 @@ bool dae::InputManager::ProcessInput()
 		{
 		}
 		// etc...
+		ImGui_ImplSDL2_ProcessEvent(&e);
 	}
 
 	return true;

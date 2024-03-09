@@ -67,10 +67,6 @@ namespace dae
 
 		GameObject* m_pParent; 
 		std::vector<GameObject*> m_pChildren;
-
-		// Mmm, every gameobject has a texture? Is that correct?
-		// No, not every GameObject has a texture
-		// -> Add texture component
 	};
 
 	template<typename ComponentType>

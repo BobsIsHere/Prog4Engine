@@ -17,6 +17,7 @@ namespace dae
 
 		virtual void Update(float) override;
 		virtual void Render() const override;
+		virtual void RenderGui() override;
 
 		void SetLocalPosition(float x, float y, float z = 0);
 		void SetWorldPosition(float x, float y, float z = 0);

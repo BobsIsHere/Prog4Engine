@@ -13,17 +13,17 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\Components">
-      <UniqueIdentifier>{fe38bfaf-8e38-493f-a4a7-2d3e93c3b447}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Components\RenderComponents">
-      <UniqueIdentifier>{2d52cfde-6d74-4706-be50-8886f4cdcfa4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Components\UpdateComponents">
-      <UniqueIdentifier>{b3a7844a-58aa-4684-9b16-0497a66be0af}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ImGui">
       <UniqueIdentifier>{0a51feb7-79ed-4007-b9b3-cc174f05e2cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{fe38bfaf-8e38-493f-a4a7-2d3e93c3b447}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\RenderComponents">
+      <UniqueIdentifier>{2d52cfde-6d74-4706-be50-8886f4cdcfa4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\UpdateComponents">
+      <UniqueIdentifier>{b3a7844a-58aa-4684-9b16-0497a66be0af}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -58,28 +58,28 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Component.h">
-      <Filter>Source Files\Components</Filter>
+      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="RenderComponent.h">
-      <Filter>Source Files\Components</Filter>
+      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="UpdateComponent.h">
-      <Filter>Source Files\Components</Filter>
+      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="TransformComponent.h">
-      <Filter>Source Files\Components</Filter>
+      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="TextureComponent.h">
-      <Filter>Source Files\Components\RenderComponents</Filter>
+      <Filter>Components\RenderComponents</Filter>
     </ClInclude>
     <ClInclude Include="TextComponent.h">
-      <Filter>Source Files\Components\UpdateComponents</Filter>
+      <Filter>Components\UpdateComponents</Filter>
     </ClInclude>
     <ClInclude Include="FPSComponent.h">
-      <Filter>Source Files\Components\UpdateComponents</Filter>
+      <Filter>Components\UpdateComponents</Filter>
     </ClInclude>
     <ClInclude Include="RotationComponent.h">
-      <Filter>Source Files\Components\UpdateComponents</Filter>
+      <Filter>Components\UpdateComponents</Filter>
     </ClInclude>
     <ClInclude Include="..\3rdParty\imgui-1.90.4\imconfig.h">
       <Filter>ImGui</Filter>
@@ -104,6 +104,12 @@
     </ClInclude>
     <ClInclude Include="..\3rdParty\imgui-1.90.4\backends\imgui_impl_sdl2.h">
       <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\imgui-1.90.4\include\imgui_plot.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheGraphComponent.h">
+      <Filter>Components\RenderComponents</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -138,28 +144,28 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Component.cpp">
-      <Filter>Source Files\Components</Filter>
+      <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="RenderComponent.cpp">
-      <Filter>Source Files\Components</Filter>
+      <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="UpdateComponent.cpp">
-      <Filter>Source Files\Components</Filter>
+      <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="TransformComponent.cpp">
-      <Filter>Source Files\Components</Filter>
+      <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="TextureComponent.cpp">
-      <Filter>Source Files\Components\RenderComponents</Filter>
+      <Filter>Components\RenderComponents</Filter>
     </ClCompile>
     <ClCompile Include="TextComponent.cpp">
-      <Filter>Source Files\Components\UpdateComponents</Filter>
+      <Filter>Components\UpdateComponents</Filter>
     </ClCompile>
     <ClCompile Include="FPSComponent.cpp">
-      <Filter>Source Files\Components\UpdateComponents</Filter>
+      <Filter>Components\UpdateComponents</Filter>
     </ClCompile>
     <ClCompile Include="RotationComponent.cpp">
-      <Filter>Source Files\Components\UpdateComponents</Filter>
+      <Filter>Components\UpdateComponents</Filter>
     </ClCompile>
     <ClCompile Include="..\3rdParty\imgui-1.90.4\imgui.cpp">
       <Filter>ImGui</Filter>
@@ -181,6 +187,12 @@
     </ClCompile>
     <ClCompile Include="..\3rdParty\imgui-1.90.4\backends\imgui_impl_sdl2.cpp">
       <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdParty\imgui-1.90.4\src\imgui_plot.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheGraphComponent.cpp">
+      <Filter>Components\RenderComponents</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

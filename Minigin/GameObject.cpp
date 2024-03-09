@@ -27,6 +27,7 @@ void dae::GameObject::Render() const
 	for (size_t idx = 0; idx < m_pComponents.size(); ++idx)
 	{
 		m_pComponents[idx]->Render();
+		m_pComponents[idx]->RenderGui();
 	}
 }
 
