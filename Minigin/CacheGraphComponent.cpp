@@ -10,7 +10,10 @@
 
 dae::CacheGraphComponent::CacheGraphComponent(GameObject* pGameObject) :
 	RenderComponent{ pGameObject }, 
-	m_pWindow{}
+	m_pWindow{},
+	m_BenchmarkRunsEx1{ 10 },
+	m_BenchmarkRunsEx2{ 100 },
+	m_StepInfo{ 1,2,4,8,16,32,64,128,256,512,1024 }
 {
 	m_pWindow = Renderer::GetInstance().GetWindow();
 
@@ -108,7 +111,7 @@ void dae::CacheGraphComponent::RenderEx2()
 	ImGui::End(); 
 }
 
-void dae::CacheGraphComponent::Exercise1(int benchMarkRuns)
+void dae::CacheGraphComponent::Exercise1(const int benchMarkRuns)
 {
 	const int arraySize{ 10'000'000 };
 
@@ -152,7 +155,7 @@ void dae::CacheGraphComponent::Exercise1(int benchMarkRuns)
 	buffer = nullptr;
 }
 
-void dae::CacheGraphComponent::Exercise2(int benchMarkRuns)
+void dae::CacheGraphComponent::Exercise2(const int benchMarkRuns)
 {
 	const int arraySize{ 10'000'000 };
 
@@ -191,7 +194,7 @@ void dae::CacheGraphComponent::Exercise2(int benchMarkRuns)
 	}
 }
 
-void dae::CacheGraphComponent::Exercise2Alt(int benchMarkRuns)
+void dae::CacheGraphComponent::Exercise2Alt(const int benchMarkRuns)
 {
 	const int arraySize{ 10'000'000 };
 
@@ -230,17 +233,17 @@ void dae::CacheGraphComponent::Exercise2Alt(int benchMarkRuns)
 	}
 }
 
-void dae::CacheGraphComponent::PlotGraph(std::vector<float> data, const ImU32 color) 
+void dae::CacheGraphComponent::PlotGraph(const std::vector<float> data, const ImU32 color)
 {
-	const std::vector<float> stepInfo{ 1,2,4,8,16,32,64,128,256,512,1024 };
-
+	//Variables
 	const float min = *std::min_element(begin(data), end(data));
 	const float max = *std::max_element(begin(data), end(data));
 
+	//Graph
 	ImGui::PlotConfig plotConfig{};
-	plotConfig.values.xs = stepInfo.data();
+	plotConfig.values.xs = m_StepInfo.data();
 	plotConfig.values.ys = data.data();
-	plotConfig.values.count = int(stepInfo.size());
+	plotConfig.values.count = int(m_StepInfo.size());
 	plotConfig.values.color = color;
 	plotConfig.scale.min = min;
 	plotConfig.scale.max = max;
@@ -255,30 +258,29 @@ void dae::CacheGraphComponent::PlotGraph(std::vector<float> data, const ImU32 co
 	ImGui::Plot("plot", plotConfig);
 }
 
-void dae::CacheGraphComponent::PlotMultiGraph(std::vector<float> data1, std::vector<float> data2, const ImU32 color1, const ImU32 color2)
+void dae::CacheGraphComponent::PlotMultiGraph(const std::vector<float> data1, const std::vector<float> data2, const ImU32 color1, const ImU32 color2)
 {
 	//Variables
-	const std::vector<float> stepInfo{ 1,2,4,8,16,32,64,128,256,512,1024 };
-
-	const ImU32 colors[2] = { color1, color2 }; 
-
+	const float min{ 0.f };
+	const float max{ 100'000.f };
 	const float* dataArray[] = { data1.data(), data2.data() };
+	const ImU32 colors[2] = { color1, color2 };  
 	
 	//Graph
-	ImGui::Text("Combined Graphs: ");
+	ImGui::Text("Combined: ");
 	ImGui::PlotConfig plotConfig{};
-	plotConfig.values.xs = stepInfo.data();
+	plotConfig.values.xs = m_StepInfo.data();
 	plotConfig.values.ys_list = dataArray; 
 	plotConfig.values.ys_count = 2; 
-	plotConfig.values.count = int(stepInfo.size());
+	plotConfig.values.count = int(m_StepInfo.size());
 	plotConfig.values.colors = colors; 
-	plotConfig.scale.min = 0.f;
-	plotConfig.scale.max = 100'000.f;
+	plotConfig.scale.min = min; 
+	plotConfig.scale.max = max;  
 	plotConfig.tooltip.show = true;
 	plotConfig.tooltip.format = "x=%.2f, y=%.2f";
 	plotConfig.grid_x.show = false;
 	plotConfig.grid_y.show = true;
-	plotConfig.grid_y.size = 10'000.f;
+	plotConfig.grid_y.size = max / 10.f;
 	plotConfig.frame_size = ImVec2(200, 100);
 	plotConfig.line_thickness = 2.f; 
 

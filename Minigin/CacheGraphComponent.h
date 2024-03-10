@@ -21,12 +21,12 @@ namespace dae
 		void RenderEx1();
 		void RenderEx2();
 
-		void Exercise1(int benchMarkRuns);
-		void Exercise2(int benchMarkRuns);
-		void Exercise2Alt(int benchMarkRuns);
+		void Exercise1(const int benchMarkRuns);
+		void Exercise2(const int benchMarkRuns);
+		void Exercise2Alt(const int benchMarkRuns);
 
-		void PlotGraph(std::vector<float> data, const ImU32 color);
-		void PlotMultiGraph(std::vector<float> data1, std::vector<float> data2, const ImU32 color1, const ImU32 color2);
+		void PlotGraph(const std::vector<float> data, const ImU32 color);
+		void PlotMultiGraph(const std::vector<float> data1, const std::vector<float> data2, const ImU32 color1, const ImU32 color2);
 
 	private:
 		struct Transform
@@ -55,8 +55,10 @@ namespace dae
 
 		SDL_Window* m_pWindow;
 
-		int m_BenchmarkRunsEx1{ 10 };
-		int m_BenchmarkRunsEx2{ 100 };
+		int m_BenchmarkRunsEx1;
+		int m_BenchmarkRunsEx2;
+
+		const std::vector<float> m_StepInfo;
 
 		std::vector<float> m_Ex1Average;
 		std::vector<float> m_Ex2Average;
