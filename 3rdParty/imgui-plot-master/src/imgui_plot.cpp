@@ -1,7 +1,7 @@
-//encapulates the warnings
-#pragma warning(push)
-#pragma warning (disable: 4018)     // '<': signed / unsigned mismatch
-#pragma warning (disable: 4244)     // 'argument': conversion from 'int' to 'float', possible loss of data
+    //encapulates the warnings
+    #pragma warning(push)
+    #pragma warning (disable: 4018)     // '<': signed / unsigned mismatch
+    #pragma warning (disable: 4244)     // 'argument': conversion from 'int' to 'float', possible loss of data
 #include <imgui_plot.h>
 #include <imgui.h>
 #include <imgui_internal.h>
