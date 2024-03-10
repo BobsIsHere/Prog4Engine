@@ -117,7 +117,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\3rdParty\imgui-1.90.4\src;$(SolutionDir)\3rdParty\imgui-1.90.4\include;$(SolutionDir)\3rdParty\imgui-1.90.4\backends;$(SolutionDir)\3rdParty\imgui-1.90.4;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\3rdParty\imgui-plot-master\src;$(SolutionDir)\3rdParty\imgui-plot-master\include;$(SolutionDir)\3rdParty\imgui-1.90.4\backends;$(SolutionDir)\3rdParty\imgui-1.90.4;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
@@ -182,7 +182,7 @@
     <ClInclude Include="..\3rdParty\imgui-1.90.4\imstb_rectpack.h" />
     <ClInclude Include="..\3rdParty\imgui-1.90.4\imstb_textedit.h" />
     <ClInclude Include="..\3rdParty\imgui-1.90.4\imstb_truetype.h" />
-    <ClInclude Include="..\3rdParty\imgui-1.90.4\include\imgui_plot.h" />
+    <ClInclude Include="..\3rdParty\imgui-plot-master\include\imgui_plot.h" />
     <ClInclude Include="CacheGraphComponent.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Font.h" />
@@ -211,7 +211,7 @@
     <ClCompile Include="..\3rdParty\imgui-1.90.4\imgui_draw.cpp" />
     <ClCompile Include="..\3rdParty\imgui-1.90.4\imgui_tables.cpp" />
     <ClCompile Include="..\3rdParty\imgui-1.90.4\imgui_widgets.cpp" />
-    <ClCompile Include="..\3rdParty\imgui-1.90.4\src\imgui_plot.cpp" />
+    <ClCompile Include="..\3rdParty\imgui-plot-master\src\imgui_plot.cpp" />
     <ClCompile Include="CacheGraphComponent.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Font.cpp" />

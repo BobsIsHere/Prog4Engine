@@ -105,11 +105,11 @@
     <ClInclude Include="..\3rdParty\imgui-1.90.4\backends\imgui_impl_sdl2.h">
       <Filter>ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="..\3rdParty\imgui-1.90.4\include\imgui_plot.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
     <ClInclude Include="CacheGraphComponent.h">
       <Filter>Components\RenderComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\imgui-plot-master\include\imgui_plot.h">
+      <Filter>ImGui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -188,11 +188,11 @@
     <ClCompile Include="..\3rdParty\imgui-1.90.4\backends\imgui_impl_sdl2.cpp">
       <Filter>ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="..\3rdParty\imgui-1.90.4\src\imgui_plot.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
     <ClCompile Include="CacheGraphComponent.cpp">
       <Filter>Components\RenderComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdParty\imgui-plot-master\src\imgui_plot.cpp">
+      <Filter>ImGui</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

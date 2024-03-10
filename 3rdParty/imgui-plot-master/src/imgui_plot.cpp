@@ -1,3 +1,7 @@
+//encapulates the warnings
+#pragma warning(push)
+#pragma warning (disable: 4018)     // '<': signed / unsigned mismatch
+#pragma warning (disable: 4244)     // 'argument': conversion from 'int' to 'float', possible loss of data
 #include <imgui_plot.h>
 #include <imgui.h>
 #include <imgui_internal.h>
@@ -258,3 +262,4 @@ PlotStatus Plot(const char* label, const PlotConfig& conf) {
     return status;
 }
 }
+#pragma warning(pop)
