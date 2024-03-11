@@ -120,7 +120,7 @@ void dae::CacheGraphComponent::Exercise1(const int benchMarkRuns)
 
 	for (size_t stepsize = 1; stepsize <= 1024; stepsize *= 2)
 	{
-		for (size_t runIndex = 0; runIndex < benchMarkRuns; ++runIndex) 
+		for (int runIndex = 0; runIndex < benchMarkRuns; ++runIndex) 
 		{
 			const auto start = std::chrono::high_resolution_clock::now();
 
@@ -164,7 +164,7 @@ void dae::CacheGraphComponent::Exercise2(const int benchMarkRuns)
 
 	for (size_t stepsize = 1; stepsize <= 1024; stepsize *= 2)
 	{
-		for (size_t runIndex = 0; runIndex < benchMarkRuns; ++runIndex) 
+		for (int runIndex = 0; runIndex < benchMarkRuns; ++runIndex) 
 		{
 			const auto start = std::chrono::high_resolution_clock::now();
 			for (size_t idx = 0; idx < arraySize; idx += stepsize)
@@ -203,7 +203,7 @@ void dae::CacheGraphComponent::Exercise2Alt(const int benchMarkRuns)
 
 	for (size_t stepsize = 1; stepsize <= 1024; stepsize *= 2)
 	{
-		for (size_t runIndex = 0; runIndex < benchMarkRuns; ++runIndex)
+		for (int runIndex = 0; runIndex < benchMarkRuns; ++runIndex)
 		{
 			const auto start = std::chrono::high_resolution_clock::now();
 			for (size_t idx = 0; idx < arraySize; idx += stepsize)

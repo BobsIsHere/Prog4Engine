@@ -40,14 +40,14 @@ void Scene::Update(float deltaTime)
 			// If the object has no parent, set its children's parent to nullptr
 			if (object->GetParent() == nullptr) 
 			{
-				for (int idx = 0; idx < object->GetChildCount(); ++idx)
+				for (int idx = 0; idx < int(object->GetChildCount()); ++idx)
 				{
 					object->GetChildAt(idx)->SetParent(nullptr, true);
 				}
 			}
 			else
 			{
-				for (int idx = 0; idx < object->GetChildCount(); ++idx) 
+				for (int idx = 0; idx < int(object->GetChildCount()); ++idx) 
 				{
 					object->GetChildAt(idx)->SetParent(object->GetParent(), true);
 				}
