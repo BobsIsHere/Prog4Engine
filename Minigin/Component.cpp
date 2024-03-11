@@ -21,4 +21,5 @@ void dae::Component::RenderGui()
 
 void dae::Component::Update(float)
 {
-}
+} 
+
