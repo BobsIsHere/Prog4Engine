@@ -28,6 +28,9 @@
     <Filter Include="Input">
       <UniqueIdentifier>{f76a5320-587d-45d5-8a46-6261fabc6150}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Input\Commands">
+      <UniqueIdentifier>{d7cc5e1a-88dd-4aab-b685-c61b7ad0afdd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -114,11 +117,20 @@
     <ClInclude Include="InputManager.h">
       <Filter>Input</Filter>
     </ClInclude>
-    <ClInclude Include="Command.h">
+    <ClInclude Include="Controller.h">
       <Filter>Input</Filter>
     </ClInclude>
-    <ClInclude Include="GameActorCommand.h">
+    <ClInclude Include="Keyboard.h">
       <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Command.h">
+      <Filter>Input\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="GameActorCommand.h">
+      <Filter>Input\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementCommand.h">
+      <Filter>Input\Commands</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -203,11 +215,20 @@
     <ClCompile Include="InputManager.cpp">
       <Filter>Input</Filter>
     </ClCompile>
-    <ClCompile Include="Command.cpp">
+    <ClCompile Include="Controller.cpp">
       <Filter>Input</Filter>
     </ClCompile>
-    <ClCompile Include="GameActorCommand.cpp">
+    <ClCompile Include="Keyboard.cpp">
       <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Command.cpp">
+      <Filter>Input\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="GameActorCommand.cpp">
+      <Filter>Input\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="MovementCommand.cpp">
+      <Filter>Input\Commands</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

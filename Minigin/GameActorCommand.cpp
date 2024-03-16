@@ -8,8 +8,6 @@ dae::GameActorCommand::GameActorCommand(GameObject* actor) :
 
 dae::GameActorCommand::~GameActorCommand()
 {
-	delete m_pGameActor;
-	m_pGameActor = nullptr;
 }
 
 dae::GameObject* dae::GameActorCommand::GetGameActor() const

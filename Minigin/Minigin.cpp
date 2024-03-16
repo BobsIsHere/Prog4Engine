@@ -95,7 +95,7 @@ void dae::Minigin::Run(const std::function<void()>& load)
 
 		last_time = current_time;
 		
-		doContinue = input.ProcessInput();
+		doContinue = input.ProcessInput(delta_time);
 		sceneManager.Update(delta_time);
 		renderer.Render();
 

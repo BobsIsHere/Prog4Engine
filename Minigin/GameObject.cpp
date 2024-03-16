@@ -55,6 +55,12 @@ void dae::GameObject::SetLocalPosition(float x, float y)
 	SetPositionDirty(); 
 }
 
+void dae::GameObject::SetLocalPosition(glm::vec3 pos)
+{
+	m_pTransformComponent->SetLocalPosition(pos.x, pos.y, pos.z); 
+	SetPositionDirty();
+}
+
 void dae::GameObject::SetParent(GameObject* pParent, bool keepWorldPosition)
 {
 	if (pParent->IsChild(this) || m_pParent == pParent || pParent == this) 

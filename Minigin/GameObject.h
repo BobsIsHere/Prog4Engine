@@ -1,6 +1,7 @@
 #pragma once
 #include <memory>
 #include <vector>
+#include <glm/glm.hpp>
 #include "Component.h"
 #include "TransformComponent.h"
 
@@ -26,6 +27,7 @@ namespace dae
 		void UpdateWorldPosition();
 
 		void SetLocalPosition(float x, float y);
+		void SetLocalPosition(glm::vec3 pos);
 		void SetParent(GameObject* pParent, bool keepWorldPosition);
 		void SetPositionDirty();
 		void SetForRemoval();
