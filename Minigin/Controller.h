@@ -46,10 +46,6 @@ namespace dae
 
 		unsigned int GetControllerIdx() const;
 
-		bool GetIsFirstController() const;
-
-		void SetIsFirstController(bool setController);
-
 	private:
 		class ControllerImpl;
 		std::unique_ptr<ControllerImpl> m_pControllerImpl;

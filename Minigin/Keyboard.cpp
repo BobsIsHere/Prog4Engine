@@ -26,9 +26,6 @@ namespace dae
 		bool IsPressed(SDL_Scancode key) const;
 
 	private:
-		//int m_ButtonsPressedThisFrame;
-		//int m_ButtonsReleasedThisFrame;
-
 		std::vector<Uint8> m_PreviousState;
 		std::vector<Uint8> m_CurrentState;
 	};

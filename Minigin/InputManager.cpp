@@ -50,14 +50,6 @@ void dae::InputManager::AddCommand(SDL_Scancode key, ButtonState state, std::uni
 	m_KeyboardCommands.emplace(std::make_pair(keyPair, std::move(pCommand)));
 }
 
-void dae::InputManager::AddController()
-{
-	if (static_cast<int>(m_pControllers.size()) < m_MaxControllers)
-	{
-		m_pControllers.push_back(std::make_unique<Controller>(m_pControllers.size() == 0));
-	}
-}
-
 void dae::InputManager::HandleControllerInput(float deltaTime)
 {
 	//auto& -> avoid copying unique_ptr instances, invalid due to non-copyable 

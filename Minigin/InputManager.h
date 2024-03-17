@@ -27,8 +27,6 @@ namespace dae
 		void AddCommand(unsigned int controllerIdx, Controller::GamePad gamepadButton, ButtonState state, std::unique_ptr<Command> pCommand);
 		void AddCommand(SDL_Scancode key, ButtonState state, std::unique_ptr<Command> pCommand);
 
-		void AddController();
-
 	protected:
 		InputManager();
 		~InputManager();
@@ -55,7 +53,7 @@ namespace dae
 
 		const int m_MaxControllers{ 2 };
 
-		//Functions
+		//Helper Functions
 		void HandleControllerInput(float deltaTime);
 		void HandleKeyboardInput(float deltaTime);
 	};

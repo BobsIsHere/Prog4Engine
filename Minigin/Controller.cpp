@@ -26,17 +26,12 @@ namespace dae
 		bool IsPressed(unsigned int button) const;
 
 		unsigned int GetControllerIdx() const;
-		
-		bool GetIsFirstController() const;
-
-		void SetIsFirstController(bool setController);
 
 	private:
 		int m_ButtonsPressedThisFrame;
 		int m_ButtonsReleasedThisFrame;
 
 		unsigned int m_ControllerIdx;
-		bool m_IsFirstController;
 
 		XINPUT_STATE m_PreviousState;
 		XINPUT_STATE m_CurrentState;
@@ -78,21 +73,10 @@ namespace dae
 		return m_pControllerImpl->GetControllerIdx();
 	}
 
-	bool dae::Controller::GetIsFirstController() const
-	{
-		return m_pControllerImpl->GetIsFirstController();
-	}
-
-	void Controller::SetIsFirstController(bool setController)
-	{
-		m_pControllerImpl->SetIsFirstController(setController);
-	}
-
 	//CONTROLLER IMPLEMENTATION
 	Controller::ControllerImpl::ControllerImpl(unsigned int controllerIdx) :
 		m_ButtonsPressedThisFrame{},
 		m_ButtonsReleasedThisFrame{},
-		m_IsFirstController{  },
 		m_PreviousState{},
 		m_CurrentState{},
 		m_ControllerIdx{ controllerIdx }
@@ -109,7 +93,7 @@ namespace dae
 	{
 		CopyMemory(&m_PreviousState, &m_CurrentState, sizeof(XINPUT_STATE)); 
 		ZeroMemory(&m_CurrentState, sizeof(XINPUT_STATE)); 
-		XInputGetState(static_cast<DWORD>(m_IsFirstController), &m_CurrentState);
+		XInputGetState(static_cast<DWORD>(m_ControllerIdx), &m_CurrentState);
 
 		auto buttonChanges = m_CurrentState.Gamepad.wButtons ^ m_PreviousState.Gamepad.wButtons;
 		m_ButtonsPressedThisFrame = buttonChanges & m_CurrentState.Gamepad.wButtons;
@@ -134,15 +118,5 @@ namespace dae
 	unsigned int dae::Controller::ControllerImpl::GetControllerIdx() const
 	{
 		return m_ControllerIdx;
-	}
-
-	bool dae::Controller::ControllerImpl::GetIsFirstController() const
-	{
-		return m_IsFirstController;
-	}
-
-	void dae::Controller::ControllerImpl::SetIsFirstController(bool setController)
-	{
-		m_IsFirstController = setController;
 	}
 }
