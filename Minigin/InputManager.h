@@ -24,12 +24,15 @@ namespace dae
 		
 		bool ProcessInput(float deltaTime);
 
-		void AddCommand(unsigned int controllerIdx, Controller::GamePad gamepadButton, ButtonState state, std::unique_ptr<Command> pCommand);
-		void AddCommand(SDL_Scancode key, ButtonState state, std::unique_ptr<Command> pCommand);
+		void AddControllerCommand(unsigned int controllerIdx, Controller::GamePad gamepadButton, ButtonState state, std::unique_ptr<Command> pCommand);
+		void AddKeyboardCommand(SDL_Scancode key, ButtonState state, std::unique_ptr<Command> pCommand);
+
+		void RemoveControllerCommand(unsigned int controllerIdx, Controller::GamePad gamepadButton, ButtonState state); 
+		void RemoveKeyboardCommand(SDL_Scancode key, ButtonState state);
 
 	protected:
 		InputManager();
-		~InputManager();
+		virtual ~InputManager();
 
 	private:
 		// Using a type alias to define a ControllerButton as a pair of unsigned integer and a Controller::GamePad

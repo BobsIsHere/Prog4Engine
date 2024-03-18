@@ -37,17 +37,30 @@ bool dae::InputManager::ProcessInput(float deltaTime)
 	return true;
 }
 
-void dae::InputManager::AddCommand(unsigned int controllerIdx, Controller::GamePad gamepadButton, ButtonState state, std::unique_ptr<Command> pCommand)
+void dae::InputManager::AddControllerCommand(unsigned int controllerIdx, Controller::GamePad gamepadButton, ButtonState state, std::unique_ptr<Command> pCommand)
 {
 	ControllerButton buttonPair{ std::make_pair(controllerIdx, gamepadButton) };
 	ControllerButtonState buttonStatePair{ std::make_pair(buttonPair, state) };
 	m_ControllerCommands.emplace(std::make_pair(buttonStatePair, std::move(pCommand)));
 }
 
-void dae::InputManager::AddCommand(SDL_Scancode key, ButtonState state, std::unique_ptr<Command> pCommand)
+void dae::InputManager::AddKeyboardCommand(SDL_Scancode key, ButtonState state, std::unique_ptr<Command> pCommand)
 {
 	KeyboardKey keyPair{ std::make_pair(key, state) };
 	m_KeyboardCommands.emplace(std::make_pair(keyPair, std::move(pCommand)));
+}
+
+void dae::InputManager::RemoveControllerCommand(unsigned int controllerIdx, Controller::GamePad gamepadButton, ButtonState state)
+{
+	ControllerButton buttonPair{ std::make_pair(controllerIdx, gamepadButton) };
+	ControllerButtonState buttonStatePair{ std::make_pair(buttonPair, state) };
+	m_ControllerCommands.erase(buttonStatePair);
+}
+
+void dae::InputManager::RemoveKeyboardCommand(SDL_Scancode key, ButtonState state)
+{
+	KeyboardKey keyPair{ std::make_pair(key, state) };
+	m_KeyboardCommands.erase(keyPair);
 }
 
 void dae::InputManager::HandleControllerInput(float deltaTime)
