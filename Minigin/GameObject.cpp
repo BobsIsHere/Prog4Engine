@@ -150,7 +150,7 @@ size_t dae::GameObject::GetChildCount() const
 	return m_pChildren.size();
 }
 
-bool dae::GameObject::GetIsSetForRemoval()
+bool dae::GameObject::GetIsSetForRemoval() const
 {
 	return m_IsSetForRemoval;
 }
