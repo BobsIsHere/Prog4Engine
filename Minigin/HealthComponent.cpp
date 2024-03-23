@@ -22,21 +22,16 @@ void dae::HealthComponent::Update(float)
 
 void dae::HealthComponent::LowerLives(int amount)
 {
-	m_Lives -= amount;
-	std::cout << m_Lives << " lives left\n";
-
-	if (m_Lives <= 0)
+	if (m_Lives > 0)
+	{
+		m_Lives -= amount;
+		m_pSubject->NotifyObservers(GetGameObject(), Event::Event_Player_Hit); 
+	}
+	else
 	{
 		m_Lives = 0;
 		m_pSubject->NotifyObservers(GetGameObject(), Event::Event_Player_Died);
 	}
-
-	m_pSubject->NotifyObservers(GetGameObject(), Event::Event_Player_Hit); 
-}
-
-void dae::HealthComponent::SetLives(int amount)
-{
-	m_Lives = amount; 
 }
 
 void dae::HealthComponent::AddObserver(Observer* observer)

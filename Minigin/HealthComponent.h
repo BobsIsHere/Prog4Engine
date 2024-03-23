@@ -22,7 +22,6 @@ namespace dae
 		virtual void Update(float elapsedSec) override;
 
 		void LowerLives(int amount);
-		void SetLives(int amount);
 		void AddObserver(Observer* observer);
 
 		int GetLives() const;
