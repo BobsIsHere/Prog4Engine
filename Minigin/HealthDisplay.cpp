@@ -1,4 +1,6 @@
 #include <string>
+#include <iostream>
+
 #include "GameObject.h"
 #include "HealthDisplay.h"
 #include "TextComponent.h"
@@ -7,8 +9,15 @@
 dae::HealthDisplay::HealthDisplay(GameObject* gameObject) :
 	Component{ gameObject }
 {
-	const auto textComponent = gameObject->GetComponent<TextComponent>();
-	textComponent->SetText("# Lives: 3");
+	try
+	{
+		const auto textComponent = gameObject->GetComponent<TextComponent>();
+		textComponent->SetText("# Lives: 3");
+	}
+	catch (const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 }
 
 dae::HealthDisplay::~HealthDisplay()
@@ -21,9 +30,6 @@ void dae::HealthDisplay::Notify(GameObject* gameObject, Event event)
 	{
 	case dae::Event::Event_Player_Hit:
 		UpdateText(gameObject);
-		break;
-	case dae::Event::Event_Enemy_Hit:
-		UpdateText(gameObject); 
 		break;
 	}
 }

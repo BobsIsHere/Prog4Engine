@@ -9,11 +9,18 @@
 dae::ScoreDisplay::ScoreDisplay(GameObject* gameObject) :
 	Component{ gameObject }
 {
-	const auto textComponent = gameObject->GetComponent<TextComponent>();
-	textComponent->SetText("# Score: 0");
+	try
+	{
+		const auto textComponent = gameObject->GetComponent<TextComponent>();
+		textComponent->SetText("# Score: 0");
+	}
+	catch (const std::exception& e) 
+	{
+		std::cerr << e.what() << std::endl; 
+	}
 }
 
-dae::ScoreDisplay::~ScoreDisplay()
+dae::ScoreDisplay::~ScoreDisplay() 
 {
 }
 

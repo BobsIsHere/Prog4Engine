@@ -31,13 +31,10 @@
     <Filter Include="Input Files">
       <UniqueIdentifier>{f76a5320-587d-45d5-8a46-6261fabc6150}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Commands">
+    <Filter Include="Commands Files">
       <UniqueIdentifier>{d7cc5e1a-88dd-4aab-b685-c61b7ad0afdd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Components Files\UpdateComponents\Counters">
-      <UniqueIdentifier>{8142ef14-f3c6-4dfa-a996-367f76f9fa4a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components Files\UpdateComponents\Observers">
+    <Filter Include="Components Files\Observers">
       <UniqueIdentifier>{7c35b33e-8992-4ac9-91bd-7b4264b2410b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -133,13 +130,13 @@
       <Filter>Input Files</Filter>
     </ClInclude>
     <ClInclude Include="Command.h">
-      <Filter>Commands</Filter>
+      <Filter>Commands Files</Filter>
     </ClInclude>
     <ClInclude Include="GameActorCommand.h">
-      <Filter>Commands</Filter>
+      <Filter>Commands Files</Filter>
     </ClInclude>
     <ClInclude Include="MovementCommand.h">
-      <Filter>Commands</Filter>
+      <Filter>Commands Files</Filter>
     </ClInclude>
     <ClInclude Include="Observer.h">
       <Filter>Observer Files</Filter>
@@ -147,38 +144,29 @@
     <ClInclude Include="Subject.h">
       <Filter>Observer Files</Filter>
     </ClInclude>
-    <ClInclude Include="CounterComponent.h">
-      <Filter>Components Files\UpdateComponents\Counters</Filter>
-    </ClInclude>
-    <ClInclude Include="HealthComponent.h">
-      <Filter>Components Files\UpdateComponents\Counters</Filter>
-    </ClInclude>
-    <ClInclude Include="ScoreComponent.h">
-      <Filter>Components Files\UpdateComponents\Counters</Filter>
-    </ClInclude>
-    <ClInclude Include="CounterObserverComponent.h">
-      <Filter>Components Files\UpdateComponents\Observers</Filter>
-    </ClInclude>
     <ClInclude Include="HealthDisplay.h">
-      <Filter>Components Files\UpdateComponents\Observers</Filter>
+      <Filter>Components Files\Observers</Filter>
     </ClInclude>
     <ClInclude Include="ScoreDisplay.h">
-      <Filter>Components Files\UpdateComponents\Observers</Filter>
+      <Filter>Components Files\Observers</Filter>
     </ClInclude>
     <ClInclude Include="HealthCommand.h">
-      <Filter>Commands</Filter>
+      <Filter>Commands Files</Filter>
     </ClInclude>
     <ClInclude Include="ScoreCommand.h">
-      <Filter>Commands</Filter>
+      <Filter>Commands Files</Filter>
     </ClInclude>
     <ClInclude Include="CSteamAchievements.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AchievementDisplay.h">
-      <Filter>Components Files\UpdateComponents\Observers</Filter>
+      <Filter>Components Files\Observers</Filter>
     </ClInclude>
-    <ClInclude Include="ResetAchCommand.h">
-      <Filter>Commands</Filter>
+    <ClInclude Include="ScoreComponent.h">
+      <Filter>Components Files\UpdateComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="HealthComponent.h">
+      <Filter>Components Files\UpdateComponents</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -270,13 +258,13 @@
       <Filter>Input Files</Filter>
     </ClCompile>
     <ClCompile Include="Command.cpp">
-      <Filter>Commands</Filter>
+      <Filter>Commands Files</Filter>
     </ClCompile>
     <ClCompile Include="GameActorCommand.cpp">
-      <Filter>Commands</Filter>
+      <Filter>Commands Files</Filter>
     </ClCompile>
     <ClCompile Include="MovementCommand.cpp">
-      <Filter>Commands</Filter>
+      <Filter>Commands Files</Filter>
     </ClCompile>
     <ClCompile Include="Observer.cpp">
       <Filter>Observer Files</Filter>
@@ -284,38 +272,29 @@
     <ClCompile Include="Subject.cpp">
       <Filter>Observer Files</Filter>
     </ClCompile>
-    <ClCompile Include="CounterComponent.cpp">
-      <Filter>Components Files\UpdateComponents\Counters</Filter>
-    </ClCompile>
-    <ClCompile Include="HealthComponent.cpp">
-      <Filter>Components Files\UpdateComponents\Counters</Filter>
-    </ClCompile>
-    <ClCompile Include="ScoreComponent.cpp">
-      <Filter>Components Files\UpdateComponents\Counters</Filter>
-    </ClCompile>
-    <ClCompile Include="CounterObserverComponent.cpp">
-      <Filter>Components Files\UpdateComponents\Observers</Filter>
-    </ClCompile>
     <ClCompile Include="HealthDisplay.cpp">
-      <Filter>Components Files\UpdateComponents\Observers</Filter>
+      <Filter>Components Files\Observers</Filter>
     </ClCompile>
     <ClCompile Include="ScoreDisplay.cpp">
-      <Filter>Components Files\UpdateComponents\Observers</Filter>
+      <Filter>Components Files\Observers</Filter>
     </ClCompile>
     <ClCompile Include="HealthCommand.cpp">
-      <Filter>Commands</Filter>
+      <Filter>Commands Files</Filter>
     </ClCompile>
     <ClCompile Include="ScoreCommand.cpp">
-      <Filter>Commands</Filter>
+      <Filter>Commands Files</Filter>
     </ClCompile>
     <ClCompile Include="CSteamAchievements.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="AchievementDisplay.cpp">
-      <Filter>Components Files\UpdateComponents\Observers</Filter>
+      <Filter>Components Files\Observers</Filter>
     </ClCompile>
-    <ClCompile Include="ResetAchCommand.cpp">
-      <Filter>Commands</Filter>
+    <ClCompile Include="ScoreComponent.cpp">
+      <Filter>Components Files\UpdateComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthComponent.cpp">
+      <Filter>Components Files\UpdateComponents</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

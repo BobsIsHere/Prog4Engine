@@ -23,12 +23,6 @@ void dae::ScoreComponent::IncreaseScore(int amount)
 	m_pSubject->NotifyObservers(GetGameObject(), Event::Event_Score_Changed);
 }
 
-void dae::ScoreComponent::SetScore(int amount)
-{
-	m_Score = amount;
-	m_pSubject->NotifyObservers(GetGameObject(), Event::Event_Score_Changed); 
-}
-
 void dae::ScoreComponent::AddObserver(Observer* observer)
 {
 	m_pSubject->AddObserver(observer);

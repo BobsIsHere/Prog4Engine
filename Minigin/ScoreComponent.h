@@ -22,7 +22,6 @@ namespace dae
 		virtual void Update(float deltaTime) override; 
 
 		void IncreaseScore(int amount);
-		void SetScore(int amount);
 		void AddObserver(Observer* observer);
 
 		int GetScore() const;
