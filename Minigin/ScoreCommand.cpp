@@ -2,8 +2,9 @@
 #include "ScoreCommand.h"
 #include "GameObject.h"
 
-dae::ScoreCommand::ScoreCommand(GameObject* actor) :
-	GameActorCommand{ actor }
+dae::ScoreCommand::ScoreCommand(GameObject* actor, const int score) :
+	GameActorCommand{ actor },
+	m_Score{ score }
 {
 }
 
@@ -16,6 +17,6 @@ void dae::ScoreCommand::Execute(float)
 	auto scoreComponent{ GetGameActor()->GetComponent<ScoreComponent>() };
 	if (scoreComponent)
 	{
-		scoreComponent->IncreaseScore(100);
+		scoreComponent->IncreaseScore(m_Score);
 	}
 }

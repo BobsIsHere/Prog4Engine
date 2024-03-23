@@ -171,6 +171,15 @@
     <ClInclude Include="ScoreCommand.h">
       <Filter>Commands</Filter>
     </ClInclude>
+    <ClInclude Include="CSteamAchievements.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AchievementDisplay.h">
+      <Filter>Components Files\UpdateComponents\Observers</Filter>
+    </ClInclude>
+    <ClInclude Include="ResetAchCommand.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ResourceManager.cpp">
@@ -297,6 +306,15 @@
       <Filter>Commands</Filter>
     </ClCompile>
     <ClCompile Include="ScoreCommand.cpp">
+      <Filter>Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="CSteamAchievements.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AchievementDisplay.cpp">
+      <Filter>Components Files\UpdateComponents\Observers</Filter>
+    </ClCompile>
+    <ClCompile Include="ResetAchCommand.cpp">
       <Filter>Commands</Filter>
     </ClCompile>
   </ItemGroup>

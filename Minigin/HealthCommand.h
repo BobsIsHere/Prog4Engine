@@ -3,6 +3,8 @@
 
 namespace dae 
 {
+	class GameObject;
+
 	class HealthCommand final : public GameActorCommand
 	{
 	public:

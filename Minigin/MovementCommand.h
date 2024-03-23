@@ -4,6 +4,8 @@
 
 namespace dae
 {
+	class GameObject;
+
 	class MovementCommand final : public GameActorCommand
 	{
 	public:

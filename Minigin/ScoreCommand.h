@@ -3,10 +3,12 @@
 
 namespace dae 
 {
+	class GameObject;
+
 	class ScoreCommand final : public GameActorCommand 
 	{
 	public:
-		ScoreCommand(GameObject* actor);
+		ScoreCommand(GameObject* actor, const int score);
 		virtual ~ScoreCommand();
 
 		ScoreCommand(const ScoreCommand& other) = delete;
@@ -15,5 +17,8 @@ namespace dae
 		ScoreCommand& operator=(ScoreCommand&& other) = delete;
 
 		virtual void Execute(float deltaTime);
+
+	private:
+		int m_Score;
 	};
 }
