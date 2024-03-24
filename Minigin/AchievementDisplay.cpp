@@ -3,7 +3,8 @@
 #include "GameObject.h"
 
 dae::AchievementDisplay::AchievementDisplay(GameObject* pGameObject) :
-	Component{ pGameObject }
+	Component{ pGameObject },
+	m_GotAchievement{ false }
 {
 }
 
@@ -18,12 +19,17 @@ void dae::AchievementDisplay::Notify(GameObject* pGameObject, Event event)
 	switch (event)
 	{
 	case dae::Event::Event_Score_Changed:
-		if (pGameObject->HasComponent<ScoreComponent>())
+		if (!m_GotAchievement)
 		{
-			if (pGameObject->GetComponent<ScoreComponent>()->GetScore() >= achievementScore) 
+			if (pGameObject->HasComponent<ScoreComponent>())
 			{
-				SteamUserStats()->SetAchievement("ACH_WIN_ONE_GAME");
-				SteamUserStats()->StoreStats(); 
+				if (pGameObject->GetComponent<ScoreComponent>()->GetScore() >= achievementScore)
+				{
+					SteamUserStats()->SetAchievement("ACH_WIN_ONE_GAME");
+					SteamUserStats()->StoreStats();
+
+					m_GotAchievement = true;
+				}
 			}
 		}
 		break;

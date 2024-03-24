@@ -19,5 +19,8 @@ namespace dae
 		virtual void Update(float) {};
 
 		virtual void Notify(GameObject* pGameObject, Event event) override;
+
+	private:
+		bool m_GotAchievement;
 	};
 }
