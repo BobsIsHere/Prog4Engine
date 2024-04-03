@@ -109,24 +109,16 @@ namespace dae
 	template<typename ComponentType>
 	bool GameObject::HasComponent()
 	{
-		/*auto findComponent{ std::find(m_pComponents.begin(),m_pComponents.end(), std::shared_ptr<ComponentType>()) };  
+		auto findComponent = std::find_if(m_pComponents.begin(), m_pComponents.end(), [](const std::shared_ptr<Component>& ptr)  
+		{
+			return dynamic_cast<ComponentType*>(ptr.get()) != nullptr; 
+		}); 
 
-		if (findComponent != m_pComponents.end())  
+		if (findComponent != m_pComponents.end()) 
 		{
 			return true;
 		}
 
-		return false;*/
-
-		ComponentType* temp{};
-		for (size_t idx{}; idx < m_pComponents.size(); idx++)
-		{
-			temp = dynamic_cast<ComponentType*>(m_pComponents[idx].get()); 
-			if (temp != nullptr)
-			{
-				return true;
-			}
-		}
-		return false;
-	}
-}
+		return false; 
+	} 
+} 
