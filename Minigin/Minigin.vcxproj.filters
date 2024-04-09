@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="ImGui">
-      <UniqueIdentifier>{0a51feb7-79ed-4007-b9b3-cc174f05e2cd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Observer Files">
       <UniqueIdentifier>{1f3d5a5b-b15b-454e-b133-d66a075ce30e}</UniqueIdentifier>
     </Filter>
@@ -89,36 +86,6 @@
     </ClInclude>
     <ClInclude Include="RotationComponent.h">
       <Filter>Components Files\UpdateComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="..\3rdParty\imgui-1.90.4\imconfig.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\3rdParty\imgui-1.90.4\imgui.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\3rdParty\imgui-1.90.4\imgui_internal.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\3rdParty\imgui-1.90.4\imstb_rectpack.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\3rdParty\imgui-1.90.4\imstb_textedit.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\3rdParty\imgui-1.90.4\imstb_truetype.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\3rdParty\imgui-1.90.4\backends\imgui_impl_opengl3.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\3rdParty\imgui-1.90.4\backends\imgui_impl_sdl2.h">
-      <Filter>ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheGraphComponent.h">
-      <Filter>Components Files\RenderComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="..\3rdParty\imgui-plot-master\include\imgui_plot.h">
-      <Filter>ImGui</Filter>
     </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>Input Files</Filter>
@@ -215,33 +182,6 @@
     <ClCompile Include="RotationComponent.cpp">
       <Filter>Components Files\UpdateComponents</Filter>
     </ClCompile>
-    <ClCompile Include="..\3rdParty\imgui-1.90.4\imgui.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\3rdParty\imgui-1.90.4\imgui_demo.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\3rdParty\imgui-1.90.4\imgui_draw.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\3rdParty\imgui-1.90.4\imgui_tables.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\3rdParty\imgui-1.90.4\imgui_widgets.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\3rdParty\imgui-1.90.4\backends\imgui_impl_opengl3.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\3rdParty\imgui-1.90.4\backends\imgui_impl_sdl2.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="CacheGraphComponent.cpp">
-      <Filter>Components Files\RenderComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="..\3rdParty\imgui-plot-master\src\imgui_plot.cpp">
-      <Filter>ImGui</Filter>
-    </ClCompile>
     <ClCompile Include="InputManager.cpp">
       <Filter>Input Files</Filter>
     </ClCompile>
@@ -259,9 +199,6 @@
     </ClCompile>
     <ClCompile Include="MovementCommand.cpp">
       <Filter>Commands Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Observer.cpp">
-      <Filter>Observer Files</Filter>
     </ClCompile>
     <ClCompile Include="Subject.cpp">
       <Filter>Observer Files</Filter>
