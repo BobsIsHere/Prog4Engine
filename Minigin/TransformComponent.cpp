@@ -20,10 +20,6 @@ void dae::TransformComponent::Render() const
 {
 }
 
-void dae::TransformComponent::RenderGui()
-{
-}
-
 void dae::TransformComponent::SetLocalPosition(float x, float y, float z)
 {
 	m_LocalPosition.x = x;

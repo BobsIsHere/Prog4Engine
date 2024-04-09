@@ -17,13 +17,15 @@ namespace dae
 
 		virtual void Update(float) override;
 		virtual void Render() const override;
-		virtual void RenderGui() override;
 
 		void SetLocalPosition(float x, float y, float z = 0);
 		void SetWorldPosition(float x, float y, float z = 0);
 
 		const glm::vec3& GetLocalPosition() const { return m_LocalPosition; }
 		const glm::vec3& GetWorldPosition() const { return m_WorldPosition; }
+
+		int GetWorldXPosition() const { return static_cast<int>(m_WorldPosition.x); }
+		int GetWorldYPosition() const { return static_cast<int>(m_WorldPosition.y); }
 
 	private:
 		glm::vec3 m_LocalPosition;

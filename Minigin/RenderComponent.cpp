@@ -13,10 +13,6 @@ void dae::RenderComponent::Render() const
 {
 }
 
-void dae::RenderComponent::RenderGui()
-{
-}
-
 void dae::RenderComponent::Update(float)
 {
 }

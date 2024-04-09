@@ -15,7 +15,6 @@ namespace dae
 		UpdateComponent& operator=(UpdateComponent&& other) = delete;
 
 		virtual void Update(float deltaTime) override = 0;
-		virtual void RenderGui() override;
 		virtual void Render() const override;
 	};
 }

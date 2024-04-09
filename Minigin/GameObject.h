@@ -33,6 +33,8 @@ namespace dae
 		void SetForRemoval();
 
 		TransformComponent& GetTransformComponent() const;
+		const glm::vec3& GetWorldPosition(); 
+
 		GameObject* GetParent() const;
 		GameObject* GetChildAt(unsigned int index) const;
 		size_t GetChildCount() const;
@@ -57,8 +59,6 @@ namespace dae
 		//FUNCTIONS
 		void AddChild(GameObject* pChild);
 		void RemoveChild(GameObject* pChild);
-		
-		const glm::vec3& GetWorldPosition();
 
 		//VARIABLES
 		bool m_IsSetForRemoval;
