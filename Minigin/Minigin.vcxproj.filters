@@ -156,12 +156,6 @@
     <ClInclude Include="ScoreCommand.h">
       <Filter>Commands Files</Filter>
     </ClInclude>
-    <ClInclude Include="CSteamAchievements.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AchievementDisplay.h">
-      <Filter>Components Files\Observers</Filter>
-    </ClInclude>
     <ClInclude Include="ScoreComponent.h">
       <Filter>Components Files\UpdateComponents</Filter>
     </ClInclude>
@@ -283,12 +277,6 @@
     </ClCompile>
     <ClCompile Include="ScoreCommand.cpp">
       <Filter>Commands Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CSteamAchievements.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AchievementDisplay.cpp">
-      <Filter>Components Files\Observers</Filter>
     </ClCompile>
     <ClCompile Include="ScoreComponent.cpp">
       <Filter>Components Files\UpdateComponents</Filter>
