@@ -11,6 +11,7 @@
 #include "SceneManager.h"
 #include "Renderer.h"
 #include "ResourceManager.h"
+#include "DeltaTime.h"
 
 SDL_Window* g_window{};
 
@@ -87,19 +88,16 @@ void dae::Minigin::Run(const std::function<void()>& load)
 	auto& input = InputManager::GetInstance();
 
 	bool doContinue = true;
-	auto last_time = std::chrono::high_resolution_clock::now();
 	while (doContinue)
 	{		
-		auto current_time = std::chrono::high_resolution_clock::now();
-		const float delta_time = std::chrono::duration<float>(current_time - last_time).count();
-
-		last_time = current_time;
+		DeltaTime::GetInstance().UpdateDeltaTime();
+		const float delta_time = DeltaTime::GetInstance().GetDeltaTime();
 		
 		doContinue = input.ProcessInput(delta_time);
-		sceneManager.Update(delta_time);
+		sceneManager.Update();
 		renderer.Render();
 
-		const auto sleep_time = current_time + std::chrono::milliseconds(ms_per_frame) - std::chrono::high_resolution_clock::now();
+		const auto sleep_time = std::chrono::high_resolution_clock::now() + std::chrono::milliseconds(ms_per_frame) - std::chrono::high_resolution_clock::now();
 
 		std::this_thread::sleep_for(sleep_time);
 	}

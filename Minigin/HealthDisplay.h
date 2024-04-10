@@ -13,8 +13,7 @@ namespace dae
 		virtual ~HealthDisplay();
 
 		virtual void Render() const {};
-		virtual void RenderGui() {};
-		virtual void Update(float) {};
+		virtual void Update() {};
 		
 		void Notify(GameObject* gameObject, Event event) override;
 		void UpdateText(GameObject* gameObject);

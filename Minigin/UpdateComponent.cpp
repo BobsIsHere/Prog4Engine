@@ -13,6 +13,6 @@ void dae::UpdateComponent::Render() const
 {
 }
 
-void dae::UpdateComponent::Update(float)
+void dae::UpdateComponent::Update()
 {
 }

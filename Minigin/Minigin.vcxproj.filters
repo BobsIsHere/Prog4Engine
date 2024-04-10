@@ -132,6 +132,9 @@
     <ClInclude Include="BoundingBoxComponent.h">
       <Filter>Components Files\UpdateComponents</Filter>
     </ClInclude>
+    <ClInclude Include="DeltaTime.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ResourceManager.cpp">
@@ -226,6 +229,9 @@
     </ClCompile>
     <ClCompile Include="BoundingBoxComponent.cpp">
       <Filter>Components Files\UpdateComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="DeltaTime.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

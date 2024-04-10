@@ -18,10 +18,7 @@ namespace dae
 
 	class InputManager final : public Singleton<InputManager>
 	{
-	public:
-		// Make Singleton template class a friend to access protected constructor and destructor
-		friend class Singleton<InputManager>;
-		
+	public:		
 		bool ProcessInput(float deltaTime);
 
 		void AddControllerCommand(unsigned int controllerIdx, Controller::GamePad gamepadButton, ButtonState state, std::unique_ptr<Command> pCommand);
@@ -30,11 +27,13 @@ namespace dae
 		void RemoveControllerCommand(unsigned int controllerIdx, Controller::GamePad gamepadButton, ButtonState state); 
 		void RemoveKeyboardCommand(SDL_Scancode key, ButtonState state);
 
-	protected:
+	private:
+		// Make Singleton template class a friend to access protected constructor and destructor
+		friend class Singleton<InputManager>;
+
 		InputManager();
 		virtual ~InputManager();
 
-	private:
 		// Using a type alias to define a ControllerButton as a pair of unsigned integer and a Controller::GamePad
 		using ControllerButton = std::pair<unsigned int, Controller::GamePad>; 
 		// Using a type alias to define a ControllerButtonState as a pair of ControllerButton and a ButtonState

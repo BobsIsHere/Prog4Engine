@@ -25,7 +25,7 @@ namespace dae
 		BoundingBoxComponent& operator=(const BoundingBoxComponent& other) = delete;
 		BoundingBoxComponent& operator=(BoundingBoxComponent&& other) = delete;
 
-		virtual void Update(float deltaTime) override;
+		virtual void Update() override;
 
 		Rect GetBoundingBox() const;
 		void SetBoundingBox(int width, int height);

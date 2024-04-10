@@ -3,6 +3,7 @@
 #include <vector>
 #include <glm/glm.hpp>
 #include "Component.h"
+#include "DeltaTime.h"
 #include "TransformComponent.h"
 
 namespace dae
@@ -21,7 +22,7 @@ namespace dae
 		GameObject& operator=(const GameObject& other) = delete;
 		GameObject& operator=(GameObject&& other) = delete;
 		
-		virtual void Update(float deltaTime);
+		virtual void Update();
 		virtual void Render() const;
 
 		void UpdateWorldPosition();

@@ -19,7 +19,7 @@ namespace dae
 		HealthComponent& operator=(const HealthComponent& other) = delete;
 		HealthComponent& operator=(HealthComponent&& other) = delete;
 
-		virtual void Update(float elapsedSec) override;
+		virtual void Update() override;
 
 		void LowerLives(int amount);
 		void AddObserver(Observer* observer);

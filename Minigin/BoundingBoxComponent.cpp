@@ -18,8 +18,18 @@ dae::BoundingBoxComponent::~BoundingBoxComponent()
 {
 }
 
-void dae::BoundingBoxComponent::Update(float)
+void dae::BoundingBoxComponent::Update()
 {
+	const glm::vec2 currentPos{ m_pGameObject->GetWorldPosition() };
+	glm::vec2 lastPos{ m_BoundingBox.x, m_BoundingBox.y };
+
+	if (currentPos != lastPos)
+	{
+		m_BoundingBox.x = static_cast<int>(currentPos.x);
+		m_BoundingBox.y = static_cast<int>(currentPos.y); 
+
+		lastPos = currentPos;
+	}
 }
 
 dae::BoundingBoxComponent::Rect dae::BoundingBoxComponent::GetBoundingBox() const

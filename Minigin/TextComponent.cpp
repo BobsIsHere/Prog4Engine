@@ -25,7 +25,7 @@ dae::TextComponent::~TextComponent()
 {
 }
 
-void dae::TextComponent::Update(float)
+void dae::TextComponent::Update()
 {
 	if (m_NeedsUpdate)
 	{

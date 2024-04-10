@@ -4,6 +4,7 @@
 #include <iomanip>
 #include "FPSComponent.h"
 #include "GameObject.h"
+#include "DeltaTime.h"
 
 dae::FPSComponent::FPSComponent(GameObject* pGameObject) :
 	UpdateComponent{ pGameObject },
@@ -22,8 +23,10 @@ dae::FPSComponent::~FPSComponent()
 {
 }
 
-void dae::FPSComponent::Update(float deltaTime)
+void dae::FPSComponent::Update()
 {
+	const float deltaTime{ DeltaTime::GetInstance().GetDeltaTime() };
+
 	++m_FrameCount;
 	m_TotalTime += deltaTime;
 

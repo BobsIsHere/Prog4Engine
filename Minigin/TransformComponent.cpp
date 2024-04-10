@@ -12,7 +12,7 @@ dae::TransformComponent::~TransformComponent()
 {
 }
 
-void dae::TransformComponent::Update(float)
+void dae::TransformComponent::Update()
 {
 }
 

@@ -14,11 +14,11 @@ dae::GameObject::GameObject() :
 
 dae::GameObject::~GameObject() = default;
 
-void dae::GameObject::Update(float deltaTime)
+void dae::GameObject::Update()
 {
 	for (size_t idx = 0; idx < m_pComponents.size(); ++idx)
 	{
-		m_pComponents[idx]->Update(deltaTime);
+		m_pComponents[idx]->Update(); 
 	}
 }
 

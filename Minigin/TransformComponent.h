@@ -15,7 +15,7 @@ namespace dae
 		TransformComponent& operator=(const TransformComponent& other) = delete;
 		TransformComponent& operator=(TransformComponent&& other) = delete;
 
-		virtual void Update(float) override;
+		virtual void Update() override;
 		virtual void Render() const override;
 
 		void SetLocalPosition(float x, float y, float z = 0);

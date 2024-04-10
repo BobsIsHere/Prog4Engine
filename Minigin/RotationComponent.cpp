@@ -1,6 +1,7 @@
+#include <SDL_stdinc.h>
 #include "RotationComponent.h"
 #include "GameObject.h"
-#include <SDL_stdinc.h>
+#include "DeltaTime.h"
 
 dae::RotationComponent::RotationComponent(GameObject* pGameObject) :
 	UpdateComponent{ pGameObject },
@@ -16,8 +17,10 @@ dae::RotationComponent::~RotationComponent()
 {
 }
 
-void dae::RotationComponent::Update(float deltaTime)
+void dae::RotationComponent::Update()
 {
+	const float deltaTime{ DeltaTime::GetInstance().GetDeltaTime() };
+	
 	m_RotationAngle += (m_RotationSpeed * deltaTime) * float(M_PI)/ 180.f;
 
 	GetGameObject()->GetTransformComponent().SetLocalPosition(cosf(m_RotationAngle) * m_Distance, 

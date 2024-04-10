@@ -16,7 +16,7 @@ namespace dae
 		Component& operator=(Component&& other) = delete;
 
 		virtual void Render() const = 0;
-		virtual void Update(float deltaTime) = 0;
+		virtual void Update() = 0;
 
 	protected:
 		GameObject* GetGameObject() const { return m_pGameObject; };

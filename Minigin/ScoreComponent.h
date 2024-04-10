@@ -19,7 +19,7 @@ namespace dae
 		ScoreComponent& operator=(const ScoreComponent& other) = delete;
 		ScoreComponent& operator=(ScoreComponent&& other) = delete;
 
-		virtual void Update(float deltaTime) override; 
+		virtual void Update() override; 
 
 		void IncreaseScore(int amount);
 		void AddObserver(Observer* observer);
