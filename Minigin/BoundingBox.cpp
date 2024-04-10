@@ -1,7 +1,7 @@
-#include "BoundingBoxComponent.h"
+#include "BoundingBox.h"
 #include "GameObject.h"
 
-dae::BoundingBoxComponent::BoundingBoxComponent(GameObject* pGameObject) :
+dae::BoundingBox::BoundingBox(GameObject* pGameObject) :
 	UpdateComponent{ pGameObject },
 	m_Width{},
 	m_Height{}
@@ -14,11 +14,11 @@ dae::BoundingBoxComponent::BoundingBoxComponent(GameObject* pGameObject) :
 	m_BoundingBox.height = m_Height; 
 }
 
-dae::BoundingBoxComponent::~BoundingBoxComponent()
+dae::BoundingBox::~BoundingBox()
 {
 }
 
-void dae::BoundingBoxComponent::Update()
+void dae::BoundingBox::Update()
 {
 	const glm::vec2 currentPos{ m_pGameObject->GetWorldPosition() };
 	glm::vec2 lastPos{ m_BoundingBox.x, m_BoundingBox.y };
@@ -32,12 +32,12 @@ void dae::BoundingBoxComponent::Update()
 	}
 }
 
-dae::BoundingBoxComponent::Rect dae::BoundingBoxComponent::GetBoundingBox() const
+dae::Rect dae::BoundingBox::GetBoundingBox() const
 {
 	return m_BoundingBox;
 }
 
-void dae::BoundingBoxComponent::SetBoundingBox(int width, int height)
+void dae::BoundingBox::SetBoundingBox(int width, int height)
 {
 	m_Width = width;
 	m_Height = height;
