@@ -6,7 +6,8 @@
 
 namespace dae
 {
-	class Scene;
+	class Scene; 
+
 	class SceneManager final : public Singleton<SceneManager>
 	{
 	public:
@@ -17,6 +18,6 @@ namespace dae
 	private:
 		friend class Singleton<SceneManager>;
 		SceneManager() = default;
-		std::vector<std::shared_ptr<Scene>> m_scenes;
+		std::vector<std::shared_ptr<Scene>> m_Scenes; 
 	};
 }

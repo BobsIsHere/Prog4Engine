@@ -31,7 +31,10 @@
     <Filter Include="Commands Files">
       <UniqueIdentifier>{d7cc5e1a-88dd-4aab-b685-c61b7ad0afdd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Components Files\Observers">
+    <Filter Include="CollisionInterface">
+      <UniqueIdentifier>{ab7c2673-1188-4ae3-95ba-578f1b125e57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Observer Files\Displays">
       <UniqueIdentifier>{7c35b33e-8992-4ac9-91bd-7b4264b2410b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -112,10 +115,10 @@
       <Filter>Observer Files</Filter>
     </ClInclude>
     <ClInclude Include="HealthDisplay.h">
-      <Filter>Components Files\Observers</Filter>
+      <Filter>Observer Files\Displays</Filter>
     </ClInclude>
     <ClInclude Include="ScoreDisplay.h">
-      <Filter>Components Files\Observers</Filter>
+      <Filter>Observer Files\Displays</Filter>
     </ClInclude>
     <ClInclude Include="HealthCommand.h">
       <Filter>Commands Files</Filter>
@@ -129,11 +132,17 @@
     <ClInclude Include="HealthComponent.h">
       <Filter>Components Files\UpdateComponents</Filter>
     </ClInclude>
-    <ClInclude Include="BoundingBoxComponent.h">
-      <Filter>Components Files\UpdateComponents</Filter>
-    </ClInclude>
     <ClInclude Include="DeltaTime.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BoundingBox.h">
+      <Filter>CollisionInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionSystem.h">
+      <Filter>CollisionInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="Collidable.h">
+      <Filter>CollisionInterface</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -210,10 +219,10 @@
       <Filter>Observer Files</Filter>
     </ClCompile>
     <ClCompile Include="HealthDisplay.cpp">
-      <Filter>Components Files\Observers</Filter>
+      <Filter>Observer Files\Displays</Filter>
     </ClCompile>
     <ClCompile Include="ScoreDisplay.cpp">
-      <Filter>Components Files\Observers</Filter>
+      <Filter>Observer Files\Displays</Filter>
     </ClCompile>
     <ClCompile Include="HealthCommand.cpp">
       <Filter>Commands Files</Filter>
@@ -227,11 +236,14 @@
     <ClCompile Include="HealthComponent.cpp">
       <Filter>Components Files\UpdateComponents</Filter>
     </ClCompile>
-    <ClCompile Include="BoundingBoxComponent.cpp">
-      <Filter>Components Files\UpdateComponents</Filter>
-    </ClCompile>
     <ClCompile Include="DeltaTime.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BoundingBox.cpp">
+      <Filter>CollisionInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionSystem.cpp">
+      <Filter>CollisionInterface</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
