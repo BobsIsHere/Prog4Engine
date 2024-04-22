@@ -37,6 +37,9 @@
     <Filter Include="Observer Files\Displays">
       <UniqueIdentifier>{7c35b33e-8992-4ac9-91bd-7b4264b2410b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Commands Files\SubCommands">
+      <UniqueIdentifier>{fb1066c4-5ca0-4541-a15f-9442ff9d9f97}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -105,9 +108,6 @@
     <ClInclude Include="GameActorCommand.h">
       <Filter>Commands Files</Filter>
     </ClInclude>
-    <ClInclude Include="MovementCommand.h">
-      <Filter>Commands Files</Filter>
-    </ClInclude>
     <ClInclude Include="Observer.h">
       <Filter>Observer Files</Filter>
     </ClInclude>
@@ -119,12 +119,6 @@
     </ClInclude>
     <ClInclude Include="ScoreDisplay.h">
       <Filter>Observer Files\Displays</Filter>
-    </ClInclude>
-    <ClInclude Include="HealthCommand.h">
-      <Filter>Commands Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ScoreCommand.h">
-      <Filter>Commands Files</Filter>
     </ClInclude>
     <ClInclude Include="ScoreComponent.h">
       <Filter>Components Files\UpdateComponents</Filter>
@@ -143,6 +137,21 @@
     </ClInclude>
     <ClInclude Include="Collidable.h">
       <Filter>CollisionInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="BombComponent.h">
+      <Filter>Components Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BombCommand.h">
+      <Filter>Commands Files\SubCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="HealthCommand.h">
+      <Filter>Commands Files\SubCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementCommand.h">
+      <Filter>Commands Files\SubCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreCommand.h">
+      <Filter>Commands Files\SubCommands</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -212,9 +221,6 @@
     <ClCompile Include="GameActorCommand.cpp">
       <Filter>Commands Files</Filter>
     </ClCompile>
-    <ClCompile Include="MovementCommand.cpp">
-      <Filter>Commands Files</Filter>
-    </ClCompile>
     <ClCompile Include="Subject.cpp">
       <Filter>Observer Files</Filter>
     </ClCompile>
@@ -223,12 +229,6 @@
     </ClCompile>
     <ClCompile Include="ScoreDisplay.cpp">
       <Filter>Observer Files\Displays</Filter>
-    </ClCompile>
-    <ClCompile Include="HealthCommand.cpp">
-      <Filter>Commands Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ScoreCommand.cpp">
-      <Filter>Commands Files</Filter>
     </ClCompile>
     <ClCompile Include="ScoreComponent.cpp">
       <Filter>Components Files\UpdateComponents</Filter>
@@ -244,6 +244,21 @@
     </ClCompile>
     <ClCompile Include="CollisionSystem.cpp">
       <Filter>CollisionInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="BombComponent.cpp">
+      <Filter>Components Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BombCommand.cpp">
+      <Filter>Commands Files\SubCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthCommand.cpp">
+      <Filter>Commands Files\SubCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="MovementCommand.cpp">
+      <Filter>Commands Files\SubCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreCommand.cpp">
+      <Filter>Commands Files\SubCommands</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -16,7 +16,7 @@ namespace dae
 		ScoreCommand& operator=(const ScoreCommand& other) = delete;
 		ScoreCommand& operator=(ScoreCommand&& other) = delete;
 
-		virtual void Execute(float deltaTime);
+		virtual void Execute();
 
 	private:
 		int m_Score;

@@ -17,7 +17,7 @@ namespace dae
 		MovementCommand& operator=(const MovementCommand& other) = delete;
 		MovementCommand& operator=(MovementCommand&& other) = delete; 
 
-		virtual void Execute(float deltaTime) override;
+		virtual void Execute() override;
 
 	private:
 

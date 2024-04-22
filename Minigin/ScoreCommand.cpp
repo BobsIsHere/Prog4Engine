@@ -12,7 +12,7 @@ dae::ScoreCommand::~ScoreCommand()
 {
 }
 
-void dae::ScoreCommand::Execute(float)
+void dae::ScoreCommand::Execute()
 {
 	auto scoreComponent{ GetGameActor()->GetComponent<ScoreComponent>() };
 	if (scoreComponent)

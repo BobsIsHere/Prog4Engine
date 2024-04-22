@@ -16,6 +16,6 @@ namespace dae
 		HealthCommand& operator=(const HealthCommand& other) = delete;
 		HealthCommand& operator=(HealthCommand&& other) = delete;
 
-		virtual void Execute(float deltaTime) override;
+		virtual void Execute() override;
 	};
 }

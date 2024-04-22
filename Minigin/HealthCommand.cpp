@@ -11,7 +11,7 @@ dae::HealthCommand::~HealthCommand()
 {
 }
 
-void dae::HealthCommand::Execute(float)
+void dae::HealthCommand::Execute()
 {
 	if (GetGameActor()->HasComponent<HealthComponent>()) 
 	{
