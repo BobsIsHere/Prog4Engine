@@ -34,6 +34,9 @@
     <Filter Include="Components Files\UpdateComponents">
       <UniqueIdentifier>{5c54fc2a-7c22-4ac7-a201-292e3a5037a5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sound Files">
+      <UniqueIdentifier>{04b30fa4-df64-4546-812a-e0867d63fb04}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -114,6 +117,21 @@
     <ClInclude Include="UpdateComponent.h">
       <Filter>Components Files\UpdateComponents</Filter>
     </ClInclude>
+    <ClInclude Include="ServiceLocator.h">
+      <Filter>Sound Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioSystem.h">
+      <Filter>Sound Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameAudioSystem.h">
+      <Filter>Sound Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NullAudioSystem.h">
+      <Filter>Sound Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LoggedAudio.h">
+      <Filter>Sound Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ResourceManager.cpp">
@@ -184,6 +202,15 @@
     </ClCompile>
     <ClCompile Include="UpdateComponent.cpp">
       <Filter>Components Files\UpdateComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="ServiceLocator.cpp">
+      <Filter>Sound Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameAudioSystem.cpp">
+      <Filter>Sound Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LoggedAudio.cpp">
+      <Filter>Sound Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

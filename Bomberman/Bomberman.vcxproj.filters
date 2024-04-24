@@ -19,6 +19,9 @@
     <Filter Include="SubComponents">
       <UniqueIdentifier>{a46d70ff-f674-46da-b0e1-8a6376fd826c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SubDisplays">
+      <UniqueIdentifier>{f30e8f0d-9f6e-425d-9ffe-9e1a1673dd3e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bomberman.cpp">
@@ -51,11 +54,11 @@
     <ClCompile Include="ScoreComponent.cpp">
       <Filter>SubComponents</Filter>
     </ClCompile>
-    <ClCompile Include="HealthDisplay.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ScoreDisplay.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>SubDisplays</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthDisplay.cpp">
+      <Filter>SubDisplays</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
