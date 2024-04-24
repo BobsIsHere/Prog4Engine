@@ -18,7 +18,7 @@ dae::InputManager::~InputManager()
 {
 }
 
-bool dae::InputManager::ProcessInput(float deltaTime)
+bool dae::InputManager::ProcessInput()
 {
 	SDL_Event e;
 	while (SDL_PollEvent(&e)) 
@@ -31,8 +31,8 @@ bool dae::InputManager::ProcessInput(float deltaTime)
 		//ImGui_ImplSDL2_ProcessEvent(&e);
 	}
 
-	HandleControllerInput(deltaTime);
-	HandleKeyboardInput(deltaTime);
+	HandleControllerInput();
+	HandleKeyboardInput();
 
 	return true;
 }
@@ -63,7 +63,7 @@ void dae::InputManager::RemoveKeyboardCommand(SDL_Scancode key, ButtonState stat
 	m_KeyboardCommands.erase(keyPair);
 }
 
-void dae::InputManager::HandleControllerInput(float deltaTime)
+void dae::InputManager::HandleControllerInput()
 {
 	//auto& -> avoid copying unique_ptr instances, invalid due to non-copyable 
 	for (auto& controller : m_pControllers)
@@ -80,21 +80,21 @@ void dae::InputManager::HandleControllerInput(float deltaTime)
 				case ButtonState::Is_Down:
 					if (controller->IsDownThisFrame(command.first.first.second))
 					{
-						command.second->Execute(deltaTime);
+						command.second->Execute();
 					}
 					break;
 
 				case ButtonState::Is_Pressed:
 					if (controller->IsPressed(command.first.first.second))
 					{
-						command.second->Execute(deltaTime);
+						command.second->Execute();
 					}
 					break;
 
 				case ButtonState::Is_Up:
 					if (controller->IsUpThisFrame(command.first.first.second))
 					{
-						command.second->Execute(deltaTime);
+						command.second->Execute();
 					}
 					break;
 				}
@@ -103,7 +103,7 @@ void dae::InputManager::HandleControllerInput(float deltaTime)
 	}
 }
 
-void dae::InputManager::HandleKeyboardInput(float deltaTime)
+void dae::InputManager::HandleKeyboardInput()
 {
 	m_pKeyboard->Update();
 
@@ -114,21 +114,21 @@ void dae::InputManager::HandleKeyboardInput(float deltaTime)
 		case ButtonState::Is_Down:
 			if (m_pKeyboard->IsDownThisFrame(command.first.first))
 			{
-				command.second->Execute(deltaTime);
+				command.second->Execute();
 			}
 			break;
 
 		case ButtonState::Is_Pressed:
 			if (m_pKeyboard->IsPressed(command.first.first))
 			{
-				command.second->Execute(deltaTime);
+				command.second->Execute();
 			}
 			break;
 
 		case ButtonState::Is_Up:
 			if (m_pKeyboard->IsUpThisFrame(command.first.first))
 			{
-				command.second->Execute(deltaTime);
+				command.second->Execute();
 			}
 			break;
 		}

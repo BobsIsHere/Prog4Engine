@@ -19,7 +19,7 @@ namespace dae
 	class InputManager final : public Singleton<InputManager>
 	{
 	public:		
-		bool ProcessInput(float deltaTime);
+		bool ProcessInput();
 
 		void AddControllerCommand(unsigned int controllerIdx, Controller::GamePad gamepadButton, ButtonState state, std::unique_ptr<Command> pCommand);
 		void AddKeyboardCommand(SDL_Scancode key, ButtonState state, std::unique_ptr<Command> pCommand);
@@ -56,7 +56,7 @@ namespace dae
 		const int m_MaxControllers{ 2 };
 
 		//Helper Functions
-		void HandleControllerInput(float deltaTime);
-		void HandleKeyboardInput(float deltaTime);
+		void HandleControllerInput();
+		void HandleKeyboardInput();
 	};
 }

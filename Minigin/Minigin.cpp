@@ -91,9 +91,8 @@ void dae::Minigin::Run(const std::function<void()>& load)
 	while (doContinue)
 	{		
 		DeltaTime::GetInstance().UpdateDeltaTime();
-		const float delta_time = DeltaTime::GetInstance().GetDeltaTime();
 		
-		doContinue = input.ProcessInput(delta_time);
+		doContinue = input.ProcessInput();
 		sceneManager.Update();
 		renderer.Render();
 

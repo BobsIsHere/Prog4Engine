@@ -22,9 +22,6 @@
     <Filter Include="Components Files\RenderComponents">
       <UniqueIdentifier>{2d52cfde-6d74-4706-be50-8886f4cdcfa4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Components Files\UpdateComponents">
-      <UniqueIdentifier>{b3a7844a-58aa-4684-9b16-0497a66be0af}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Input Files">
       <UniqueIdentifier>{f76a5320-587d-45d5-8a46-6261fabc6150}</UniqueIdentifier>
     </Filter>
@@ -34,11 +31,8 @@
     <Filter Include="CollisionInterface">
       <UniqueIdentifier>{ab7c2673-1188-4ae3-95ba-578f1b125e57}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Observer Files\Displays">
-      <UniqueIdentifier>{7c35b33e-8992-4ac9-91bd-7b4264b2410b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Commands Files\SubCommands">
-      <UniqueIdentifier>{fb1066c4-5ca0-4541-a15f-9442ff9d9f97}</UniqueIdentifier>
+    <Filter Include="Components Files\UpdateComponents">
+      <UniqueIdentifier>{5c54fc2a-7c22-4ac7-a201-292e3a5037a5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -72,26 +66,11 @@
     <ClInclude Include="Component.h">
       <Filter>Components Files</Filter>
     </ClInclude>
-    <ClInclude Include="RenderComponent.h">
-      <Filter>Components Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UpdateComponent.h">
-      <Filter>Components Files</Filter>
-    </ClInclude>
     <ClInclude Include="TransformComponent.h">
       <Filter>Components Files</Filter>
     </ClInclude>
     <ClInclude Include="TextureComponent.h">
       <Filter>Components Files\RenderComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="TextComponent.h">
-      <Filter>Components Files\UpdateComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="FPSComponent.h">
-      <Filter>Components Files\UpdateComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="RotationComponent.h">
-      <Filter>Components Files\UpdateComponents</Filter>
     </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>Input Files</Filter>
@@ -114,18 +93,6 @@
     <ClInclude Include="Subject.h">
       <Filter>Observer Files</Filter>
     </ClInclude>
-    <ClInclude Include="HealthDisplay.h">
-      <Filter>Observer Files\Displays</Filter>
-    </ClInclude>
-    <ClInclude Include="ScoreDisplay.h">
-      <Filter>Observer Files\Displays</Filter>
-    </ClInclude>
-    <ClInclude Include="ScoreComponent.h">
-      <Filter>Components Files\UpdateComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="HealthComponent.h">
-      <Filter>Components Files\UpdateComponents</Filter>
-    </ClInclude>
     <ClInclude Include="DeltaTime.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -138,20 +105,14 @@
     <ClInclude Include="Collidable.h">
       <Filter>CollisionInterface</Filter>
     </ClInclude>
-    <ClInclude Include="BombComponent.h">
-      <Filter>Components Files</Filter>
+    <ClInclude Include="TextComponent.h">
+      <Filter>Components Files\UpdateComponents</Filter>
     </ClInclude>
-    <ClInclude Include="BombCommand.h">
-      <Filter>Commands Files\SubCommands</Filter>
+    <ClInclude Include="RenderComponent.h">
+      <Filter>Components Files\RenderComponents</Filter>
     </ClInclude>
-    <ClInclude Include="HealthCommand.h">
-      <Filter>Commands Files\SubCommands</Filter>
-    </ClInclude>
-    <ClInclude Include="MovementCommand.h">
-      <Filter>Commands Files\SubCommands</Filter>
-    </ClInclude>
-    <ClInclude Include="ScoreCommand.h">
-      <Filter>Commands Files\SubCommands</Filter>
+    <ClInclude Include="UpdateComponent.h">
+      <Filter>Components Files\UpdateComponents</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -176,19 +137,10 @@
     <ClCompile Include="Font.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Minigin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Component.cpp">
-      <Filter>Components Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RenderComponent.cpp">
-      <Filter>Components Files</Filter>
-    </ClCompile>
-    <ClCompile Include="UpdateComponent.cpp">
       <Filter>Components Files</Filter>
     </ClCompile>
     <ClCompile Include="TransformComponent.cpp">
@@ -196,15 +148,6 @@
     </ClCompile>
     <ClCompile Include="TextureComponent.cpp">
       <Filter>Components Files\RenderComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="TextComponent.cpp">
-      <Filter>Components Files\UpdateComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="FPSComponent.cpp">
-      <Filter>Components Files\UpdateComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="RotationComponent.cpp">
-      <Filter>Components Files\UpdateComponents</Filter>
     </ClCompile>
     <ClCompile Include="InputManager.cpp">
       <Filter>Input Files</Filter>
@@ -224,18 +167,6 @@
     <ClCompile Include="Subject.cpp">
       <Filter>Observer Files</Filter>
     </ClCompile>
-    <ClCompile Include="HealthDisplay.cpp">
-      <Filter>Observer Files\Displays</Filter>
-    </ClCompile>
-    <ClCompile Include="ScoreDisplay.cpp">
-      <Filter>Observer Files\Displays</Filter>
-    </ClCompile>
-    <ClCompile Include="ScoreComponent.cpp">
-      <Filter>Components Files\UpdateComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="HealthComponent.cpp">
-      <Filter>Components Files\UpdateComponents</Filter>
-    </ClCompile>
     <ClCompile Include="DeltaTime.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -245,20 +176,14 @@
     <ClCompile Include="CollisionSystem.cpp">
       <Filter>CollisionInterface</Filter>
     </ClCompile>
-    <ClCompile Include="BombComponent.cpp">
-      <Filter>Components Files</Filter>
+    <ClCompile Include="TextComponent.cpp">
+      <Filter>Components Files\UpdateComponents</Filter>
     </ClCompile>
-    <ClCompile Include="BombCommand.cpp">
-      <Filter>Commands Files\SubCommands</Filter>
+    <ClCompile Include="RenderComponent.cpp">
+      <Filter>Components Files\RenderComponents</Filter>
     </ClCompile>
-    <ClCompile Include="HealthCommand.cpp">
-      <Filter>Commands Files\SubCommands</Filter>
-    </ClCompile>
-    <ClCompile Include="MovementCommand.cpp">
-      <Filter>Commands Files\SubCommands</Filter>
-    </ClCompile>
-    <ClCompile Include="ScoreCommand.cpp">
-      <Filter>Commands Files\SubCommands</Filter>
+    <ClCompile Include="UpdateComponent.cpp">
+      <Filter>Components Files\UpdateComponents</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
