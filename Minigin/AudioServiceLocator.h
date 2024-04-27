@@ -5,13 +5,13 @@ namespace dae
 {
 	class AudioSystem;
 
-	class ServiceLocator final
+	class AudioServiceLocator final
 	{
 	public:
-		ServiceLocator() = delete;
-		~ServiceLocator() = delete;
+		AudioServiceLocator() = delete;
+		~AudioServiceLocator() = delete;
 
-		static AudioSystem& GetSoundSystem();
+		static AudioSystem& GetAudioSystem();
 		static void RegisterSoundSystem(std::unique_ptr<AudioSystem>&& ASInstance);
 
 	private:

@@ -7,16 +7,21 @@ namespace dae
 	class GameAudioSystem final : public AudioSystem
 	{
 	public:
-		GameAudioSystem();
-		virtual ~GameAudioSystem() = default;
+		explicit GameAudioSystem();
+		virtual ~GameAudioSystem();
 
-		virtual void PlayMusic(std::string soundID, const float volume) override;
+		GameAudioSystem(const GameAudioSystem& other) = delete;
+		GameAudioSystem(GameAudioSystem&& other) = delete;
+		GameAudioSystem& operator=(const GameAudioSystem& other) = delete;
+		GameAudioSystem& operator=(GameAudioSystem&& other) = delete; 
+
+		virtual void PlayMusic(std::string filePath, const float volume) override;
 		virtual void StopMusic() override;
-		virtual void PlaySoundEffect(std::string soundID, const float volume) override;
+		virtual void PlaySoundEffect(std::string filePath, const float volume) override;
 		virtual void StopAllMusic() override;
-		virtual void Update() override;
+		virtual void AudioEventHandler() override;
 
-	private :
+	private:
 		class SDLAudioSystemImpl;
 		std::unique_ptr<SDLAudioSystemImpl> m_pSDLAudioSystemImpl;
 	};

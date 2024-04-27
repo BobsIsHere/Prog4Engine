@@ -33,10 +33,17 @@
 #include "HealthDisplay.h"
 #include "ScoreDisplay.h"
 
+//Sound
+#include "AudioServiceLocator.h"
+#include "AudioLogSystem.h"
+#include "GameAudioSystem.h"
+
 #include <iostream>
 
 void load()
 {
+	dae::AudioServiceLocator::RegisterSoundSystem(std::make_unique<dae::AudioLogSystem>(std::make_unique<dae::GameAudioSystem>()));
+
 	auto& scene = dae::SceneManager::GetInstance().CreateScene("Demo");
 	auto& resourceManager = dae::ResourceManager::GetInstance();
 	//bool hasPressedBombButton{ false };

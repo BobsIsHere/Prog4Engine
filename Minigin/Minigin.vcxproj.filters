@@ -117,7 +117,7 @@
     <ClInclude Include="UpdateComponent.h">
       <Filter>Components Files\UpdateComponents</Filter>
     </ClInclude>
-    <ClInclude Include="ServiceLocator.h">
+    <ClInclude Include="AudioServiceLocator.h">
       <Filter>Sound Files</Filter>
     </ClInclude>
     <ClInclude Include="AudioSystem.h">
@@ -129,7 +129,7 @@
     <ClInclude Include="NullAudioSystem.h">
       <Filter>Sound Files</Filter>
     </ClInclude>
-    <ClInclude Include="LoggedAudio.h">
+    <ClInclude Include="AudioLogSystem.h">
       <Filter>Sound Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -203,13 +203,13 @@
     <ClCompile Include="UpdateComponent.cpp">
       <Filter>Components Files\UpdateComponents</Filter>
     </ClCompile>
-    <ClCompile Include="ServiceLocator.cpp">
+    <ClCompile Include="AudioServiceLocator.cpp">
       <Filter>Sound Files</Filter>
     </ClCompile>
     <ClCompile Include="GameAudioSystem.cpp">
       <Filter>Sound Files</Filter>
     </ClCompile>
-    <ClCompile Include="LoggedAudio.cpp">
+    <ClCompile Include="AudioLogSystem.cpp">
       <Filter>Sound Files</Filter>
     </ClCompile>
   </ItemGroup>

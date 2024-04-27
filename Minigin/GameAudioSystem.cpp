@@ -1,6 +1,9 @@
+#include <map>
+#include <SDL.h>
 #include <thread>
 #include <mutex>
 #include <queue>
+#include <iostream>
 
 #include "GameAudioSystem.h"
 #include "SDL_mixer.h"
@@ -10,25 +13,25 @@ namespace dae
 	class GameAudioSystem::SDLAudioSystemImpl final
 	{
 	public:
-		~SDLAudioSystemImpl() = default;
+		SDLAudioSystemImpl();
+		~SDLAudioSystemImpl();
 
-		void PlayMusic(std::string soundID, const float volume);
+		void PlayMusic(std::string filePath, const float volume);
 		void StopMusic();
-		void PlaySoundEffect(std::string soundID, const float volume);
+		void PlaySoundEffect(std::string filePath, const float volume);
 		void StopAllMusic();
-		void Update();
+		void AudioEventHandler();
 
 		struct AudioEvent
 		{
 			std::string filePath;
+			std::string soundID;
 			float volume;
 		};
 
 	private:
-		std::jthread m_AudioThread;
-
 		std::mutex m_SoundEffectMutex;
-		Mix_Chunk* m_pSoundEffect{};
+		std::map<std::string, Mix_Chunk*> m_pSoundEffect{};
 
 		std::mutex m_MusicMutex;
 		Mix_Music* m_pMusicToPlay{};
@@ -38,15 +41,27 @@ namespace dae
 	};
 
 	GameAudioSystem::GameAudioSystem() :
-		m_pSDLAudioSystemImpl{}
+		m_pSDLAudioSystemImpl{ std::make_unique<SDLAudioSystemImpl>() }
 	{
-		m_pSDLAudioSystemImpl = std::make_unique<SDLAudioSystemImpl>();
+		if (Mix_Init(SDL_INIT_AUDIO) < 0)
+		{
+			std::cerr << "Error initializing SDL_mixer" << SDL_GetError() << std::endl;
+		}
+
+		if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024) < 0)
+		{
+			std::cerr << "Error open audio SDL_mixer" << Mix_GetError() << std::endl;
+		}
+	}
+
+	GameAudioSystem::~GameAudioSystem()
+	{
 	}
 
 	//GAME AUDIO SYSTEM CLASS
-	void dae::GameAudioSystem::PlayMusic(std::string soundID, const float volume)
+	void dae::GameAudioSystem::PlayMusic(std::string filePath, const float volume)
 	{
-		m_pSDLAudioSystemImpl->PlayMusic(soundID, volume);
+		m_pSDLAudioSystemImpl->PlayMusic(filePath, volume);
 	}
 
 	void dae::GameAudioSystem::StopMusic()
@@ -54,9 +69,9 @@ namespace dae
 		m_pSDLAudioSystemImpl->StopMusic();
 	}
 
-	void dae::GameAudioSystem::PlaySoundEffect(std::string soundID, const float volume)
+	void dae::GameAudioSystem::PlaySoundEffect(std::string filePath, const float volume)
 	{
-		m_pSDLAudioSystemImpl->PlaySoundEffect(soundID, volume);
+		m_pSDLAudioSystemImpl->PlaySoundEffect(filePath, volume);
 	}
 
 	void dae::GameAudioSystem::StopAllMusic()
@@ -64,16 +79,33 @@ namespace dae
 		m_pSDLAudioSystemImpl->StopAllMusic();
 	}
 
-	void dae::GameAudioSystem::Update()
+	void GameAudioSystem::AudioEventHandler()
 	{
-		m_pSDLAudioSystemImpl->Update();
+		m_pSDLAudioSystemImpl->AudioEventHandler();
 	}
 
 	//SDL AUDIO SYSTEM IMPL CLASS
-	void GameAudioSystem::SDLAudioSystemImpl::PlayMusic(std::string soundID, const float volume)
+	GameAudioSystem::SDLAudioSystemImpl::SDLAudioSystemImpl()
+	{
+	}
+
+	GameAudioSystem::SDLAudioSystemImpl::~SDLAudioSystemImpl()
+	{
+		for (auto& soundEffect : m_pSoundEffect)
+		{
+			Mix_FreeChunk(soundEffect.second);
+		}
+
+		Mix_FreeMusic(m_pMusicToPlay);
+		Mix_CloseAudio();
+		Mix_Quit();
+	}
+
+	void GameAudioSystem::SDLAudioSystemImpl::PlayMusic(std::string filePath, const float volume)
 	{
 		AudioEvent event{};
-		event.filePath = soundID;
+		event.soundID = "Music";
+		event.filePath = filePath;
 		event.volume = volume;
 
 		std::lock_guard<std::mutex> lock{ m_AudioEventQueueMutex };
@@ -85,10 +117,11 @@ namespace dae
 		Mix_HaltMusic();
 	}
 
-	void GameAudioSystem::SDLAudioSystemImpl::PlaySoundEffect(std::string soundID, const float volume)
+	void GameAudioSystem::SDLAudioSystemImpl::PlaySoundEffect(std::string filePath, const float volume)
 	{
 		AudioEvent event{};
-		event.filePath = soundID;
+		event.soundID = "SoundEffect";
+		event.filePath = filePath;
 		event.volume = volume;
 
 		std::lock_guard<std::mutex> lock{ m_AudioEventQueueMutex };
@@ -100,8 +133,8 @@ namespace dae
 		Mix_HaltChannel(-1);
 	}
 
-	void GameAudioSystem::SDLAudioSystemImpl::Update()
-	{
+	void GameAudioSystem::SDLAudioSystemImpl::AudioEventHandler()
+	{		
 		while (!m_AudioEventQueue.empty())
 		{
 			AudioEvent event{};
@@ -127,17 +160,24 @@ namespace dae
 			else if (event.filePath == "SoundEffect")
 			{
 				std::lock_guard<std::mutex> lock{ m_SoundEffectMutex }; 
-				m_pSoundEffect = Mix_LoadWAV(event.filePath.c_str()); 
+				Mix_Chunk* pSoundEffect{ Mix_LoadWAV(event.filePath.c_str()) };
 
-				if (m_pSoundEffect != nullptr) 
+				if (pSoundEffect != nullptr)
 				{
 					// Set sound effect volume
-					Mix_VolumeChunk(m_pSoundEffect, static_cast<int>(event.volume * MIX_MAX_VOLUME));
+					Mix_VolumeChunk(pSoundEffect, static_cast<int>(event.volume * MIX_MAX_VOLUME));
 
 					// Play sound effect
-					Mix_PlayChannel(-1, m_pSoundEffect, 0);
+					Mix_PlayChannel(-1, pSoundEffect, 0);
+
+					// Add sound effect to the map
+					m_pSoundEffect[event.filePath] = pSoundEffect; 
 				}
 			}
 		}
+
+		//Clean up
+		Mix_CloseAudio();
+		Mix_Quit(); 
 	}
 }

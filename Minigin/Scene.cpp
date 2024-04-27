@@ -1,5 +1,7 @@
 #include "Scene.h"
 #include "GameObject.h"
+#include "AudioSystem.h"
+#include "AudioServiceLocator.h"
 
 #include <algorithm>
 
@@ -31,6 +33,7 @@ void Scene::Update()
 	for (auto& object : m_pObjects)
 	{
 		object->Update();
+		dae::AudioServiceLocator::GetAudioSystem().AudioEventHandler();
 	}
 
 	for (auto& object : m_pObjects)
