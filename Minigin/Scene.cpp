@@ -33,7 +33,6 @@ void Scene::Update()
 	for (auto& object : m_pObjects)
 	{
 		object->Update();
-		dae::AudioServiceLocator::GetAudioSystem().AudioEventHandler();
 	}
 
 	for (auto& object : m_pObjects)

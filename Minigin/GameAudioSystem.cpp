@@ -104,7 +104,7 @@ namespace dae
 		m_IsAudioThreadRunning{ true }
 	{
 		std::jthread audioThread(&SDLAudioSystemImpl::AudioEventHandler, this);  
-		audioThread.detach(); 
+		audioThread.detach();  
 	}
 
 	GameAudioSystem::SDLAudioSystemImpl::~SDLAudioSystemImpl()
@@ -172,7 +172,7 @@ namespace dae
 	{
 		while (m_IsAudioThreadRunning)
 		{
-			// Lock the audio event queue mutex to ensure safe access to the queue
+			// Lock the event queue mutex to ensure safe access to the queue
 			std::unique_lock queueLock(m_AudioEventQueueMutex);
 
 			// Wait on the audio event condition variable until there is an audio event to process
