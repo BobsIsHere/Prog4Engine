@@ -180,9 +180,5 @@ namespace dae
 				}
 			}
 		}
-
-		//Clean up
-		Mix_CloseAudio();
-		Mix_Quit(); 
 	}
 }

@@ -5,6 +5,8 @@
 #include "ScoreDisplay.h"
 #include "TextComponent.h"
 #include "ScoreComponent.h"
+#include "GameAudioSystem.h"
+#include "AudioServiceLocator.h"
 
 dae::ScoreDisplay::ScoreDisplay(GameObject* gameObject) :
 	Component{ gameObject }
@@ -30,6 +32,7 @@ void dae::ScoreDisplay::Notify(GameObject* gameObject, Event event)
 	{
 	case dae::Event::Event_Score_Changed:
 		UpdateText(gameObject);
+		dae::AudioServiceLocator::GetAudioSystem().PlaySoundEffect("../Data/Audio/BombermanPowerUp.wav", 0.5f);
 		break;
 	}
 }

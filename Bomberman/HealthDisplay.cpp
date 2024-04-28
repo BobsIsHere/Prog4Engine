@@ -5,6 +5,8 @@
 #include "HealthDisplay.h"
 #include "TextComponent.h"
 #include "HealthComponent.h"
+#include "GameAudioSystem.h"
+#include "AudioServiceLocator.h"
 
 dae::HealthDisplay::HealthDisplay(GameObject* gameObject) :
 	Component{ gameObject }
@@ -30,6 +32,7 @@ void dae::HealthDisplay::Notify(GameObject* gameObject, Event event)
 	{
 	case dae::Event::Event_Player_Hit:
 		UpdateText(gameObject);
+		dae::AudioServiceLocator::GetAudioSystem().PlaySoundEffect("../Data/Audio/BombermanDies.wav", 0.5f);
 		break;
 	}
 }

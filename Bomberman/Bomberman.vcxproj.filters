@@ -89,11 +89,11 @@
     <ClInclude Include="ScoreComponent.h">
       <Filter>SubComponents</Filter>
     </ClInclude>
-    <ClInclude Include="HealthDisplay.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ScoreDisplay.h">
-      <Filter>Header Files</Filter>
+      <Filter>SubDisplays</Filter>
+    </ClInclude>
+    <ClInclude Include="HealthDisplay.h">
+      <Filter>SubDisplays</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

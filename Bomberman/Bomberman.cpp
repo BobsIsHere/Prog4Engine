@@ -48,6 +48,8 @@ void load()
 	auto& resourceManager = dae::ResourceManager::GetInstance();
 	//bool hasPressedBombButton{ false };
 
+	dae::AudioServiceLocator::GetAudioSystem().PlayMusic("../Data/Audio/LevelBackground.mp3", 1.f);
+
 	//BACKGROUND
 	auto gameObject = std::make_unique<dae::GameObject>();
 	gameObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(gameObject.get()));

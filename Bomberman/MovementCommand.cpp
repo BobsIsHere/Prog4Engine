@@ -21,6 +21,4 @@ void dae::MovementCommand::Execute()
 	
 	auto position{ GetGameActor()->GetTransformComponent().GetLocalPosition() + (m_Direction * m_Speed * deltaTime) };
 	GetGameActor()->SetLocalPosition(position);
-
-	dae::AudioServiceLocator::GetAudioSystem().PlaySoundEffect("../Data/Audio/BombermanWalk.wav", 1.f);
 }
