@@ -1,9 +1,10 @@
 #include <map>
 #include <SDL.h>
-#include <thread>
 #include <mutex>
 #include <queue>
+#include <thread>
 #include <iostream>
+#include <condition_variable>
 
 #include "GameAudioSystem.h"
 #include "SDL_mixer.h"
@@ -40,6 +41,8 @@ namespace dae
 
 		std::mutex m_AudioEventQueueMutex;
 		std::queue<AudioEvent> m_AudioEventQueue;
+		std::condition_variable m_AudioEventConditionVariable;
+		bool m_IsAudioThreadRunning;
 	};
 
 	GameAudioSystem::GameAudioSystem() :
@@ -97,12 +100,18 @@ namespace dae
 	}
 
 	//SDL AUDIO SYSTEM IMPL CLASS
-	GameAudioSystem::SDLAudioSystemImpl::SDLAudioSystemImpl()
+	GameAudioSystem::SDLAudioSystemImpl::SDLAudioSystemImpl() :
+		m_IsAudioThreadRunning{ true }
 	{
+		std::jthread audioThread(&SDLAudioSystemImpl::AudioEventHandler, this);  
+		audioThread.detach(); 
 	}
 
 	GameAudioSystem::SDLAudioSystemImpl::~SDLAudioSystemImpl()
 	{
+		m_IsAudioThreadRunning = false;
+		m_AudioEventConditionVariable.notify_one();
+		
 		for (auto& soundEffect : m_pSoundEffect)
 		{
 			Mix_FreeChunk(soundEffect.second);
@@ -122,6 +131,8 @@ namespace dae
 
 		std::lock_guard<std::mutex> lock{ m_AudioEventQueueMutex };
 		m_AudioEventQueue.push(event);
+
+		m_AudioEventConditionVariable.notify_one(); 
 	}
 
 	void GameAudioSystem::SDLAudioSystemImpl::StopMusic()
@@ -138,6 +149,8 @@ namespace dae
 
 		std::lock_guard<std::mutex> lock{ m_AudioEventQueueMutex };
 		m_AudioEventQueue.push(event);
+
+		m_AudioEventConditionVariable.notify_one(); 
 	}
 
 	void GameAudioSystem::SDLAudioSystemImpl::StopAllMusic()
@@ -156,49 +169,57 @@ namespace dae
 	}
 
 	void GameAudioSystem::SDLAudioSystemImpl::AudioEventHandler()
-	{		
-		while (!m_AudioEventQueue.empty())
+	{
+		while (m_IsAudioThreadRunning)
 		{
-			AudioEvent event{};
-			{
-				std::lock_guard<std::mutex> lock{ m_AudioEventQueueMutex }; 
-				event = m_AudioEventQueue.front(); 
-				m_AudioEventQueue.pop();  
-			}
+			// Lock the audio event queue mutex to ensure safe access to the queue
+			std::unique_lock queueLock(m_AudioEventQueueMutex);
 
-			if (event.soundID == "Music")
-			{
-				std::lock_guard<std::mutex> lock{ m_MusicMutex }; 
-				m_pMusicToPlay = Mix_LoadMUS(event.filePath.c_str());
+			// Wait on the audio event condition variable until there is an audio event to process
+			// or until the audio thread is being stopped
+			m_AudioEventConditionVariable.wait(queueLock, [this] { return m_AudioEventQueue.empty() == false || !m_IsAudioThreadRunning; });
 
-				if (m_pMusicToPlay != nullptr) 
+			if (!m_AudioEventQueue.empty())
+			{
+				AudioEvent event{ m_AudioEventQueue.front() };
+				m_AudioEventQueue.pop();
+
+				queueLock.unlock();
+
+				if (event.soundID == "Music")
 				{
-					// Set music volume
-					Mix_VolumeMusic(static_cast<int>(event.volume * MIX_MAX_VOLUME));
+					std::lock_guard<std::mutex> musicLock(m_MusicMutex);
+					m_pMusicToPlay = Mix_LoadMUS(event.filePath.c_str());
 
-					//Play Music
-					Mix_PlayMusic(m_pMusicToPlay, -1);
+					if (m_pMusicToPlay != nullptr)
+					{
+						// Set music volume
+						Mix_VolumeMusic(static_cast<int>(event.volume * MIX_MAX_VOLUME));
+
+						//Play Music
+						Mix_PlayMusic(m_pMusicToPlay, -1);
+					}
 				}
-			}
-			else if (event.soundID == "SoundEffect")
-			{
-				std::lock_guard<std::mutex> lock{ m_SoundEffectMutex }; 
-				Mix_Chunk* pSoundEffect{ Mix_LoadWAV(event.filePath.c_str()) };
-
-				if (pSoundEffect != nullptr)
+				else if (event.soundID == "SoundEffect")
 				{
-					// Set sound effect volume
-					Mix_VolumeChunk(pSoundEffect, static_cast<int>(event.volume * MIX_MAX_VOLUME));
+					std::lock_guard<std::mutex> soundEffectLock(m_SoundEffectMutex);
+					Mix_Chunk* pSoundEffect = Mix_LoadWAV(event.filePath.c_str());
 
-					// Play sound effect
-					Mix_PlayChannel(-1, pSoundEffect, 0);
+					if (pSoundEffect != nullptr)
+					{
+						// Set sound effect volume
+						Mix_VolumeChunk(pSoundEffect, static_cast<int>(event.volume * MIX_MAX_VOLUME));
 
-					// Add sound effect to the map
-					m_pSoundEffect[event.filePath] = pSoundEffect; 
-				}
-				else
-				{
-					std::cerr << "Failed to load sound effect: " << Mix_GetError() << std::endl;
+						// Play sound effect
+						Mix_PlayChannel(-1, pSoundEffect, 0);
+
+						// Add sound effect to the map
+						m_pSoundEffect[event.filePath] = pSoundEffect;
+					}
+					else
+					{
+						std::cerr << "Failed to load sound effect: " << Mix_GetError() << std::endl;
+					}
 				}
 			}
 		}

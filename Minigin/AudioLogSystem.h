@@ -14,6 +14,8 @@ namespace dae
 		virtual void StopMusic();
 		virtual void PlaySoundEffect(std::string filePath, const float volume);
 		virtual void StopAllMusic();
+		virtual void PauseAudio();
+		virtual void ResumeAudio();
 		virtual void AudioEventHandler();
 
 	private:

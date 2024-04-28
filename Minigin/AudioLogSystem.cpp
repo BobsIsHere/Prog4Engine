@@ -35,6 +35,18 @@ void dae::AudioLogSystem::StopAllMusic()
 	m_AudioSystem->StopAllMusic();
 }
 
+void dae::AudioLogSystem::PauseAudio()
+{
+	Log("PauseAudio");
+	m_AudioSystem->PauseAudio();
+}
+
+void dae::AudioLogSystem::ResumeAudio()
+{
+	Log("ResumeAudio");
+	m_AudioSystem->ResumeAudio();
+}
+
 void dae::AudioLogSystem::AudioEventHandler()
 {
 	m_AudioSystem->AudioEventHandler();
