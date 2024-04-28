@@ -53,7 +53,7 @@ void load()
 	//BACKGROUND
 	auto gameObject = std::make_unique<dae::GameObject>();
 	gameObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(gameObject.get()));
-	gameObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Background.png"));
+	gameObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("background.tga"));
 	scene.Add(std::move(gameObject));
 
 	//BACKGROUND LOGO
@@ -98,6 +98,15 @@ void load()
 	textObject->GetComponent<dae::TextComponent>()->SetText("Use WASD to move the enemy, C to inflict damage, Z and X to increase score");
 	textObject->GetComponent<dae::TextComponent>()->SetFont(font);
 	textObject->SetLocalPosition(5, 130);
+	scene.Add(std::move(textObject));
+
+	//SOUND CONTROLS TEXT
+	textObject = std::make_unique<dae::GameObject>(); 
+	textObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(textObject.get()));
+	textObject->AddComponent<dae::TextComponent>(std::make_unique<dae::TextComponent>(textObject.get()));
+	textObject->GetComponent<dae::TextComponent>()->SetText("Press C, Z or X to hear sound effects");
+	textObject->GetComponent<dae::TextComponent>()->SetFont(font); 
+	textObject->SetLocalPosition(5, 250);
 	scene.Add(std::move(textObject));
 
 	// LIVES & SCORE BOMBERMAN DISPLAY
