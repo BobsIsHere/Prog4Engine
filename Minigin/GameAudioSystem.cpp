@@ -141,13 +141,14 @@ namespace dae
 			{
 				std::lock_guard<std::mutex> lock{ m_AudioEventQueueMutex }; 
 				event = m_AudioEventQueue.front(); 
-				m_AudioEventQueue.pop(); 
+				m_AudioEventQueue.pop();  
 			}
 
-			if (event.filePath == "Music")
+			if (event.soundID == "Music")
 			{
 				std::lock_guard<std::mutex> lock{ m_MusicMutex }; 
 				m_pMusicToPlay = Mix_LoadMUS(event.filePath.c_str());
+
 				if (m_pMusicToPlay != nullptr) 
 				{
 					// Set music volume
@@ -157,7 +158,7 @@ namespace dae
 					Mix_PlayMusic(m_pMusicToPlay, -1);
 				}
 			}
-			else if (event.filePath == "SoundEffect")
+			else if (event.soundID == "SoundEffect")
 			{
 				std::lock_guard<std::mutex> lock{ m_SoundEffectMutex }; 
 				Mix_Chunk* pSoundEffect{ Mix_LoadWAV(event.filePath.c_str()) };
@@ -172,6 +173,10 @@ namespace dae
 
 					// Add sound effect to the map
 					m_pSoundEffect[event.filePath] = pSoundEffect; 
+				}
+				else
+				{
+					std::cerr << "Failed to load sound effect: " << Mix_GetError() << std::endl;
 				}
 			}
 		}
