@@ -20,6 +20,8 @@ namespace dae
 		void StopMusic();
 		void PlaySoundEffect(std::string filePath, const float volume);
 		void StopAllMusic();
+		void PauseAudio();
+		void ResumeAudio();
 		void AudioEventHandler();
 
 		struct AudioEvent
@@ -79,6 +81,16 @@ namespace dae
 		m_pSDLAudioSystemImpl->StopAllMusic();
 	}
 
+	void GameAudioSystem::PauseAudio()
+	{
+		m_pSDLAudioSystemImpl->PauseAudio();
+	}
+
+	void GameAudioSystem::ResumeAudio()
+	{
+		m_pSDLAudioSystemImpl->ResumeAudio();
+	}
+
 	void GameAudioSystem::AudioEventHandler()
 	{
 		m_pSDLAudioSystemImpl->AudioEventHandler();
@@ -131,6 +143,16 @@ namespace dae
 	void GameAudioSystem::SDLAudioSystemImpl::StopAllMusic()
 	{
 		Mix_HaltChannel(-1);
+	}
+
+	void GameAudioSystem::SDLAudioSystemImpl::PauseAudio()
+	{
+		Mix_Pause(-1);
+	}
+
+	void GameAudioSystem::SDLAudioSystemImpl::ResumeAudio()
+	{
+		Mix_Resume(-1);
 	}
 
 	void GameAudioSystem::SDLAudioSystemImpl::AudioEventHandler()

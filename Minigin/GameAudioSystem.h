@@ -19,6 +19,8 @@ namespace dae
 		virtual void StopMusic() override;
 		virtual void PlaySoundEffect(std::string filePath, const float volume) override;
 		virtual void StopAllMusic() override;
+		virtual void PauseAudio() override;
+		virtual void ResumeAudio() override;
 		virtual void AudioEventHandler() override;
 
 	private:
