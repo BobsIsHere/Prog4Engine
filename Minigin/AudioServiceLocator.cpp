@@ -1,8 +1,9 @@
 #include "AudioServiceLocator.h"
 #include "GameAudioSystem.h"
+#include "NullAudioSystem.h"
 #include "AudioSystem.h"
 
-std::unique_ptr<dae::AudioSystem> dae::AudioServiceLocator::m_ASInstance = nullptr;
+std::unique_ptr<dae::AudioSystem> dae::AudioServiceLocator::m_ASInstance = std::make_unique<NullAudioSystem>();
 
 dae::AudioSystem& dae::AudioServiceLocator::GetAudioSystem()
 {
@@ -13,7 +14,7 @@ void dae::AudioServiceLocator::RegisterSoundSystem(std::unique_ptr<AudioSystem>&
 {
 	if (ASInstance == nullptr)
 	{
-		m_ASInstance = std::make_unique<GameAudioSystem>(); 
+		m_ASInstance = std::make_unique<NullAudioSystem>(); 
 	}
 	else
 	{
