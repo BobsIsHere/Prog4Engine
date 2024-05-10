@@ -43,23 +43,36 @@
 void load()
 {
 	dae::AudioServiceLocator::RegisterSoundSystem(std::make_unique<dae::AudioLogSystem>(std::make_unique<dae::GameAudioSystem>()));
-
-	auto& scene = dae::SceneManager::GetInstance().CreateScene("Demo");
 	auto& resourceManager = dae::ResourceManager::GetInstance();
+
+	// --------------------
+	// BOMBERMAN MENU SCENE
+	// --------------------
+	auto& bombermanMenuScene = dae::SceneManager::GetInstance().CreateScene("bombermanMenu");
+
+	auto menuObject = std::make_unique<dae::GameObject>();
+	menuObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(menuObject.get()));
+	menuObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("BombermanTitle.png"));
+	bombermanMenuScene.Add(std::move(menuObject));
+
+	// --------------------
+	// BOMBERMAN GAME SCENE
+	// --------------------
+	auto& bombermanGameScene = dae::SceneManager::GetInstance().CreateScene("bombermanGame");
 	//bool hasPressedBombButton{ false };
 
 	//BACKGROUND
 	auto gameObject = std::make_unique<dae::GameObject>();
 	gameObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(gameObject.get()));
 	gameObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("background.tga"));
-	scene.Add(std::move(gameObject));
+	bombermanGameScene.Add(std::move(gameObject));
 
 	//BACKGROUND LOGO
 	gameObject = std::make_unique<dae::GameObject>();
 	gameObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(gameObject.get()));
 	gameObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("logo.tga"));
 	gameObject->SetLocalPosition(216, 180);
-	scene.Add(std::move(gameObject));
+	bombermanGameScene.Add(std::move(gameObject));
 
 	//BACKRGOUND TEXT
 	auto font = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
@@ -69,7 +82,7 @@ void load()
 	textObject->GetComponent<dae::TextComponent>()->SetText("Programming 4 Assignment");
 	textObject->GetComponent<dae::TextComponent>()->SetFont(font);
 	textObject->SetLocalPosition(100, 30);
-	scene.Add(std::move(textObject));
+	bombermanGameScene.Add(std::move(textObject));
 
 	//FPS COUNTER
 	auto fpsObject = std::make_unique<dae::GameObject>();
@@ -77,7 +90,7 @@ void load()
 	fpsObject->AddComponent<dae::TextComponent>(std::make_unique<dae::TextComponent>(fpsObject.get()));
 	fpsObject->GetComponent<dae::TextComponent>()->SetFont(font);
 	fpsObject->AddComponent<dae::FPSComponent>(std::make_unique<dae::FPSComponent>(fpsObject.get()));
-	scene.Add(std::move(fpsObject));
+	bombermanGameScene.Add(std::move(fpsObject));
 
 	//CONTROLLER CONTROLS TEXT
 	font = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 16);
@@ -87,7 +100,7 @@ void load()
 	textObject->GetComponent<dae::TextComponent>()->SetText("Use the D-Pad to move Bomberman, X to inflict damage, A and B to increase score");
 	textObject->GetComponent<dae::TextComponent>()->SetFont(font);
 	textObject->SetLocalPosition(5, 100);
-	scene.Add(std::move(textObject));
+	bombermanGameScene.Add(std::move(textObject));
 
 	//KEYBOARD CONTROLS TEXT
 	textObject = std::make_unique<dae::GameObject>();
@@ -96,7 +109,7 @@ void load()
 	textObject->GetComponent<dae::TextComponent>()->SetText("Use WASD to move the enemy, C to inflict damage, Z and X to increase score");
 	textObject->GetComponent<dae::TextComponent>()->SetFont(font);
 	textObject->SetLocalPosition(5, 130);
-	scene.Add(std::move(textObject));
+	bombermanGameScene.Add(std::move(textObject));
 
 	//SOUND CONTROLS TEXT
 	textObject = std::make_unique<dae::GameObject>(); 
@@ -105,7 +118,7 @@ void load()
 	textObject->GetComponent<dae::TextComponent>()->SetText("Press C, Z or X to hear sound effects");
 	textObject->GetComponent<dae::TextComponent>()->SetFont(font); 
 	textObject->SetLocalPosition(5, 250);
-	scene.Add(std::move(textObject));
+	bombermanGameScene.Add(std::move(textObject));
 
 	// LIVES & SCORE BOMBERMAN DISPLAY
 	auto livesObjectBomberman = std::make_unique<dae::GameObject>();
@@ -148,8 +161,8 @@ void load()
 	bombermanObject->GetComponent<dae::HealthComponent>()->AddObserver(livesObjectBomberman->GetComponent<dae::HealthDisplay>().get());
 	bombermanObject->GetComponent<dae::ScoreComponent>()->AddObserver(scoreObjectBomberman->GetComponent<dae::ScoreDisplay>().get());
 
-	scene.Add(std::move(scoreObjectBomberman));
-	scene.Add(std::move(livesObjectBomberman));
+	bombermanGameScene.Add(std::move(scoreObjectBomberman));
+	bombermanGameScene.Add(std::move(livesObjectBomberman));
 
 	//ENEMY
 	auto enemyObject = std::make_unique<dae::GameObject>();
@@ -162,8 +175,8 @@ void load()
 	enemyObject->GetComponent<dae::HealthComponent>()->AddObserver(livesObjectEnemy->GetComponent<dae::HealthDisplay>().get());
 	enemyObject->GetComponent<dae::ScoreComponent>()->AddObserver(scoreObjectEnemy->GetComponent<dae::ScoreDisplay>().get());
 
-	scene.Add(std::move(scoreObjectEnemy));
-	scene.Add(std::move(livesObjectEnemy));
+	bombermanGameScene.Add(std::move(scoreObjectEnemy));
+	bombermanGameScene.Add(std::move(livesObjectEnemy));
 
 	//BOMB
 	auto bombObject = std::make_unique<dae::GameObject>();
@@ -237,8 +250,8 @@ void load()
 	input.AddKeyboardCommand(SDL_SCANCODE_X, dae::ButtonState::Is_Up,
 		std::make_unique<dae::ScoreCommand>(enemyObject.get(), scoreIncrementBy100));
 
-	scene.Add(std::move(enemyObject));
-	scene.Add(std::move(bombermanObject));
+	bombermanGameScene.Add(std::move(enemyObject));
+	bombermanGameScene.Add(std::move(bombermanObject));
 }
 
 int main(int, char* []) 

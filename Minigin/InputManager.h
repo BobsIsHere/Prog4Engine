@@ -28,6 +28,8 @@ namespace dae
 		void RemoveControllerCommand(unsigned int controllerIdx, Controller::GamePad gamepadButton, ButtonState state); 
 		void RemoveKeyboardCommand(SDL_Scancode key, ButtonState state);
 
+		bool IsKeyDown(SDL_Scancode key) const;
+
 	private:
 		// Make Singleton template class a friend to access protected constructor and destructor
 		friend class Singleton<InputManager>;

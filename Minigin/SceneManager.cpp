@@ -3,18 +3,26 @@
 
 void dae::SceneManager::Update()
 {
-	for(auto& scene : m_Scenes)
-	{
-		scene->Update();
-	}
+	m_ActiveScene->Update();
 }
 
 void dae::SceneManager::Render()
 {
+	m_ActiveScene->Render(); 
+}
+
+void dae::SceneManager::SetActiveScene(const std::string& name)
+{
 	for (const auto& scene : m_Scenes)
 	{
-		scene->Render();
+		if (scene->GetSceneName() == name)
+		{
+			m_ActiveScene = scene;
+			return;
+		}
 	}
+
+	throw std::runtime_error("No scene with name " + name + " found");
 }
 
 dae::Scene& dae::SceneManager::CreateScene(const std::string& name)

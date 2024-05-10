@@ -60,6 +60,11 @@ void dae::InputManager::RemoveKeyboardCommand(SDL_Scancode key, ButtonState stat
 	m_KeyboardCommands.erase(keyPair);
 }
 
+bool dae::InputManager::IsKeyDown(SDL_Scancode key) const
+{
+	return m_pKeyboard->IsDownThisFrame(key);
+}
+
 void dae::InputManager::HandleControllerInput()
 {
 	//auto& -> avoid copying unique_ptr instances, invalid due to non-copyable 

@@ -1,6 +1,7 @@
 #pragma once
-#include "RenderComponent.h"
 #include <glm/vec2.hpp>
+#include <string>
+#include "RenderComponent.h"
 
 struct SDL_Texture; 
 namespace dae

@@ -12,6 +12,7 @@
 #include "Renderer.h"
 #include "ResourceManager.h"
 #include "DeltaTime.h"
+#include "GameStateManager.h"
 
 SDL_Window* g_window{};
 
@@ -86,6 +87,7 @@ void dae::Minigin::Run(const std::function<void()>& load)
 	auto& renderer = Renderer::GetInstance();
 	auto& sceneManager = SceneManager::GetInstance();
 	auto& input = InputManager::GetInstance();
+	auto& gameStateManager = GameStateManager::GetInstance();
 
 	bool doContinue = true;
 	while (doContinue)
@@ -95,6 +97,7 @@ void dae::Minigin::Run(const std::function<void()>& load)
 		doContinue = input.ProcessInput();
 		sceneManager.Update();
 		renderer.Render();
+		gameStateManager.HandleInput();
 
 		const auto sleep_time = std::chrono::high_resolution_clock::now() + std::chrono::milliseconds(ms_per_frame) - std::chrono::high_resolution_clock::now();
 

@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 #include "GameStateInterface.h"
 
 namespace dae
@@ -14,8 +15,5 @@ namespace dae
 		virtual void OnEnter() override;
 		virtual void OnExit() override;
 		virtual GameStateInterface* HandleInput() override;
-
-	private:
-
 	};
 }
