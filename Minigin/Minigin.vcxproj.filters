@@ -37,6 +37,9 @@
     <Filter Include="Sound Files">
       <UniqueIdentifier>{04b30fa4-df64-4546-812a-e0867d63fb04}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameState Files">
+      <UniqueIdentifier>{4c866090-548a-4421-a707-efb28c92d1cb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -132,6 +135,21 @@
     <ClInclude Include="AudioLogSystem.h">
       <Filter>Sound Files</Filter>
     </ClInclude>
+    <ClInclude Include="GameStateInterface.h">
+      <Filter>GameState Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStateManager.h">
+      <Filter>GameState Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuState.h">
+      <Filter>GameState Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayingState.h">
+      <Filter>GameState Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HighscoreState.h">
+      <Filter>GameState Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ResourceManager.cpp">
@@ -211,6 +229,18 @@
     </ClCompile>
     <ClCompile Include="AudioLogSystem.cpp">
       <Filter>Sound Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStateManager.cpp">
+      <Filter>GameState Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuState.cpp">
+      <Filter>GameState Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayingState.cpp">
+      <Filter>GameState Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HighscoreState.cpp">
+      <Filter>GameState Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

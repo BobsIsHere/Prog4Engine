@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <memory>
+#include <SDL.h>
 #include <map>
 #include "Command.h"
 #include "Keyboard.h"

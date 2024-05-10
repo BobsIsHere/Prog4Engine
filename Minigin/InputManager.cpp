@@ -1,4 +1,3 @@
-//#include <imgui_impl_sdl2.h>
 #include <SDL.h>
 #include "InputManager.h"
 
@@ -27,8 +26,6 @@ bool dae::InputManager::ProcessInput()
 		{
 			return false;
 		}
-		//process event for IMGUI
-		//ImGui_ImplSDL2_ProcessEvent(&e);
 	}
 
 	HandleControllerInput();
