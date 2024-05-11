@@ -53,7 +53,19 @@ void load()
 	auto menuObject = std::make_unique<dae::GameObject>();
 	menuObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(menuObject.get()));
 	menuObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("BombermanTitle.png"));
+	menuObject->SetLocalPosition(60, 0);
 	bombermanMenuScene.Add(std::move(menuObject));
+
+	// -------------------------
+	// BOMBERMAN HIGHSCORE SCENE
+	// -------------------------
+	auto& bombermanHighscoreScene = dae::SceneManager::GetInstance().CreateScene("bombermanHighscore");
+
+	auto highscoreObject = std::make_unique<dae::GameObject>();
+	highscoreObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(highscoreObject.get()));
+	highscoreObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("HighscoreBoard.png"));
+	highscoreObject->SetLocalPosition(0, 0);
+	bombermanHighscoreScene.Add(std::move(highscoreObject));
 
 	// --------------------
 	// BOMBERMAN GAME SCENE
