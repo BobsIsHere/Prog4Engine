@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <memory>
+#include <string>
 #include <SDL.h>
 #include <map>
 #include "Command.h"
@@ -29,6 +30,8 @@ namespace dae
 		void RemoveKeyboardCommand(SDL_Scancode key, ButtonState state);
 
 		bool IsKeyDown(SDL_Scancode key) const;
+
+		std::string GetPressedKey() const;
 
 	private:
 		// Make Singleton template class a friend to access protected constructor and destructor

@@ -1,5 +1,7 @@
 #include <SDL.h>
 #include "InputManager.h"
+#include "SceneManager.h"
+#include "Scene.h"
 
 dae::InputManager::InputManager() :
 	m_pKeyboard{},
@@ -63,6 +65,11 @@ void dae::InputManager::RemoveKeyboardCommand(SDL_Scancode key, ButtonState stat
 bool dae::InputManager::IsKeyDown(SDL_Scancode key) const
 {
 	return m_pKeyboard->IsDownThisFrame(key);
+}
+
+std::string dae::InputManager::GetPressedKey() const
+{
+	return m_pKeyboard->GetPressedKey();
 }
 
 void dae::InputManager::HandleControllerInput()

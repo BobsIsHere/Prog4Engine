@@ -2,6 +2,7 @@
 
 #include <Windows.h>
 #include <vector>
+#include <string>
 #include <SDL.h>
 
 #include "Keyboard.h"
@@ -20,6 +21,7 @@ namespace dae
 		KeyboardImpl& operator=(KeyboardImpl&& other) = delete;
 
 		void Update();
+		std::string GetPressedKey() const; 
 
 		bool IsDownThisFrame(SDL_Scancode key) const;
 		bool IsUpThisFrame(SDL_Scancode key) const;
@@ -43,6 +45,11 @@ namespace dae
 	void dae::Keyboard::Update()
 	{
 		m_pKeyboardImpl->Update();
+	}
+
+	std::string Keyboard::GetPressedKey() const
+	{
+		return m_pKeyboardImpl->GetPressedKey();
 	}
 
 	bool Keyboard::IsDownThisFrame(SDL_Scancode key) const
@@ -92,6 +99,19 @@ namespace dae
 		{
 			m_CurrentState[i] = state[i]; 
 		}
+	}
+
+	std::string Keyboard::KeyboardImpl::GetPressedKey() const
+	{
+		for (int i = 0; i < SDL_NUM_SCANCODES; ++i) 
+		{
+			if (m_CurrentState[i] && !m_PreviousState[i]) 
+			{ 
+				return SDL_GetScancodeName(static_cast<SDL_Scancode>(i)); 
+			}
+		}
+
+		return "";
 	}
 
 	bool Keyboard::KeyboardImpl::IsDownThisFrame(SDL_Scancode key) const

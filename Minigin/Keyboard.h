@@ -15,6 +15,7 @@ namespace dae
 		Keyboard& operator=(Keyboard&& other) = delete;
 
 		void Update();
+		std::string GetPressedKey() const;
 
 		bool IsDownThisFrame(SDL_Scancode key) const;
 		bool IsUpThisFrame(SDL_Scancode key) const;

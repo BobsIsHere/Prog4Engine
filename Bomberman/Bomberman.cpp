@@ -67,6 +67,14 @@ void load()
 	highscoreObject->SetLocalPosition(0, 0);
 	bombermanHighscoreScene.Add(std::move(highscoreObject));
 
+	auto highscoreFont = dae::ResourceManager::GetInstance().LoadFont("bombermanFont.otf", 12);
+	auto highscoreTextObject = std::make_unique<dae::GameObject>();
+	highscoreTextObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(highscoreTextObject.get()));
+	highscoreTextObject->AddComponent<dae::TextComponent>(std::make_unique<dae::TextComponent>(highscoreTextObject.get()));
+	highscoreTextObject->GetComponent<dae::TextComponent>()->SetFont(highscoreFont);
+	highscoreTextObject->SetLocalPosition(10, 10);
+	bombermanHighscoreScene.Add(std::move(highscoreTextObject));
+
 	// --------------------
 	// BOMBERMAN GAME SCENE
 	// --------------------
