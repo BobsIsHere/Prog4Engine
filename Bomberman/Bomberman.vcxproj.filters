@@ -60,6 +60,9 @@
     <ClCompile Include="HealthDisplay.cpp">
       <Filter>SubDisplays</Filter>
     </ClCompile>
+    <ClCompile Include="CameraComponent.cpp">
+      <Filter>SubComponents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HealthCommand.h">
@@ -94,6 +97,9 @@
     </ClInclude>
     <ClInclude Include="HealthDisplay.h">
       <Filter>SubDisplays</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraComponent.h">
+      <Filter>SubComponents</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

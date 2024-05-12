@@ -19,6 +19,7 @@
 #include "TextureComponent.h"
 #include "FPSComponent.h"
 #include "RotationComponent.h"
+#include "CameraComponent.h"
 
 #include "HealthComponent.h"
 #include "ScoreComponent.h"
@@ -187,6 +188,7 @@ void load()
 	//ENEMY
 	auto enemyObject = std::make_unique<dae::GameObject>();
 	enemyObject->SetLocalPosition(30, 300);
+
 	enemyObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(enemyObject.get()));
 	enemyObject->AddComponent<dae::ScoreComponent>(std::make_unique<dae::ScoreComponent>(enemyObject.get()));
 	enemyObject->AddComponent<dae::HealthComponent>(std::make_unique<dae::HealthComponent>(enemyObject.get()));
