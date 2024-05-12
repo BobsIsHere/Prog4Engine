@@ -13,7 +13,7 @@ dae::FPSComponent::FPSComponent(GameObject* pGameObject) :
 {
 	if (!pGameObject->HasComponent<TextComponent>())
 	{
-		pGameObject->AddComponent<TextComponent>(std::make_shared<TextComponent>(pGameObject));
+		pGameObject->AddComponent<TextComponent>(std::make_unique<TextComponent>(pGameObject));
 	}
 
 	m_pTextComponent = pGameObject->GetComponent<TextComponent>();

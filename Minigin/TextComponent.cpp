@@ -15,7 +15,7 @@ dae::TextComponent::TextComponent(GameObject* pGameObject) :
 {
 	if (!pGameObject->HasComponent<TextureComponent>())
 	{
-		pGameObject->AddComponent<TextureComponent>(std::make_shared<TextureComponent>(pGameObject));
+		pGameObject->AddComponent<TextureComponent>(std::make_unique<TextureComponent>(pGameObject));
 	}
 
 	m_pTextureComponent = pGameObject->GetComponent<TextureComponent>();

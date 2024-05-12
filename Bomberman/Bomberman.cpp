@@ -20,6 +20,7 @@
 #include "FPSComponent.h"
 #include "RotationComponent.h"
 #include "CameraComponent.h"
+#include "TimerComponent.h"
 
 #include "HealthComponent.h"
 #include "ScoreComponent.h"
@@ -68,11 +69,11 @@ void load()
 	highscoreObject->SetLocalPosition(0, 0);
 	bombermanHighscoreScene.Add(std::move(highscoreObject));
 
-	auto highscoreFont = dae::ResourceManager::GetInstance().LoadFont("bombermanFont.otf", 12);
+	auto bombermanFont = dae::ResourceManager::GetInstance().LoadFont("bombermanFont.otf", 12);
 	auto highscoreTextObject = std::make_unique<dae::GameObject>();
 	highscoreTextObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(highscoreTextObject.get()));
 	highscoreTextObject->AddComponent<dae::TextComponent>(std::make_unique<dae::TextComponent>(highscoreTextObject.get()));
-	highscoreTextObject->GetComponent<dae::TextComponent>()->SetFont(highscoreFont);
+	highscoreTextObject->GetComponent<dae::TextComponent>()->SetFont(bombermanFont);
 	highscoreTextObject->SetLocalPosition(10, 10);
 	bombermanHighscoreScene.Add(std::move(highscoreTextObject));
 
@@ -105,13 +106,15 @@ void load()
 	textObject->SetLocalPosition(100, 30);
 	bombermanGameScene.Add(std::move(textObject));
 
-	//FPS COUNTER
-	auto fpsObject = std::make_unique<dae::GameObject>();
-	fpsObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(fpsObject.get()));
-	fpsObject->AddComponent<dae::TextComponent>(std::make_unique<dae::TextComponent>(fpsObject.get()));
-	fpsObject->GetComponent<dae::TextComponent>()->SetFont(font);
-	fpsObject->AddComponent<dae::FPSComponent>(std::make_unique<dae::FPSComponent>(fpsObject.get()));
-	bombermanGameScene.Add(std::move(fpsObject));
+	//TIMER OBJECT
+	auto timerObject = std::make_unique<dae::GameObject>();
+	timerObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(timerObject.get()));
+	timerObject->AddComponent<dae::TextComponent>(std::make_unique<dae::TextComponent>(timerObject.get()));
+	timerObject->AddComponent<dae::TimerComponent>(std::make_unique<dae::TimerComponent>(timerObject.get()));
+
+	timerObject->GetComponent<dae::TextComponent>()->SetFont(bombermanFont);   
+	timerObject->GetComponent<dae::TimerComponent>()->SetTimeLimit(200.f);
+	bombermanGameScene.Add(std::move(timerObject));
 
 	//CONTROLLER CONTROLS TEXT
 	font = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 16);
@@ -179,8 +182,8 @@ void load()
 	bombermanObject->AddComponent<dae::ScoreComponent>(std::make_unique<dae::ScoreComponent>(bombermanObject.get()));
 
 	bombermanObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Bomberman.png"));
-	bombermanObject->GetComponent<dae::HealthComponent>()->AddObserver(livesObjectBomberman->GetComponent<dae::HealthDisplay>().get());
-	bombermanObject->GetComponent<dae::ScoreComponent>()->AddObserver(scoreObjectBomberman->GetComponent<dae::ScoreDisplay>().get());
+	bombermanObject->GetComponent<dae::HealthComponent>()->AddObserver(livesObjectBomberman->GetComponent<dae::HealthDisplay>());
+	bombermanObject->GetComponent<dae::ScoreComponent>()->AddObserver(scoreObjectBomberman->GetComponent<dae::ScoreDisplay>());
 
 	bombermanGameScene.Add(std::move(scoreObjectBomberman));
 	bombermanGameScene.Add(std::move(livesObjectBomberman));
@@ -194,8 +197,8 @@ void load()
 	enemyObject->AddComponent<dae::HealthComponent>(std::make_unique<dae::HealthComponent>(enemyObject.get()));
 
 	enemyObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Enemy.png"));
-	enemyObject->GetComponent<dae::HealthComponent>()->AddObserver(livesObjectEnemy->GetComponent<dae::HealthDisplay>().get());
-	enemyObject->GetComponent<dae::ScoreComponent>()->AddObserver(scoreObjectEnemy->GetComponent<dae::ScoreDisplay>().get());
+	enemyObject->GetComponent<dae::HealthComponent>()->AddObserver(livesObjectEnemy->GetComponent<dae::HealthDisplay>());
+	enemyObject->GetComponent<dae::ScoreComponent>()->AddObserver(scoreObjectEnemy->GetComponent<dae::ScoreDisplay>());
 
 	bombermanGameScene.Add(std::move(scoreObjectEnemy));
 	bombermanGameScene.Add(std::move(livesObjectEnemy));

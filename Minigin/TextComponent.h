@@ -27,7 +27,7 @@ namespace dae
 
 	private:
 		std::shared_ptr<Font> m_pFont;
-		std::shared_ptr<TextureComponent> m_pTextureComponent;
+		TextureComponent* m_pTextureComponent;
 
 		std::string m_Text;
 

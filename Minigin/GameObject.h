@@ -51,7 +51,7 @@ namespace dae
 		void RemoveComponent();
 
 		template<typename ComponentType>
-		std::shared_ptr<ComponentType> GetComponent();
+		ComponentType* GetComponent();
 
 		template<typename ComponentType> 
 		bool HasComponent();
@@ -91,16 +91,16 @@ namespace dae
 	}
 
 	template<typename ComponentType>
-	inline std::shared_ptr<ComponentType> GameObject::GetComponent()
+	inline ComponentType* GameObject::GetComponent()
 	{
-		auto findComponent = std::find_if(m_pComponents.begin(), m_pComponents.end(), [](const std::shared_ptr<Component>& ptr)   
+		auto findComponent = std::find_if(m_pComponents.begin(), m_pComponents.end(), [](const std::shared_ptr<Component>& ptr)
 		{
-			return std::dynamic_pointer_cast<ComponentType>(ptr) != nullptr;
+				return dynamic_cast<ComponentType*>(ptr.get()) != nullptr;
 		});
 
 		if (findComponent != m_pComponents.end())
 		{
-			return std::dynamic_pointer_cast<ComponentType>(*findComponent);
+			return dynamic_cast<ComponentType*>((*findComponent).get());  
 		}
 
 		// Return nullptr if component is not found

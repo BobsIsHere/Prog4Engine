@@ -150,6 +150,9 @@
     <ClInclude Include="HighscoreState.h">
       <Filter>GameState Files</Filter>
     </ClInclude>
+    <ClInclude Include="TimerComponent.h">
+      <Filter>Components Files\UpdateComponents</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ResourceManager.cpp">
@@ -241,6 +244,9 @@
     </ClCompile>
     <ClCompile Include="HighscoreState.cpp">
       <Filter>GameState Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TimerComponent.cpp">
+      <Filter>Components Files\UpdateComponents</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
