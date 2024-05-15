@@ -8,7 +8,7 @@ namespace dae
 	class CameraComponent final : public UpdateComponent
 	{
 	public:
-		CameraComponent(GameObject* pGameObject); 
+		CameraComponent(GameObject* pGameObject, float mapWidth, float screenWidth, float playableArea);
 		virtual ~CameraComponent();
 
 		CameraComponent(const CameraComponent& other) = delete;
@@ -16,32 +16,13 @@ namespace dae
 		CameraComponent& operator=(const CameraComponent& other) = delete;
 		CameraComponent& operator=(CameraComponent&& other) = delete;
 
-		struct Point2i
-		{
-			float x;
-			float y;
-		};
-
-		struct Recti
-		{
-			Point2i position;
-			float width;
-			float height;
-		};
-
 		virtual void Update() override;
 
-		void SetLevelBoundres(const Recti& levelBoundries);
-		void Clamp(Point2i& bottomLeftPos) const;
-		void Transform(const Recti& rect) const;
-		Point2i Track(const Recti& target) const;
-		Recti GetCameraRect(const Recti actorShape) const; 
-
 	private:
-		const float m_CameraWidth;
-		const float m_CameraHeight;
-		Recti m_LevelBoundries; 
-
 		GameObject* m_pGameObject;
+
+		float m_ScreenWidth;
+		float m_MapWidth;
+		float m_PlayableAreaWidth;
 	};
 }

@@ -14,7 +14,7 @@ dae::ScoreDisplay::ScoreDisplay(GameObject* gameObject) :
 	try
 	{
 		const auto textComponent = gameObject->GetComponent<TextComponent>();
-		textComponent->SetText("# Score: 0");
+		textComponent->SetText("00");
 	}
 	catch (const std::exception& e) 
 	{
@@ -43,7 +43,7 @@ void dae::ScoreDisplay::UpdateText(GameObject* gameObject)
 	if (gameObject->HasComponent<ScoreComponent>()) 
 	{
 		const auto scoreComponent = gameObject->GetComponent<ScoreComponent>(); 
-		scoreText = "# Score: " + std::to_string(scoreComponent->GetScore());
+		scoreText = std::to_string(scoreComponent->GetScore());
 	}
 
 	if (GetGameObject()->HasComponent<TextComponent>()) 

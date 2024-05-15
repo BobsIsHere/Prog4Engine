@@ -14,7 +14,7 @@ dae::HealthDisplay::HealthDisplay(GameObject* gameObject) :
 	try
 	{
 		const auto textComponent = gameObject->GetComponent<TextComponent>();
-		textComponent->SetText("# Lives: 3");
+		textComponent->SetText("LEFT 3");
 	}
 	catch (const std::exception& e)
 	{
@@ -43,7 +43,7 @@ void dae::HealthDisplay::UpdateText(GameObject* gameObject)
 	if (gameObject->HasComponent<HealthComponent>())
 	{
 		const auto healthComponent = gameObject->GetComponent<HealthComponent>();
-		healthText = "# Lives: " + std::to_string(healthComponent->GetLives());
+		healthText = "LEFT " + std::to_string(healthComponent->GetLives());
 	}
 
 	if (GetGameObject()->HasComponent<TextComponent>())

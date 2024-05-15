@@ -47,6 +47,9 @@ void load()
 	dae::AudioServiceLocator::RegisterSoundSystem(std::make_unique<dae::AudioLogSystem>(std::make_unique<dae::GameAudioSystem>()));
 	auto& resourceManager = dae::ResourceManager::GetInstance();
 
+	auto font = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
+	auto bombermanFont = dae::ResourceManager::GetInstance().LoadFont("bombermanFont.otf", 14);
+
 	// --------------------
 	// BOMBERMAN MENU SCENE
 	// --------------------
@@ -69,7 +72,6 @@ void load()
 	highscoreObject->SetLocalPosition(0, 0);
 	bombermanHighscoreScene.Add(std::move(highscoreObject));
 
-	auto bombermanFont = dae::ResourceManager::GetInstance().LoadFont("bombermanFont.otf", 12);
 	auto highscoreTextObject = std::make_unique<dae::GameObject>();
 	highscoreTextObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(highscoreTextObject.get()));
 	highscoreTextObject->AddComponent<dae::TextComponent>(std::make_unique<dae::TextComponent>(highscoreTextObject.get()));
@@ -86,28 +88,12 @@ void load()
 	//BACKGROUND
 	auto gameObject = std::make_unique<dae::GameObject>();
 	gameObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(gameObject.get()));
-	gameObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("background.tga"));
+	gameObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Background.png"));
 	bombermanGameScene.Add(std::move(gameObject));
-
-	//BACKGROUND LOGO
-	gameObject = std::make_unique<dae::GameObject>();
-	gameObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(gameObject.get()));
-	gameObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("logo.tga"));
-	gameObject->SetLocalPosition(216, 180);
-	bombermanGameScene.Add(std::move(gameObject));
-
-	//BACKRGOUND TEXT
-	auto font = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
-	auto textObject = std::make_unique<dae::GameObject>();
-	textObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(textObject.get()));
-	textObject->AddComponent<dae::TextComponent>(std::make_unique<dae::TextComponent>(textObject.get()));
-	textObject->GetComponent<dae::TextComponent>()->SetText("Programming 4 Assignment");
-	textObject->GetComponent<dae::TextComponent>()->SetFont(font);
-	textObject->SetLocalPosition(100, 30);
-	bombermanGameScene.Add(std::move(textObject));
 
 	//TIMER OBJECT
 	auto timerObject = std::make_unique<dae::GameObject>();
+	timerObject->SetLocalPosition(20, 18);
 	timerObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(timerObject.get()));
 	timerObject->AddComponent<dae::TextComponent>(std::make_unique<dae::TextComponent>(timerObject.get()));
 	timerObject->AddComponent<dae::TimerComponent>(std::make_unique<dae::TimerComponent>(timerObject.get()));
@@ -116,63 +102,20 @@ void load()
 	timerObject->GetComponent<dae::TimerComponent>()->SetTimeLimit(200.f);
 	bombermanGameScene.Add(std::move(timerObject));
 
-	//CONTROLLER CONTROLS TEXT
-	font = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 16);
-	textObject = std::make_unique<dae::GameObject>();
-	textObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(textObject.get()));
-	textObject->AddComponent<dae::TextComponent>(std::make_unique<dae::TextComponent>(textObject.get()));
-	textObject->GetComponent<dae::TextComponent>()->SetText("Use the D-Pad to move Bomberman, X to inflict damage, A and B to increase score");
-	textObject->GetComponent<dae::TextComponent>()->SetFont(font);
-	textObject->SetLocalPosition(5, 100);
-	bombermanGameScene.Add(std::move(textObject));
-
-	//KEYBOARD CONTROLS TEXT
-	textObject = std::make_unique<dae::GameObject>();
-	textObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(textObject.get()));
-	textObject->AddComponent<dae::TextComponent>(std::make_unique<dae::TextComponent>(textObject.get()));
-	textObject->GetComponent<dae::TextComponent>()->SetText("Use WASD to move the enemy, C to inflict damage, Z and X to increase score");
-	textObject->GetComponent<dae::TextComponent>()->SetFont(font);
-	textObject->SetLocalPosition(5, 130);
-	bombermanGameScene.Add(std::move(textObject));
-
-	//SOUND CONTROLS TEXT
-	textObject = std::make_unique<dae::GameObject>(); 
-	textObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(textObject.get()));
-	textObject->AddComponent<dae::TextComponent>(std::make_unique<dae::TextComponent>(textObject.get()));
-	textObject->GetComponent<dae::TextComponent>()->SetText("Press C, Z or X to hear sound effects");
-	textObject->GetComponent<dae::TextComponent>()->SetFont(font); 
-	textObject->SetLocalPosition(5, 250);
-	bombermanGameScene.Add(std::move(textObject));
-
 	// LIVES & SCORE BOMBERMAN DISPLAY
-	auto livesObjectBomberman = std::make_unique<dae::GameObject>();
-	livesObjectBomberman->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(livesObjectBomberman.get()));
-	livesObjectBomberman->AddComponent<dae::TextComponent>(std::make_unique<dae::TextComponent>(livesObjectBomberman.get()));
-	livesObjectBomberman->AddComponent<dae::HealthDisplay>(std::make_unique<dae::HealthDisplay>(livesObjectBomberman.get()));
-	livesObjectBomberman->GetComponent<dae::TextComponent>()->SetFont(font);
-	livesObjectBomberman->SetLocalPosition(5, 160);
-
 	auto scoreObjectBomberman = std::make_unique<dae::GameObject>();
 	scoreObjectBomberman->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(scoreObjectBomberman.get()));
 	scoreObjectBomberman->AddComponent<dae::TextComponent>(std::make_unique<dae::TextComponent>(scoreObjectBomberman.get()));
 	scoreObjectBomberman->AddComponent<dae::ScoreDisplay>(std::make_unique<dae::ScoreDisplay>(scoreObjectBomberman.get()));
-	scoreObjectBomberman->GetComponent<dae::TextComponent>()->SetFont(font);
-	scoreObjectBomberman->SetLocalPosition(5, 180);
+	scoreObjectBomberman->GetComponent<dae::TextComponent>()->SetFont(bombermanFont); 
+	scoreObjectBomberman->SetLocalPosition(375, 18);
 
-	// LIVES & SCORE ENEMY DISPLAY
-	auto livesObjectEnemy = std::make_unique<dae::GameObject>();
-	livesObjectEnemy->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(livesObjectEnemy.get()));
-	livesObjectEnemy->AddComponent<dae::TextComponent>(std::make_unique<dae::TextComponent>(livesObjectEnemy.get()));
-	livesObjectEnemy->AddComponent<dae::HealthDisplay>(std::make_unique<dae::HealthDisplay>(livesObjectEnemy.get()));
-	livesObjectEnemy->GetComponent<dae::TextComponent>()->SetFont(font);
-	livesObjectEnemy->SetLocalPosition(5, 200);
-
-	auto scoreObjectEnemy = std::make_unique<dae::GameObject>();
-	scoreObjectEnemy->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(scoreObjectEnemy.get()));
-	scoreObjectEnemy->AddComponent<dae::TextComponent>(std::make_unique<dae::TextComponent>(scoreObjectEnemy.get()));
-	scoreObjectEnemy->AddComponent<dae::ScoreDisplay>(std::make_unique<dae::ScoreDisplay>(scoreObjectEnemy.get()));
-	scoreObjectEnemy->GetComponent<dae::TextComponent>()->SetFont(font);
-	scoreObjectEnemy->SetLocalPosition(5, 220);
+	auto livesObjectBomberman = std::make_unique<dae::GameObject>();
+	livesObjectBomberman->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(livesObjectBomberman.get()));
+	livesObjectBomberman->AddComponent<dae::TextComponent>(std::make_unique<dae::TextComponent>(livesObjectBomberman.get()));
+	livesObjectBomberman->AddComponent<dae::HealthDisplay>(std::make_unique<dae::HealthDisplay>(livesObjectBomberman.get()));
+	livesObjectBomberman->GetComponent<dae::TextComponent>()->SetFont(bombermanFont);
+	livesObjectBomberman->SetLocalPosition(475, 18);
 
 	//BOMBERMAN 
 	auto bombermanObject = std::make_unique<dae::GameObject>();
@@ -180,6 +123,8 @@ void load()
 	bombermanObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(bombermanObject.get()));
 	bombermanObject->AddComponent<dae::HealthComponent>(std::make_unique<dae::HealthComponent>(bombermanObject.get()));
 	bombermanObject->AddComponent<dae::ScoreComponent>(std::make_unique<dae::ScoreComponent>(bombermanObject.get()));
+	//bombermanObject->AddComponent<dae::CameraComponent>(std::make_unique<dae::CameraComponent>(bombermanObject.get(), 
+																							   //1040.f, 640.f, 640.f));
 
 	bombermanObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Bomberman.png"));
 	bombermanObject->GetComponent<dae::HealthComponent>()->AddObserver(livesObjectBomberman->GetComponent<dae::HealthDisplay>());
@@ -197,11 +142,6 @@ void load()
 	enemyObject->AddComponent<dae::HealthComponent>(std::make_unique<dae::HealthComponent>(enemyObject.get()));
 
 	enemyObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Enemy.png"));
-	enemyObject->GetComponent<dae::HealthComponent>()->AddObserver(livesObjectEnemy->GetComponent<dae::HealthDisplay>());
-	enemyObject->GetComponent<dae::ScoreComponent>()->AddObserver(scoreObjectEnemy->GetComponent<dae::ScoreDisplay>());
-
-	bombermanGameScene.Add(std::move(scoreObjectEnemy));
-	bombermanGameScene.Add(std::move(livesObjectEnemy));
 
 	//BOMB
 	auto bombObject = std::make_unique<dae::GameObject>();

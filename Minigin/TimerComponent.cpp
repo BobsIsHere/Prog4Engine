@@ -35,7 +35,7 @@ void dae::TimerComponent::Update()
 		if (m_pTextComponent)
 		{
 			std::string timeString = std::to_string(static_cast<int>(m_TimeRemaining));
-			m_pTextComponent->SetText(timeString + " TIME");
+			m_pTextComponent->SetText("TIME " + timeString);
 		}
 	}
 }
