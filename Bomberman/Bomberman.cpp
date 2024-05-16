@@ -13,6 +13,7 @@
 #include "Scene.h"
 #include "GameObject.h"
 #include "Controller.h"
+#include "Renderer.h"
 
 //Components
 #include "TextComponent.h"
@@ -104,6 +105,7 @@ void load()
 	auto gameObject = std::make_unique<dae::GameObject>();
 	gameObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(gameObject.get()));
 	gameObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Background.png"));
+	gameObject->SetLocalPosition(0, 50);
 	bombermanGameScene.Add(std::move(gameObject));
 
 	//TIMER OBJECT
@@ -178,13 +180,13 @@ void load()
 	// CONTROLLER
 	// ----------
 	std::unique_ptr<dae::MovementCommand> moveUpCommandBM{ std::make_unique<dae::MovementCommand>(
-		bombermanObject.get(), glm::vec3{0, -1, 0}, 100.f) };
+		enemyObject.get(), glm::vec3{0, -1, 0}, 100.f) };
 	std::unique_ptr<dae::MovementCommand> moveDownCommandBM{ std::make_unique<dae::MovementCommand>(
-		bombermanObject.get(), glm::vec3{0, 1, 0}, 100.f) };
+		enemyObject.get(), glm::vec3{0, 1, 0}, 100.f) };
 	std::unique_ptr<dae::MovementCommand> moveLeftCommandBM{ std::make_unique<dae::MovementCommand>(
-		bombermanObject.get(), glm::vec3{-1, 0, 0}, 100.f) };
+		enemyObject.get(), glm::vec3{-1, 0, 0}, 100.f) };
 	std::unique_ptr<dae::MovementCommand> moveRightCommandBM{ std::make_unique<dae::MovementCommand>(
-		bombermanObject.get(), glm::vec3{1, 0, 0}, 100.f) };
+		enemyObject.get(), glm::vec3{1, 0, 0}, 100.f) };
 
 	// CONTROLLER 1
 	input.AddControllerCommand(static_cast<int>(dae::Controller::AmountOfControllers::One),
@@ -197,12 +199,12 @@ void load()
 		dae::Controller::GamePad::Dpad_Right, dae::ButtonState::Is_Pressed, std::move(moveRightCommandBM));
 
 	input.AddControllerCommand(static_cast<int>(dae::Controller::AmountOfControllers::One), dae::Controller::GamePad::X,
-		dae::ButtonState::Is_Up, std::make_unique<dae::HealthCommand>(bombermanObject.get()));
+		dae::ButtonState::Is_Up, std::make_unique<dae::HealthCommand>(enemyObject.get()));
 
 	input.AddControllerCommand(static_cast<int>(dae::Controller::AmountOfControllers::One), dae::Controller::GamePad::A,
-		dae::ButtonState::Is_Up, std::make_unique<dae::ScoreCommand>(bombermanObject.get(), scoreIncrementBy10));
+		dae::ButtonState::Is_Up, std::make_unique<dae::ScoreCommand>(enemyObject.get(), scoreIncrementBy10));
 	input.AddControllerCommand(static_cast<int>(dae::Controller::AmountOfControllers::One), dae::Controller::GamePad::B,
-		dae::ButtonState::Is_Up, std::make_unique<dae::ScoreCommand>(bombermanObject.get(), scoreIncrementBy100));
+		dae::ButtonState::Is_Up, std::make_unique<dae::ScoreCommand>(enemyObject.get(), scoreIncrementBy100));
 
 	input.AddControllerCommand(static_cast<int>(dae::Controller::AmountOfControllers::One), dae::Controller::GamePad::Y,
 		dae::ButtonState::Is_Pressed, std::make_unique<dae::BombCommand>(bombObject.get()));
@@ -210,25 +212,25 @@ void load()
 	// KEYBOARD
 	// --------
 	std::unique_ptr<dae::MovementCommand> moveUpCommandE{ std::make_unique<dae::MovementCommand>(
-		enemyObject.get(), glm::vec3{0, -1, 0}, 200.f) };
+		bombermanObject.get(), glm::vec3{0, -1, 0}, 200.f) };
 	std::unique_ptr<dae::MovementCommand> moveDownCommandE{ std::make_unique<dae::MovementCommand>(
-		enemyObject.get(), glm::vec3{0, 1, 0}, 200.f) };
+		bombermanObject.get(), glm::vec3{0, 1, 0}, 200.f) };
 	std::unique_ptr<dae::MovementCommand> moveLeftCommandE{ std::make_unique<dae::MovementCommand>(
-		enemyObject.get(), glm::vec3{-1, 0, 0}, 200.f) };
+		bombermanObject.get(), glm::vec3{-1, 0, 0}, 200.f) };
 	std::unique_ptr<dae::MovementCommand> moveRightCommandE{ std::make_unique<dae::MovementCommand>(
-		enemyObject.get(), glm::vec3{1, 0, 0}, 200.f) };
+		bombermanObject.get(), glm::vec3{1, 0, 0}, 200.f) };
 
 	input.AddKeyboardCommand(SDL_SCANCODE_W, dae::ButtonState::Is_Pressed, std::move(moveUpCommandE));
 	input.AddKeyboardCommand(SDL_SCANCODE_S, dae::ButtonState::Is_Pressed, std::move(moveDownCommandE));
 	input.AddKeyboardCommand(SDL_SCANCODE_A, dae::ButtonState::Is_Pressed, std::move(moveLeftCommandE));
 	input.AddKeyboardCommand(SDL_SCANCODE_D, dae::ButtonState::Is_Pressed, std::move(moveRightCommandE));
 
-	input.AddKeyboardCommand(SDL_SCANCODE_C, dae::ButtonState::Is_Up, std::make_unique<dae::HealthCommand>(enemyObject.get()));
+	input.AddKeyboardCommand(SDL_SCANCODE_C, dae::ButtonState::Is_Up, std::make_unique<dae::HealthCommand>(bombermanObject.get()));
 
 	input.AddKeyboardCommand(SDL_SCANCODE_Z, dae::ButtonState::Is_Up,
-		std::make_unique<dae::ScoreCommand>(enemyObject.get(), scoreIncrementBy10));
+		std::make_unique<dae::ScoreCommand>(bombermanObject.get(), scoreIncrementBy10));
 	input.AddKeyboardCommand(SDL_SCANCODE_X, dae::ButtonState::Is_Up,
-		std::make_unique<dae::ScoreCommand>(enemyObject.get(), scoreIncrementBy100));
+		std::make_unique<dae::ScoreCommand>(bombermanObject.get(), scoreIncrementBy100));
 
 	bombermanGameScene.Add(std::move(enemyObject));
 	bombermanGameScene.Add(std::move(bombermanObject));
