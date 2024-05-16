@@ -2,7 +2,7 @@
 #include "GameAudioSystem.h"
 #include "InputManager.h"
 #include "SceneManager.h"
-#include "PlayingState.h"
+#include "StageState.h"
 #include "MenuState.h"
 
 void dae::MenuState::Update()
@@ -28,7 +28,7 @@ dae::GameStateInterface* dae::MenuState::HandleInput()
 {
 	if (InputManager::GetInstance().IsKeyDown(SDL_SCANCODE_RETURN))
 	{
-		return new PlayingState();
+		return new StageState();
 	}
 
 	return nullptr;

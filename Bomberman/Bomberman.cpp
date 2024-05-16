@@ -61,6 +61,21 @@ void load()
 	menuObject->SetLocalPosition(60, 0);
 	bombermanMenuScene.Add(std::move(menuObject));
 
+	// --------------------
+	// BOMBERMAN STAGE SCENE
+	// --------------------
+	auto& bombermanStageScene = dae::SceneManager::GetInstance().CreateScene("bombermanStage");
+
+	auto stageObject = std::make_unique<dae::GameObject>();
+	stageObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(stageObject.get()));
+	stageObject->AddComponent<dae::TextComponent>(std::make_unique<dae::TextComponent>(stageObject.get()));
+
+	stageObject->GetComponent<dae::TextComponent>()->SetText("STAGE 1");
+	stageObject->GetComponent<dae::TextComponent>()->SetFont(bombermanFont); 
+	stageObject->SetLocalPosition(250, 230);
+
+	bombermanStageScene.Add(std::move(stageObject));
+
 	// -------------------------
 	// BOMBERMAN HIGHSCORE SCENE
 	// -------------------------
