@@ -27,17 +27,8 @@ namespace dae
 		int GetWorldXPosition() const { return static_cast<int>(m_WorldPosition.x); }
 		int GetWorldYPosition() const { return static_cast<int>(m_WorldPosition.y); }
 
-		float GetWidth() const { return m_Width; }
-		float GetHeight() const { return m_Height; }
-
-		void SetWidth(float width);
-		void SetHeight(float height);
-
 	private:
 		glm::vec3 m_LocalPosition;
 		glm::vec3 m_WorldPosition;
-
-		float m_Width;
-		float m_Height;
 	};
 }

@@ -59,7 +59,7 @@ void load()
 	auto menuObject = std::make_unique<dae::GameObject>();
 	menuObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(menuObject.get()));
 	menuObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("BombermanTitle.png"));
-	menuObject->SetLocalPosition(60, 0);
+	menuObject->SetLocalPosition(0, 0);
 	bombermanMenuScene.Add(std::move(menuObject));
 
 	// --------------------
@@ -73,7 +73,7 @@ void load()
 
 	stageObject->GetComponent<dae::TextComponent>()->SetText("STAGE 1");
 	stageObject->GetComponent<dae::TextComponent>()->SetFont(bombermanFont); 
-	stageObject->SetLocalPosition(250, 230);
+	stageObject->SetLocalPosition(200, 230);
 
 	bombermanStageScene.Add(std::move(stageObject));
 
@@ -103,14 +103,14 @@ void load()
 
 	//BACKGROUND
 	auto gameObject = std::make_unique<dae::GameObject>();
-	gameObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(gameObject.get()));
+	gameObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(gameObject.get(), 2.f));
 	gameObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Background.png"));
-	gameObject->SetLocalPosition(0, 50);
+	gameObject->SetLocalPosition(0, 65);
 	bombermanGameScene.Add(std::move(gameObject));
 
 	//TIMER OBJECT
 	auto timerObject = std::make_unique<dae::GameObject>();
-	timerObject->SetLocalPosition(20, 18);
+	timerObject->SetLocalPosition(20, 25);
 	timerObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(timerObject.get()));
 	timerObject->AddComponent<dae::TextComponent>(std::make_unique<dae::TextComponent>(timerObject.get()));
 	timerObject->AddComponent<dae::TimerComponent>(std::make_unique<dae::TimerComponent>(timerObject.get()));
@@ -125,14 +125,14 @@ void load()
 	scoreObjectBomberman->AddComponent<dae::TextComponent>(std::make_unique<dae::TextComponent>(scoreObjectBomberman.get()));
 	scoreObjectBomberman->AddComponent<dae::ScoreDisplay>(std::make_unique<dae::ScoreDisplay>(scoreObjectBomberman.get()));
 	scoreObjectBomberman->GetComponent<dae::TextComponent>()->SetFont(bombermanFont); 
-	scoreObjectBomberman->SetLocalPosition(375, 18);
+	scoreObjectBomberman->SetLocalPosition(300, 25);
 
 	auto livesObjectBomberman = std::make_unique<dae::GameObject>();
 	livesObjectBomberman->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(livesObjectBomberman.get()));
 	livesObjectBomberman->AddComponent<dae::TextComponent>(std::make_unique<dae::TextComponent>(livesObjectBomberman.get()));
 	livesObjectBomberman->AddComponent<dae::HealthDisplay>(std::make_unique<dae::HealthDisplay>(livesObjectBomberman.get()));
 	livesObjectBomberman->GetComponent<dae::TextComponent>()->SetFont(bombermanFont);
-	livesObjectBomberman->SetLocalPosition(475, 18);
+	livesObjectBomberman->SetLocalPosition(400, 25);
 
 	//BOMBERMAN 
 	auto bombermanObject = std::make_unique<dae::GameObject>();
@@ -212,13 +212,13 @@ void load()
 	// KEYBOARD
 	// --------
 	std::unique_ptr<dae::MovementCommand> moveUpCommandE{ std::make_unique<dae::MovementCommand>(
-		bombermanObject.get(), glm::vec3{0, -1, 0}, 200.f) };
+		bombermanObject.get(), glm::vec3{0, -1, 0}, 150.f) };
 	std::unique_ptr<dae::MovementCommand> moveDownCommandE{ std::make_unique<dae::MovementCommand>(
-		bombermanObject.get(), glm::vec3{0, 1, 0}, 200.f) };
+		bombermanObject.get(), glm::vec3{0, 1, 0}, 150.f) };
 	std::unique_ptr<dae::MovementCommand> moveLeftCommandE{ std::make_unique<dae::MovementCommand>(
-		bombermanObject.get(), glm::vec3{-1, 0, 0}, 200.f) };
+		bombermanObject.get(), glm::vec3{-1, 0, 0}, 150.f) };
 	std::unique_ptr<dae::MovementCommand> moveRightCommandE{ std::make_unique<dae::MovementCommand>(
-		bombermanObject.get(), glm::vec3{1, 0, 0}, 200.f) };
+		bombermanObject.get(), glm::vec3{1, 0, 0}, 150.f) };
 
 	input.AddKeyboardCommand(SDL_SCANCODE_W, dae::ButtonState::Is_Pressed, std::move(moveUpCommandE));
 	input.AddKeyboardCommand(SDL_SCANCODE_S, dae::ButtonState::Is_Pressed, std::move(moveDownCommandE));

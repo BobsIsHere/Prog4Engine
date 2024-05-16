@@ -4,9 +4,10 @@
 #include "Renderer.h"
 #include <SDL.h>
 
-dae::TextureComponent::TextureComponent(GameObject* pGameObject) :
+dae::TextureComponent::TextureComponent(GameObject* pGameObject, float scale) :
 	RenderComponent{ pGameObject },
-	m_pTexture{}
+	m_pTexture{},
+	m_Scale{ scale }
 {
 	
 }
@@ -20,7 +21,7 @@ void dae::TextureComponent::Render() const
 	if (m_pTexture != nullptr)
 	{
 		const auto& position = GetGameObject()->GetTransformComponent().GetWorldPosition(); 
-		Renderer::GetInstance().RenderTexture(*m_pTexture, position.x, position.y); 
+		Renderer::GetInstance().RenderTexture(*m_pTexture, position.x, position.y, m_Scale); 
 	}
 }
 

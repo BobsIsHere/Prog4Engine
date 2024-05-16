@@ -13,7 +13,7 @@ namespace dae
 	class TextureComponent final : public RenderComponent
 	{
 	public:
-		TextureComponent(GameObject* pGameObject);
+		TextureComponent(GameObject* pGameObject, float scale = 1.f);
 		virtual ~TextureComponent();
 
 		TextureComponent(const TextureComponent& other) = delete;
@@ -26,6 +26,8 @@ namespace dae
 		void SetTexture(const std::shared_ptr<Texture2D>& pTexture);
 
 	private:
+		const float m_Scale;
+
 		std::shared_ptr<Texture2D> m_pTexture; 
 	};
 }

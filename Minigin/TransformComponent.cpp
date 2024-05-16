@@ -4,9 +4,7 @@
 dae::TransformComponent::TransformComponent(GameObject* pGameObject) :
 	Component{ pGameObject },
 	m_LocalPosition{},
-	m_WorldPosition{},
-	m_Width{},
-	m_Height{}
+	m_WorldPosition{}
 {
 }
 
@@ -45,14 +43,4 @@ void dae::TransformComponent::SetWorldPosition(float x, float y, float z)
 	m_WorldPosition.x = x;
 	m_WorldPosition.y = y;
 	m_WorldPosition.z = z;
-}
-
-void dae::TransformComponent::SetWidth(float width)
-{
-	m_Width = width;
-}
-
-void dae::TransformComponent::SetHeight(float height)
-{
-	m_Height = height;
 }

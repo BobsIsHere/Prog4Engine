@@ -156,6 +156,9 @@
     <ClInclude Include="StageState.h">
       <Filter>GameState Files</Filter>
     </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>CollisionInterface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ResourceManager.cpp">
@@ -253,6 +256,9 @@
     </ClCompile>
     <ClCompile Include="StageState.cpp">
       <Filter>GameState Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>CollisionInterface</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
