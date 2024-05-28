@@ -159,6 +159,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Minigin\GameStateManager.cpp" />
+    <ClCompile Include="..\Minigin\HighscoreState.cpp" />
+    <ClCompile Include="..\Minigin\MenuState.cpp" />
+    <ClCompile Include="..\Minigin\PlayingState.cpp" />
+    <ClCompile Include="..\Minigin\StageState.cpp" />
     <ClCompile Include="BombCommand.cpp" />
     <ClCompile Include="BombComponent.cpp" />
     <ClCompile Include="Bomberman.cpp" />
@@ -174,6 +179,11 @@
     <ClCompile Include="ScoreDisplay.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Minigin\GameStateManager.h" />
+    <ClInclude Include="..\Minigin\HighscoreState.h" />
+    <ClInclude Include="..\Minigin\MenuState.h" />
+    <ClInclude Include="..\Minigin\PlayingState.h" />
+    <ClInclude Include="..\Minigin\StageState.h" />
     <ClInclude Include="BombCommand.h" />
     <ClInclude Include="BombComponent.h" />
     <ClInclude Include="CameraComponent.h" />

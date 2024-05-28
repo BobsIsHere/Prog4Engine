@@ -138,23 +138,8 @@
     <ClInclude Include="GameStateInterface.h">
       <Filter>GameState Files</Filter>
     </ClInclude>
-    <ClInclude Include="GameStateManager.h">
-      <Filter>GameState Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuState.h">
-      <Filter>GameState Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayingState.h">
-      <Filter>GameState Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HighscoreState.h">
-      <Filter>GameState Files</Filter>
-    </ClInclude>
     <ClInclude Include="TimerComponent.h">
       <Filter>Components Files\UpdateComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="StageState.h">
-      <Filter>GameState Files</Filter>
     </ClInclude>
     <ClInclude Include="Level.h">
       <Filter>CollisionInterface</Filter>
@@ -239,23 +224,8 @@
     <ClCompile Include="AudioLogSystem.cpp">
       <Filter>Sound Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameStateManager.cpp">
-      <Filter>GameState Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuState.cpp">
-      <Filter>GameState Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayingState.cpp">
-      <Filter>GameState Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HighscoreState.cpp">
-      <Filter>GameState Files</Filter>
-    </ClCompile>
     <ClCompile Include="TimerComponent.cpp">
       <Filter>Components Files\UpdateComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="StageState.cpp">
-      <Filter>GameState Files</Filter>
     </ClCompile>
     <ClCompile Include="Level.cpp">
       <Filter>CollisionInterface</Filter>

@@ -22,6 +22,9 @@
     <Filter Include="SubDisplays">
       <UniqueIdentifier>{f30e8f0d-9f6e-425d-9ffe-9e1a1673dd3e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameState">
+      <UniqueIdentifier>{3f03dca3-92c4-421f-b4bf-c1639b9073c6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bomberman.cpp">
@@ -63,6 +66,21 @@
     <ClCompile Include="CameraComponent.cpp">
       <Filter>SubComponents</Filter>
     </ClCompile>
+    <ClCompile Include="..\Minigin\GameStateManager.cpp">
+      <Filter>GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Minigin\HighscoreState.cpp">
+      <Filter>GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Minigin\MenuState.cpp">
+      <Filter>GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Minigin\PlayingState.cpp">
+      <Filter>GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Minigin\StageState.cpp">
+      <Filter>GameState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HealthCommand.h">
@@ -100,6 +118,21 @@
     </ClInclude>
     <ClInclude Include="CameraComponent.h">
       <Filter>SubComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Minigin\GameStateManager.h">
+      <Filter>GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Minigin\HighscoreState.h">
+      <Filter>GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Minigin\MenuState.h">
+      <Filter>GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Minigin\PlayingState.h">
+      <Filter>GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Minigin\StageState.h">
+      <Filter>GameState</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
