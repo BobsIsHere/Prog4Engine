@@ -32,6 +32,7 @@ namespace dae
 		void SetParent(GameObject* pParent, bool keepWorldPosition);
 		void SetPositionDirty();
 		void SetForRemoval();
+		void SetObjectType(int objectType);
 
 		TransformComponent& GetTransformComponent() const;
 		const glm::vec3& GetWorldPosition(); 
@@ -40,6 +41,7 @@ namespace dae
 		GameObject* GetChildAt(unsigned int index) const;
 		size_t GetChildCount() const;
 		bool GetIsSetForRemoval() const;
+		int GetObjectType() const;
 
 		bool IsChild(const GameObject* pChild) const;
 
@@ -70,6 +72,8 @@ namespace dae
 
 		GameObject* m_pParent; 
 		std::vector<GameObject*> m_pChildren;
+
+		int m_ObjectType;
 	};
 
 	template<typename ComponentType>

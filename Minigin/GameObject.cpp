@@ -7,7 +7,8 @@
 dae::GameObject::GameObject() :
 	m_IsSetForRemoval{},
 	m_IsPositionDirty{ true },
-	m_pParent{}
+	m_pParent{},
+	m_ObjectType{}
 {
 	m_pTransformComponent = std::make_unique<TransformComponent>(this);
 }
@@ -109,6 +110,11 @@ void dae::GameObject::SetForRemoval()
 	m_IsSetForRemoval = true;
 }
 
+void dae::GameObject::SetObjectType(int objectType)
+{
+	m_ObjectType = objectType; 
+}
+
 void dae::GameObject::AddChild(GameObject* pChild)
 {
 	m_pChildren.emplace_back(pChild);
@@ -152,6 +158,11 @@ size_t dae::GameObject::GetChildCount() const
 bool dae::GameObject::GetIsSetForRemoval() const
 {
 	return m_IsSetForRemoval;
+}
+
+int dae::GameObject::GetObjectType() const
+{
+	return m_ObjectType;
 }
 
 bool dae::GameObject::IsChild(const GameObject* pChild) const

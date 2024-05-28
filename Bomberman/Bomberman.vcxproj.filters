@@ -81,6 +81,9 @@
     <ClCompile Include="..\Minigin\StageState.cpp">
       <Filter>GameState</Filter>
     </ClCompile>
+    <ClCompile Include="..\Minigin\BoundingBoxComponent.cpp">
+      <Filter>SubComponents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HealthCommand.h">
@@ -133,6 +136,9 @@
     </ClInclude>
     <ClInclude Include="..\Minigin\StageState.h">
       <Filter>GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Minigin\BoundingBoxComponent.h">
+      <Filter>SubComponents</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
