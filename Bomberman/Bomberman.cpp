@@ -135,13 +135,11 @@ void load()
 	livesObjectBomberman->SetLocalPosition(400, 25);
 
 	//BOMBERMAN 
-	auto bombermanObject = std::make_unique<dae::GameObject>();
+	auto bombermanObject = std::make_unique<dae::GameObject>("Player");
 	bombermanObject->SetLocalPosition(70, 300);
 	bombermanObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(bombermanObject.get()));
 	bombermanObject->AddComponent<dae::HealthComponent>(std::make_unique<dae::HealthComponent>(bombermanObject.get()));
 	bombermanObject->AddComponent<dae::ScoreComponent>(std::make_unique<dae::ScoreComponent>(bombermanObject.get()));
-	//bombermanObject->AddComponent<dae::CameraComponent>(std::make_unique<dae::CameraComponent>(bombermanObject.get(), 
-																							   //1040.f, 640.f, 640.f));
 
 	bombermanObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Bomberman.png"));
 	bombermanObject->GetComponent<dae::HealthComponent>()->AddObserver(livesObjectBomberman->GetComponent<dae::HealthDisplay>());
@@ -164,6 +162,13 @@ void load()
 	auto bombObject = std::make_unique<dae::GameObject>();
 	bombObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(bombObject.get()));
 	bombObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Bomb.png"));
+
+	//BRICK
+	auto brickObject = std::make_unique<dae::GameObject>();
+	brickObject->SetLocalPosition((2 * 16) * 2, ((3 * 16) * 2) + 65);
+	brickObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(brickObject.get(), 2.f));
+	brickObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Brick.png"));
+	bombermanGameScene.Add(std::move(brickObject));
 
 	//--------------------
 	// SCENE.ADD PLEASE !!!!!!!!

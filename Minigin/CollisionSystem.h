@@ -23,7 +23,6 @@ namespace dae
 		CollisionSystem& operator=(const CollisionSystem&) = delete;
 
 		bool IsColliding(GameObject* a, GameObject* b) const;
-		void HandleCollision(GameObject* a, GameObject* b);
 
 		std::vector<GameObject*> m_pGameObjects;
 	};

@@ -110,7 +110,7 @@ void dae::GameObject::SetForRemoval()
 	m_IsSetForRemoval = true;
 }
 
-void dae::GameObject::SetObjectTypeIdentifier(int objectTypeIdentifier)
+void dae::GameObject::SetObjectTypeIdentifier(const std::string objectTypeIdentifier)
 {
 	m_ObjectTypeIdentifier = objectTypeIdentifier; 
 }

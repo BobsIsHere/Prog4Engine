@@ -36,23 +36,3 @@ bool dae::CollisionSystem::IsColliding(GameObject* a, GameObject* b) const
 
 	return false;
 }
-
-void dae::CollisionSystem::HandleCollision(GameObject* a, GameObject* b)
-{
-	int objectA = a->GetObjectType();
-	int objectB = b->GetObjectType();
-
-	if (objectA == 1)
-	{
-		if (objectB == 2) 
-		{
-			// Prevent player from moving through breakable blocks
-			// Implement collision response here
-		}
-		else if (objectB == 3) 
-		{
-			// Prevent player from moving through unbreakable blocks
-			// Implement collision response here
-		}
-	}
-}

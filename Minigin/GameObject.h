@@ -14,7 +14,7 @@ namespace dae
 	{
 	public:
 
-		GameObject(const std::string& objectTypeID);
+		GameObject(const std::string& objectTypeID = "");
 		virtual ~GameObject();
 
 		GameObject(const GameObject& other) = delete;
@@ -32,7 +32,7 @@ namespace dae
 		void SetParent(GameObject* pParent, bool keepWorldPosition);
 		void SetPositionDirty();
 		void SetForRemoval();
-		void SetObjectTypeIdentifier(int m_ObjectTypeIdentifier);
+		void SetObjectTypeIdentifier(const std::string m_ObjectTypeIdentifier);
 
 		TransformComponent& GetTransformComponent() const;
 		const glm::vec3& GetWorldPosition(); 
