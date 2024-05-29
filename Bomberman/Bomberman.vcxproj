@@ -160,6 +160,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Minigin\BoundingBoxComponent.cpp" />
+    <ClCompile Include="..\Minigin\CollisionSystem.cpp" />
     <ClCompile Include="..\Minigin\GameStateManager.cpp" />
     <ClCompile Include="..\Minigin\HighscoreState.cpp" />
     <ClCompile Include="..\Minigin\MenuState.cpp" />
@@ -181,6 +182,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Minigin\BoundingBoxComponent.h" />
+    <ClInclude Include="..\Minigin\CollisionSystem.h" />
     <ClInclude Include="..\Minigin\GameStateManager.h" />
     <ClInclude Include="..\Minigin\HighscoreState.h" />
     <ClInclude Include="..\Minigin\MenuState.h" />

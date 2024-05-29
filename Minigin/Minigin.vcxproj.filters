@@ -102,9 +102,6 @@
     <ClInclude Include="DeltaTime.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CollisionSystem.h">
-      <Filter>CollisionInterface</Filter>
-    </ClInclude>
     <ClInclude Include="TextComponent.h">
       <Filter>Components Files\UpdateComponents</Filter>
     </ClInclude>
@@ -193,9 +190,6 @@
     </ClCompile>
     <ClCompile Include="DeltaTime.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CollisionSystem.cpp">
-      <Filter>CollisionInterface</Filter>
     </ClCompile>
     <ClCompile Include="TextComponent.cpp">
       <Filter>Components Files\UpdateComponents</Filter>

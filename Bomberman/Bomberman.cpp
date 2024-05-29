@@ -45,13 +45,6 @@
 
 void load()
 {
-	enum class ObjectType
-	{
-		Player = 1,
-		BreakAbleBlock = 2,
-		UnBreakAbleBlock = 3
-	};
-
 	dae::AudioServiceLocator::RegisterSoundSystem(std::make_unique<dae::AudioLogSystem>(std::make_unique<dae::GameAudioSystem>()));
 	auto& resourceManager = dae::ResourceManager::GetInstance();
 

@@ -4,11 +4,11 @@
 #include "ResourceManager.h"
 #include "Renderer.h"
 
-dae::GameObject::GameObject() :
+dae::GameObject::GameObject(const std::string& objectTypeID) :
 	m_IsSetForRemoval{},
 	m_IsPositionDirty{ true },
 	m_pParent{},
-	m_ObjectType{}
+	m_ObjectTypeIdentifier{ objectTypeID }
 {
 	m_pTransformComponent = std::make_unique<TransformComponent>(this);
 }
@@ -110,9 +110,9 @@ void dae::GameObject::SetForRemoval()
 	m_IsSetForRemoval = true;
 }
 
-void dae::GameObject::SetObjectType(int objectType)
+void dae::GameObject::SetObjectTypeIdentifier(int objectTypeIdentifier)
 {
-	m_ObjectType = objectType; 
+	m_ObjectTypeIdentifier = objectTypeIdentifier; 
 }
 
 void dae::GameObject::AddChild(GameObject* pChild)
@@ -160,9 +160,9 @@ bool dae::GameObject::GetIsSetForRemoval() const
 	return m_IsSetForRemoval;
 }
 
-int dae::GameObject::GetObjectType() const
+std::string dae::GameObject::GetObjectTypeIdentifier() const
 {
-	return m_ObjectType;
+	return m_ObjectTypeIdentifier;
 }
 
 bool dae::GameObject::IsChild(const GameObject* pChild) const
