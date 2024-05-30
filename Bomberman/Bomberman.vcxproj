@@ -169,6 +169,7 @@
     <ClCompile Include="BombComponent.cpp" />
     <ClCompile Include="Bomberman.cpp" />
     <ClCompile Include="CameraComponent.cpp" />
+    <ClCompile Include="EnemyComponent.cpp" />
     <ClCompile Include="FPSComponent.cpp" />
     <ClCompile Include="HealthCommand.cpp" />
     <ClCompile Include="HealthComponent.cpp" />
@@ -190,6 +191,7 @@
     <ClInclude Include="BombCommand.h" />
     <ClInclude Include="BombComponent.h" />
     <ClInclude Include="CameraComponent.h" />
+    <ClInclude Include="EnemyComponent.h" />
     <ClInclude Include="FPSComponent.h" />
     <ClInclude Include="HealthCommand.h" />
     <ClInclude Include="HealthComponent.h" />

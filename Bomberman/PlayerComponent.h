@@ -3,8 +3,6 @@
 
 namespace dae
 {
-	class GameObject;
-
 	class PlayerComponent final : public UpdateComponent
 	{
 	public:

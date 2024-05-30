@@ -23,6 +23,7 @@
 #include "CameraComponent.h"
 #include "TimerComponent.h"
 #include "PlayerComponent.h"
+#include "EnemyComponent.h"
 #include "BoundingBoxComponent.h"
 
 #include "HealthComponent.h"
@@ -153,12 +154,14 @@ void load()
 	bombermanGameScene.Add(std::move(livesObjectBomberman));
 
 	//ENEMY
-	auto enemyObject = std::make_unique<dae::GameObject>();
+	auto enemyObject = std::make_unique<dae::GameObject>("Enemy");
 	enemyObject->SetLocalPosition(30, 300);
 
 	enemyObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(enemyObject.get()));
 	enemyObject->AddComponent<dae::ScoreComponent>(std::make_unique<dae::ScoreComponent>(enemyObject.get()));
 	enemyObject->AddComponent<dae::HealthComponent>(std::make_unique<dae::HealthComponent>(enemyObject.get()));
+	enemyObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(enemyObject.get(), 32.f, 32.f));
+	enemyObject->AddComponent<dae::EnemyComponent>(std::make_unique<dae::EnemyComponent>(enemyObject.get()));
 
 	enemyObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Enemy.png"));
 

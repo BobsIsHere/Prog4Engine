@@ -87,6 +87,9 @@
     <ClCompile Include="PlayerComponent.cpp">
       <Filter>SubComponents</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyComponent.cpp">
+      <Filter>SubComponents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HealthCommand.h">
@@ -144,6 +147,9 @@
       <Filter>SubComponents</Filter>
     </ClInclude>
     <ClInclude Include="PlayerComponent.h">
+      <Filter>SubComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyComponent.h">
       <Filter>SubComponents</Filter>
     </ClInclude>
   </ItemGroup>
