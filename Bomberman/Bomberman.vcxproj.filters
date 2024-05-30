@@ -84,8 +84,8 @@
     <ClCompile Include="..\Minigin\BoundingBoxComponent.cpp">
       <Filter>SubComponents</Filter>
     </ClCompile>
-    <ClCompile Include="..\Minigin\CollisionSystem.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="PlayerComponent.cpp">
+      <Filter>SubComponents</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -143,8 +143,8 @@
     <ClInclude Include="..\Minigin\BoundingBoxComponent.h">
       <Filter>SubComponents</Filter>
     </ClInclude>
-    <ClInclude Include="..\Minigin\CollisionSystem.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="PlayerComponent.h">
+      <Filter>SubComponents</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

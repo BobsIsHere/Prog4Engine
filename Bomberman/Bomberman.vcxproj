@@ -160,7 +160,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Minigin\BoundingBoxComponent.cpp" />
-    <ClCompile Include="..\Minigin\CollisionSystem.cpp" />
     <ClCompile Include="..\Minigin\GameStateManager.cpp" />
     <ClCompile Include="..\Minigin\HighscoreState.cpp" />
     <ClCompile Include="..\Minigin\MenuState.cpp" />
@@ -175,6 +174,7 @@
     <ClCompile Include="HealthComponent.cpp" />
     <ClCompile Include="HealthDisplay.cpp" />
     <ClCompile Include="MovementCommand.cpp" />
+    <ClCompile Include="PlayerComponent.cpp" />
     <ClCompile Include="RotationComponent.cpp" />
     <ClCompile Include="ScoreCommand.cpp" />
     <ClCompile Include="ScoreComponent.cpp" />
@@ -182,7 +182,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Minigin\BoundingBoxComponent.h" />
-    <ClInclude Include="..\Minigin\CollisionSystem.h" />
     <ClInclude Include="..\Minigin\GameStateManager.h" />
     <ClInclude Include="..\Minigin\HighscoreState.h" />
     <ClInclude Include="..\Minigin\MenuState.h" />
@@ -196,6 +195,7 @@
     <ClInclude Include="HealthComponent.h" />
     <ClInclude Include="HealthDisplay.h" />
     <ClInclude Include="MovementCommand.h" />
+    <ClInclude Include="PlayerComponent.h" />
     <ClInclude Include="RotationComponent.h" />
     <ClInclude Include="ScoreCommand.h" />
     <ClInclude Include="ScoreComponent.h" />

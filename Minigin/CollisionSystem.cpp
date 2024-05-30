@@ -2,18 +2,28 @@
 #include "CollisionSystem.h"
 #include "GameObject.h"
 
-void dae::CollisionSystem::Update()
+dae::CollisionSystem::CollisionSystem() :
+	m_pGameObjects{}
 {
 }
 
-void dae::CollisionSystem::AddBoundingBox(GameObject* pGameObject)
+dae::CollisionSystem::~CollisionSystem()
+{
+}
+
+void dae::CollisionSystem::AddGameObject(GameObject* pGameObject)
 {
 	m_pGameObjects.push_back(pGameObject);
 }
 
-void dae::CollisionSystem::RemoveBoundingBox(GameObject* pGameObject)
+void dae::CollisionSystem::RemoveGameObject(GameObject* pGameObject)
 {
 	m_pGameObjects.erase(std::remove(m_pGameObjects.begin(), m_pGameObjects.end(), pGameObject), m_pGameObjects.end());
+}
+
+std::vector<dae::GameObject*> dae::CollisionSystem::GetAllGameObjects() const
+{
+	return m_pGameObjects;
 }
 
 bool dae::CollisionSystem::IsColliding(GameObject* a, GameObject* b) const

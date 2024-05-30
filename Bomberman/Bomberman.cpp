@@ -22,6 +22,8 @@
 #include "RotationComponent.h"
 #include "CameraComponent.h"
 #include "TimerComponent.h"
+#include "PlayerComponent.h"
+#include "BoundingBoxComponent.h"
 
 #include "HealthComponent.h"
 #include "ScoreComponent.h"
@@ -140,6 +142,8 @@ void load()
 	bombermanObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(bombermanObject.get()));
 	bombermanObject->AddComponent<dae::HealthComponent>(std::make_unique<dae::HealthComponent>(bombermanObject.get()));
 	bombermanObject->AddComponent<dae::ScoreComponent>(std::make_unique<dae::ScoreComponent>(bombermanObject.get()));
+	bombermanObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(bombermanObject.get(),32.f,32.f));
+	bombermanObject->AddComponent<dae::PlayerComponent>(std::make_unique<dae::PlayerComponent>(bombermanObject.get()));
 
 	bombermanObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Bomberman.png"));
 	bombermanObject->GetComponent<dae::HealthComponent>()->AddObserver(livesObjectBomberman->GetComponent<dae::HealthDisplay>());
@@ -164,9 +168,11 @@ void load()
 	bombObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Bomb.png"));
 
 	//BRICK
-	auto brickObject = std::make_unique<dae::GameObject>();
+	auto brickObject = std::make_unique<dae::GameObject>("Breakable");
 	brickObject->SetLocalPosition((2 * 16) * 2, ((3 * 16) * 2) + 65);
 	brickObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(brickObject.get(), 2.f));
+	brickObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(brickObject.get(), 32.f, 32.f));
+
 	brickObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Brick.png"));
 	bombermanGameScene.Add(std::move(brickObject));
 

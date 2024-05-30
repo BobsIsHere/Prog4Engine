@@ -10,19 +10,18 @@ namespace dae
 	class CollisionSystem final : public Singleton<CollisionSystem>
 	{
 	public:
-		void Update();
+		void AddGameObject(GameObject* pGameObject);
+		void RemoveGameObject(GameObject* pGameObject);
 
-		void AddBoundingBox(GameObject* pGameObject);
-		void RemoveBoundingBox(GameObject* pGameObject);
+		std::vector<GameObject*> GetAllGameObjects() const;
+
+		bool IsColliding(GameObject* a, GameObject* b) const; 
 
 	private:
-		CollisionSystem() = default;
-		~CollisionSystem() = default;
+		friend class Singleton<CollisionSystem>;
 
-		CollisionSystem(const CollisionSystem&) = delete;
-		CollisionSystem& operator=(const CollisionSystem&) = delete;
-
-		bool IsColliding(GameObject* a, GameObject* b) const;
+		CollisionSystem();
+		virtual ~CollisionSystem();
 
 		std::vector<GameObject*> m_pGameObjects;
 	};

@@ -36,6 +36,7 @@ namespace dae
 
 		TransformComponent& GetTransformComponent() const;
 		const glm::vec3& GetWorldPosition(); 
+		const glm::vec3& GetLocalPosition();
 
 		GameObject* GetParent() const;
 		GameObject* GetChildAt(unsigned int index) const;

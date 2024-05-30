@@ -131,6 +131,11 @@ const glm::vec3& dae::GameObject::GetWorldPosition()
 	return m_pTransformComponent->GetWorldPosition();
 }
 
+const glm::vec3& dae::GameObject::GetLocalPosition()
+{
+	return m_pTransformComponent->GetLocalPosition(); 
+}
+
 dae::TransformComponent& dae::GameObject::GetTransformComponent() const
 {
 	return *m_pTransformComponent;

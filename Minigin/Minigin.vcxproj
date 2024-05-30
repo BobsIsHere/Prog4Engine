@@ -214,6 +214,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "$(OutputP
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AudioSystem.h" />
+    <ClInclude Include="CollisionSystem.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Controller.h" />
@@ -246,6 +247,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "$(OutputP
     <ClInclude Include="UpdateComponent.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CollisionSystem.cpp" />
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Controller.cpp" />

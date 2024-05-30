@@ -2,7 +2,6 @@
 #include <memory>
 
 #include "UpdateComponent.h"
-#include "Collidable.h"
 
 namespace dae
 {
@@ -11,15 +10,15 @@ namespace dae
 	class BoundingBoxComponent final : public UpdateComponent
 	{
 	public:
-		BoundingBoxComponent(GameObject* pGameObject, int width, int height);
+		BoundingBoxComponent(GameObject* pGameObject, float width, float height);
 		virtual ~BoundingBoxComponent();
 
 		struct Rect
 		{
-			int x;
-			int y;
-			int width;
-			int height;
+			float x;
+			float y;
+			float width;
+			float height;
 		};
 
 		BoundingBoxComponent(const BoundingBoxComponent& other) = delete;
@@ -29,11 +28,11 @@ namespace dae
 
 		virtual void Update() override;
 
-		dae::Rect GetBoundingBox() const;
-		void SetBoundingBox(int width, int height);
+		Rect GetBoundingBox() const;
+		void SetBoundingBox(float width, float height);
 
 	private:
 		GameObject* m_pGameObject;
-		dae::Rect m_BoundingBox;
+		Rect m_BoundingBox;
 	};
 }

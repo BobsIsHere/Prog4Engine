@@ -1,15 +1,18 @@
 #include "BoundingBoxComponent.h"
+#include "CollisionSystem.h"
 #include "GameObject.h"
 
-dae::BoundingBoxComponent::BoundingBoxComponent(GameObject* pGameObject, int width, int height) :
+dae::BoundingBoxComponent::BoundingBoxComponent(GameObject* pGameObject, float width, float height) :
 	UpdateComponent{ pGameObject }
 {
 	m_pGameObject = pGameObject;
 
-	m_BoundingBox.x = static_cast<int>(m_pGameObject->GetWorldPosition().x); 
-	m_BoundingBox.y = static_cast<int>(m_pGameObject->GetWorldPosition().y);
+	m_BoundingBox.x = m_pGameObject->GetWorldPosition().x; 
+	m_BoundingBox.y = m_pGameObject->GetWorldPosition().y;
 	m_BoundingBox.width = width; 
 	m_BoundingBox.height = height; 
+
+	CollisionSystem::GetInstance().AddGameObject(GetGameObject()); 
 }
 
 dae::BoundingBoxComponent::~BoundingBoxComponent()
@@ -23,19 +26,19 @@ void dae::BoundingBoxComponent::Update()
 
 	if (currentPos != lastPos)
 	{
-		m_BoundingBox.x = static_cast<int>(currentPos.x);
-		m_BoundingBox.y = static_cast<int>(currentPos.y); 
+		m_BoundingBox.x = currentPos.x;
+		m_BoundingBox.y = currentPos.y; 
 
 		lastPos = currentPos;
 	}
 }
 
-dae::Rect dae::BoundingBoxComponent::GetBoundingBox() const
+dae::BoundingBoxComponent::Rect dae::BoundingBoxComponent::GetBoundingBox() const
 {
 	return m_BoundingBox;
 }
 
-void dae::BoundingBoxComponent::SetBoundingBox(int width, int height)
+void dae::BoundingBoxComponent::SetBoundingBox(float width, float height)
 {
 	m_BoundingBox.width = width;
 	m_BoundingBox.height = height;

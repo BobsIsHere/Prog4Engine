@@ -28,9 +28,6 @@
     <Filter Include="Commands Files">
       <UniqueIdentifier>{d7cc5e1a-88dd-4aab-b685-c61b7ad0afdd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="CollisionInterface">
-      <UniqueIdentifier>{ab7c2673-1188-4ae3-95ba-578f1b125e57}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Components Files\UpdateComponents">
       <UniqueIdentifier>{5c54fc2a-7c22-4ac7-a201-292e3a5037a5}</UniqueIdentifier>
     </Filter>
@@ -39,6 +36,9 @@
     </Filter>
     <Filter Include="GameState Files">
       <UniqueIdentifier>{4c866090-548a-4421-a707-efb28c92d1cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Collision Interface">
+      <UniqueIdentifier>{ab7c2673-1188-4ae3-95ba-578f1b125e57}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -133,7 +133,10 @@
       <Filter>Components Files\UpdateComponents</Filter>
     </ClInclude>
     <ClInclude Include="Level.h">
-      <Filter>CollisionInterface</Filter>
+      <Filter>Collision Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionSystem.h">
+      <Filter>Collision Interface</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -213,7 +216,10 @@
       <Filter>Components Files\UpdateComponents</Filter>
     </ClCompile>
     <ClCompile Include="Level.cpp">
-      <Filter>CollisionInterface</Filter>
+      <Filter>Collision Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionSystem.cpp">
+      <Filter>Collision Interface</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
