@@ -3,7 +3,6 @@
 
 dae::CameraComponent::CameraComponent(GameObject* pGameObject, float mapWidth, float screenWidth, float playableArea) :
 	UpdateComponent(pGameObject),
-	m_pGameObject{ pGameObject },
 	m_MapWidth{ mapWidth },
 	m_ScreenWidth{ screenWidth }, 
 	m_PlayableAreaWidth{ playableArea } 

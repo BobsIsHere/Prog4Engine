@@ -19,8 +19,6 @@ namespace dae
 		virtual void Update() override;
 
 	private:
-		GameObject* m_pGameObject;
-
 		float m_ScreenWidth;
 		float m_MapWidth;
 		float m_PlayableAreaWidth;

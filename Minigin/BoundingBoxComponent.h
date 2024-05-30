@@ -32,7 +32,6 @@ namespace dae
 		void SetBoundingBox(float width, float height);
 
 	private:
-		GameObject* m_pGameObject;
 		Rect m_BoundingBox;
 	};
 }

@@ -5,10 +5,8 @@
 dae::BoundingBoxComponent::BoundingBoxComponent(GameObject* pGameObject, float width, float height) :
 	UpdateComponent{ pGameObject }
 {
-	m_pGameObject = pGameObject;
-
-	m_BoundingBox.x = m_pGameObject->GetWorldPosition().x; 
-	m_BoundingBox.y = m_pGameObject->GetWorldPosition().y;
+	m_BoundingBox.x = GetGameObject()->GetWorldPosition().x;
+	m_BoundingBox.y = GetGameObject()->GetWorldPosition().y;
 	m_BoundingBox.width = width; 
 	m_BoundingBox.height = height; 
 
@@ -21,7 +19,7 @@ dae::BoundingBoxComponent::~BoundingBoxComponent()
 
 void dae::BoundingBoxComponent::Update()
 {
-	const glm::vec2 currentPos{ m_pGameObject->GetWorldPosition() };
+	const glm::vec2 currentPos{ GetGameObject()->GetWorldPosition() }; 
 	glm::vec2 lastPos{ m_BoundingBox.x, m_BoundingBox.y };
 
 	if (currentPos != lastPos)
