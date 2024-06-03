@@ -33,7 +33,7 @@ void dae::PlayerComponent::Update()
 					//Bomberman gains a power-up
 					//Power-up disappears
 				}
-				else
+				else if (gameObject->GetObjectTypeIdentifier() == "Border" or gameObject->GetObjectTypeIdentifier() == "Breakable")
 				{
 					const auto playerBoundingBox{ GetGameObject()->GetComponent<BoundingBoxComponent>()->GetBoundingBox() };
 					const auto blockBoundingBox{ gameObject->GetComponent<BoundingBoxComponent>()->GetBoundingBox() }; 

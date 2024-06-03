@@ -111,6 +111,70 @@ void load()
 	gameObject->SetLocalPosition(0, 65);
 	bombermanGameScene.Add(std::move(gameObject));
 
+	//WALLS
+	const float blockWidth{ 32.f };  
+	const float blockHeight{ 32.f };  
+	const int amountOfRows{ 13 }; 
+	const int amountOfColumns{ 16 }; 
+
+	// BORDER BLOCKS
+	// Top border
+	auto topBorderObject = std::make_unique<dae::GameObject>("Border");
+	topBorderObject->SetLocalPosition(0, 65);
+	topBorderObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(
+		topBorderObject.get(), blockWidth * amountOfColumns, blockHeight)); 
+
+	bombermanGameScene.Add(std::move(topBorderObject)); 
+
+	// Bottom border
+	auto bottomBorderObject = std::make_unique<dae::GameObject>("Border");
+	bottomBorderObject->SetLocalPosition(0, 480 - blockHeight);  
+	bottomBorderObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>( 
+		bottomBorderObject.get(), blockWidth * amountOfColumns, blockHeight));
+
+	bombermanGameScene.Add(std::move(bottomBorderObject)); 
+	 
+	// Left border
+	auto leftBorderObject = std::make_unique<dae::GameObject>("Border");
+	leftBorderObject->SetLocalPosition(0, 65);
+	leftBorderObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>( 
+		leftBorderObject.get(), blockWidth, blockHeight * amountOfRows)); 
+
+	bombermanGameScene.Add(std::move(leftBorderObject));
+
+	// Right border
+	auto rightBorderObject = std::make_unique<dae::GameObject>("Border");
+	rightBorderObject->SetLocalPosition(blockWidth * amountOfColumns, 65);
+	rightBorderObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(
+		rightBorderObject.get(), blockWidth, blockHeight * amountOfRows));
+
+	bombermanGameScene.Add(std::move(rightBorderObject));
+
+	// INNER BLOCKS
+	for (int rowIdx = 1; rowIdx < amountOfRows; ++rowIdx) 
+	{
+		if ((rowIdx + 1) % 7 != 0)
+		{
+			for (int columnIdx = 1; columnIdx < amountOfColumns - 1; ++columnIdx)
+			{ 
+				auto blockObject = std::make_unique<dae::GameObject>("Border"); 
+				blockObject->SetLocalPosition((blockWidth * columnIdx) * 2, ((blockHeight * rowIdx) * 2) + 65); 
+				blockObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>( 
+					blockObject.get(), blockWidth, blockHeight)); 
+				bombermanGameScene.Add(std::move(blockObject)); 
+			}
+		}
+	}
+
+	//BRICK
+	auto brickObject = std::make_unique<dae::GameObject>("Breakable");
+	brickObject->SetLocalPosition((2 * 16) * 2, ((3 * 16) * 2) + 65);
+	brickObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(brickObject.get(), 2.f));
+	brickObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(brickObject.get(), 32.f, 32.f));
+
+	brickObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Brick.png"));
+	bombermanGameScene.Add(std::move(brickObject));
+
 	//TIMER OBJECT
 	auto timerObject = std::make_unique<dae::GameObject>();
 	timerObject->SetLocalPosition(20, 25);
@@ -169,15 +233,6 @@ void load()
 	auto bombObject = std::make_unique<dae::GameObject>();
 	bombObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(bombObject.get()));
 	bombObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Bomb.png"));
-
-	//BRICK
-	auto brickObject = std::make_unique<dae::GameObject>("Breakable");
-	brickObject->SetLocalPosition((2 * 16) * 2, ((3 * 16) * 2) + 65);
-	brickObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(brickObject.get(), 2.f));
-	brickObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(brickObject.get(), 32.f, 32.f));
-
-	brickObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Brick.png"));
-	bombermanGameScene.Add(std::move(brickObject));
 
 	//--------------------
 	// SCENE.ADD PLEASE !!!!!!!!
@@ -255,4 +310,9 @@ int main(int, char* [])
 	dae::Minigin engine("../Data/");
 	engine.Run(load);
 	return 0;
+}
+
+void Level1()
+{
+
 }

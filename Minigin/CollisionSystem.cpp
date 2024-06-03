@@ -28,7 +28,7 @@ std::vector<dae::GameObject*> dae::CollisionSystem::GetAllGameObjects() const
 
 bool dae::CollisionSystem::IsColliding(GameObject* a, GameObject* b) const
 {
-	if (a->HasComponent<BoundingBoxComponent>() and b->HasComponent<BoundingBoxComponent>())
+	if (a->HasComponent<BoundingBoxComponent>() and b->HasComponent<BoundingBoxComponent>()) 
 	{
 		const auto aBoundingBox = a->GetComponent<BoundingBoxComponent>()->GetBoundingBox();
 		const auto bBoundingBox = b->GetComponent<BoundingBoxComponent>()->GetBoundingBox();

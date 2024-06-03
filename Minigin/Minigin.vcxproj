@@ -226,7 +226,6 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "$(OutputP
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="AudioLogSystem.h" />
-    <ClInclude Include="Level.h" />
     <ClInclude Include="Minigin.h" />
     <ClInclude Include="NullAudioSystem.h" />
     <ClInclude Include="Observer.h" />
@@ -258,7 +257,6 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\$(PlatformTarget)\*.dll" "$(OutputP
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="AudioLogSystem.cpp" />
-    <ClCompile Include="Level.cpp" />
     <ClCompile Include="Minigin.cpp" />
     <ClCompile Include="RenderComponent.cpp" />
     <ClCompile Include="Renderer.cpp" />

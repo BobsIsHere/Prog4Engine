@@ -132,9 +132,6 @@
     <ClInclude Include="TimerComponent.h">
       <Filter>Components Files\UpdateComponents</Filter>
     </ClInclude>
-    <ClInclude Include="Level.h">
-      <Filter>Collision Interface</Filter>
-    </ClInclude>
     <ClInclude Include="CollisionSystem.h">
       <Filter>Collision Interface</Filter>
     </ClInclude>
@@ -214,9 +211,6 @@
     </ClCompile>
     <ClCompile Include="TimerComponent.cpp">
       <Filter>Components Files\UpdateComponents</Filter>
-    </ClCompile>
-    <ClCompile Include="Level.cpp">
-      <Filter>Collision Interface</Filter>
     </ClCompile>
     <ClCompile Include="CollisionSystem.cpp">
       <Filter>Collision Interface</Filter>

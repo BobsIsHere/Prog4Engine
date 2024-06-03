@@ -22,7 +22,7 @@ void dae::EnemyComponent::Update()
 		{
 			if (gameObject->GetObjectTypeIdentifier() != "Enemy" and collisionInstance.IsColliding(GetGameObject(), gameObject))
 			{
-				if (gameObject->GetObjectTypeIdentifier() == "Breakable" or gameObject->GetObjectTypeIdentifier() == "UnBreakable")
+				if (gameObject->GetObjectTypeIdentifier() == "Breakable" or gameObject->GetObjectTypeIdentifier() == "Border")
 				{
 					const auto enemyBoundingBox{ GetGameObject()->GetComponent<BoundingBoxComponent>()->GetBoundingBox() };
 					const auto blockBoundingBox{ gameObject->GetComponent<BoundingBoxComponent>()->GetBoundingBox() };
