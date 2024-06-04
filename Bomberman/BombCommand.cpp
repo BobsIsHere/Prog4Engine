@@ -23,11 +23,8 @@ void dae::BombCommand::Execute()
 	bombObject->AddComponent<TextureComponent>(std::make_unique<TextureComponent>(bombObject.get(), 2.f));
 
 	bombObject->GetComponent<TextureComponent>()->SetTexture("Bomb.png");
-	bombObject->SetParent(GetGameActor(), false);
-	bombObject->SetLocalPosition(GetGameActor()->GetWorldPosition());      
+	bombObject->SetParent(GetGameActor(), false);    
 	bombObject->GetComponent<BombComponent>()->StartBombTimer();
-
-	std::cout << "Bomb placed at: " << bombObject->GetWorldPosition().x << ", " << bombObject->GetWorldPosition().y << std::endl; 
 
 	SceneManager::GetInstance().GetActiveScene()->Add(std::move(bombObject));
 }

@@ -305,8 +305,3 @@ int main(int, char* [])
 	engine.Run(load);
 	return 0;
 }
-
-void Level1()
-{
-
-}
