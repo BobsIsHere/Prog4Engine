@@ -102,7 +102,6 @@ void load()
 	// BOMBERMAN GAME SCENE
 	// --------------------
 	auto& bombermanGameScene = dae::SceneManager::GetInstance().CreateScene("bombermanGame");
-	//bool hasPressedBombButton{ false };
 
 	//BACKGROUND
 	auto gameObject = std::make_unique<dae::GameObject>();
@@ -205,9 +204,9 @@ void load()
 	auto bombermanObject = std::make_unique<dae::GameObject>("Player");
 	bombermanObject->SetLocalPosition(70, 300);
 	bombermanObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(bombermanObject.get()));
-	bombermanObject->AddComponent<dae::HealthComponent>(std::make_unique<dae::HealthComponent>(bombermanObject.get()));
+	bombermanObject->AddComponent<dae::HealthComponent>(std::make_unique<dae::HealthComponent>(bombermanObject.get(), 3));
 	bombermanObject->AddComponent<dae::ScoreComponent>(std::make_unique<dae::ScoreComponent>(bombermanObject.get()));
-	bombermanObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(bombermanObject.get(),32.f,32.f));
+	bombermanObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(bombermanObject.get(), 32.f, 32.f));
 	bombermanObject->AddComponent<dae::PlayerComponent>(std::make_unique<dae::PlayerComponent>(bombermanObject.get()));
 
 	bombermanObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Bomberman.png"));
@@ -227,7 +226,7 @@ void load()
 	enemyObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(enemyObject.get(), 32.f, 32.f));
 	enemyObject->AddComponent<dae::EnemyComponent>(std::make_unique<dae::EnemyComponent>(enemyObject.get()));
 
-	enemyObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Enemy.png"));
+	enemyObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Enemies/Baloom.png"));
 
 	//BOMB
 	auto bombObject = std::make_unique<dae::GameObject>();

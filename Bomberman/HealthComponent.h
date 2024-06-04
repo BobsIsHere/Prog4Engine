@@ -11,7 +11,7 @@ namespace dae
 	class HealthComponent : public UpdateComponent
 	{
 	public:
-		HealthComponent(GameObject* gameObject);
+		HealthComponent(GameObject* gameObject, int lives = 0);
 		~HealthComponent();
 
 		HealthComponent(const HealthComponent& other) = delete;

@@ -5,9 +5,9 @@
 
 #include <iostream>
 
-dae::HealthComponent::HealthComponent(GameObject* gameObject) : 
+dae::HealthComponent::HealthComponent(GameObject* gameObject, int lives) :
 	UpdateComponent{ gameObject },
-	m_Lives{ 3 },
+	m_Lives{ lives },
 	m_pSubject{ std::make_unique<Subject>() }
 {
 }

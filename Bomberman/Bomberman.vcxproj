@@ -167,6 +167,7 @@
     <ClCompile Include="..\Minigin\StageState.cpp" />
     <ClCompile Include="BombCommand.cpp" />
     <ClCompile Include="BombComponent.cpp" />
+    <ClCompile Include="BombDisplay.cpp" />
     <ClCompile Include="Bomberman.cpp" />
     <ClCompile Include="CameraComponent.cpp" />
     <ClCompile Include="EnemyComponent.cpp" />
@@ -190,6 +191,7 @@
     <ClInclude Include="..\Minigin\StageState.h" />
     <ClInclude Include="BombCommand.h" />
     <ClInclude Include="BombComponent.h" />
+    <ClInclude Include="BombDisplay.h" />
     <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="EnemyComponent.h" />
     <ClInclude Include="FPSComponent.h" />
