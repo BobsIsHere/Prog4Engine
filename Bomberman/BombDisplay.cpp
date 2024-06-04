@@ -21,6 +21,6 @@ void dae::BombDisplay::Notify(GameObject*, Event event)
 	else if (event == Event::Event_Bomb_Exploded)
 	{
 		// Remove bomb
-		dae::AudioServiceLocator::GetAudioSystem().PlaySoundEffect("../Data/Audio/BombermanExplosion.wav", 0.5f);
+		dae::AudioServiceLocator::GetAudioSystem().PlaySoundEffect("../Data/Audio/BombermanExplosion.wav", 0.75f);
 	}
 }

@@ -63,14 +63,22 @@ void dae::GameObject::SetLocalPosition(glm::vec3 pos)
 
 void dae::GameObject::SetParent(GameObject* pParent, bool keepWorldPosition)
 {
-	if (pParent->IsChild(this) || m_pParent == pParent || pParent == this) 
+	if (m_pParent == pParent || pParent == this)  
 	{
 		return;
 	}
 
+	for (size_t idx = 0; idx < m_pChildren.size(); ++idx) 
+	{
+		if (m_pChildren[idx] == pParent) 
+		{
+			return;
+		}
+	}
+
 	if (pParent == nullptr)
 	{
-		SetLocalPosition(GetWorldPosition().x, GetWorldPosition().y);
+		SetLocalPosition(GetWorldPosition().x, GetWorldPosition().y); 
 	}
 	else
 	{

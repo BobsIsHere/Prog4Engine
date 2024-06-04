@@ -1,7 +1,10 @@
+#include "AudioServiceLocator.h"
+#include "GameAudioSystem.h"
 #include "BombComponent.h"
 #include "GameObject.h"
 #include "Observer.h"
 #include "Subject.h"
+#include <iostream>
 
 dae::BombComponent::BombComponent(GameObject* pGameObject) :
 	UpdateComponent{ pGameObject },
@@ -22,20 +25,24 @@ void dae::BombComponent::Update()
 	BombTimer();
 }
 
+void dae::BombComponent::AddObserver(Observer* observer)
+{
+	m_pSubject->AddObserver(observer);
+}
+
 void dae::BombComponent::StartBombTimer() 
 {
 	m_StartTime = std::chrono::high_resolution_clock::now(); 
 	m_IsTimerRunning = true; 
 	 
-	m_pSubject->NotifyObservers(GetGameObject(), Event::Event_Bomb_Dropped); 
+	dae::AudioServiceLocator::GetAudioSystem().PlaySoundEffect("../Data/Audio/BombermanDropsBomb.wav", 0.5f);
 }
 
 void dae::BombComponent::ExplodeBomb()
 {
-	m_pSubject->NotifyObservers(GetGameObject(), Event::Event_Bomb_Exploded); 
+	dae::AudioServiceLocator::GetAudioSystem().PlaySoundEffect("../Data/Audio/BombermanExplosion.wav", 0.75f);
 
-	//Logic for handling explosion
-
+	GetGameObject()->SetParent(nullptr, false);
 	GetGameObject()->SetForRemoval();
 }
 

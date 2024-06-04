@@ -6,6 +6,7 @@
 namespace dae
 {
 	class GameObject;
+	class Observer;
 	class Subject;
 
 	class BombComponent final : public UpdateComponent
@@ -20,6 +21,9 @@ namespace dae
 		BombComponent& operator=(BombComponent&& other) = delete;
 
 		virtual void Update() override;
+
+		void AddObserver(Observer* observer);
+
 		void StartBombTimer();
 		void ExplodeBomb();
 

@@ -25,6 +25,7 @@
 #include "PlayerComponent.h"
 #include "EnemyComponent.h"
 #include "BoundingBoxComponent.h"
+#include "BombComponent.h"
 
 #include "HealthComponent.h"
 #include "ScoreComponent.h"
@@ -226,12 +227,7 @@ void load()
 	enemyObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(enemyObject.get(), 32.f, 32.f));
 	enemyObject->AddComponent<dae::EnemyComponent>(std::make_unique<dae::EnemyComponent>(enemyObject.get()));
 
-	enemyObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Enemies/Baloom.png"));
-
-	//BOMB
-	auto bombObject = std::make_unique<dae::GameObject>();
-	bombObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(bombObject.get()));
-	bombObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Bomb.png"));
+	enemyObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Enemies/Balloom.png"));
 
 	//--------------------
 	// SCENE.ADD PLEASE !!!!!!!!
@@ -274,9 +270,6 @@ void load()
 	input.AddControllerCommand(static_cast<int>(dae::Controller::AmountOfControllers::One), dae::Controller::GamePad::B,
 		dae::ButtonState::Is_Up, std::make_unique<dae::ScoreCommand>(enemyObject.get(), scoreIncrementBy100));
 
-	input.AddControllerCommand(static_cast<int>(dae::Controller::AmountOfControllers::One), dae::Controller::GamePad::Y,
-		dae::ButtonState::Is_Pressed, std::make_unique<dae::BombCommand>(bombObject.get()));
-
 	// KEYBOARD
 	// --------
 	std::unique_ptr<dae::MovementCommand> moveUpCommandE{ std::make_unique<dae::MovementCommand>(
@@ -299,6 +292,8 @@ void load()
 		std::make_unique<dae::ScoreCommand>(bombermanObject.get(), scoreIncrementBy10));
 	input.AddKeyboardCommand(SDL_SCANCODE_X, dae::ButtonState::Is_Up,
 		std::make_unique<dae::ScoreCommand>(bombermanObject.get(), scoreIncrementBy100));
+
+	input.AddKeyboardCommand(SDL_SCANCODE_SPACE, dae::ButtonState::Is_Up, std::make_unique<dae::BombCommand>(bombermanObject.get()));
 
 	bombermanGameScene.Add(std::move(enemyObject));
 	bombermanGameScene.Add(std::move(bombermanObject));
