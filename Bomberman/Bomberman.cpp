@@ -23,9 +23,11 @@
 #include "CameraComponent.h"
 #include "TimerComponent.h"
 #include "PlayerComponent.h"
-#include "EnemyComponent.h"
 #include "BoundingBoxComponent.h"
 #include "BombComponent.h"
+#include "EnemyCollisionComponent.h"
+#include "RoamerBehaviorComponent.h"
+#include "ChaserBehaviorComponent.h"
 
 #include "HealthComponent.h"
 #include "ScoreComponent.h"
@@ -54,6 +56,8 @@ void load()
 
 	auto font = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
 	auto bombermanFont = dae::ResourceManager::GetInstance().LoadFont("bombermanFont.otf", 14);
+
+	const int uiSize{ 64 };
 
 	// --------------------
 	// BOMBERMAN MENU SCENE
@@ -108,7 +112,7 @@ void load()
 	auto gameObject = std::make_unique<dae::GameObject>();
 	gameObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(gameObject.get(), 2.f));
 	gameObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Background.png"));
-	gameObject->SetLocalPosition(0, 65);
+	gameObject->SetLocalPosition(0, uiSize);
 	bombermanGameScene.Add(std::move(gameObject));
 
 	//WALLS
@@ -120,7 +124,7 @@ void load()
 	// BORDER BLOCKS
 	// Top border
 	auto topBorderObject = std::make_unique<dae::GameObject>("Border");
-	topBorderObject->SetLocalPosition(0, 65);
+	topBorderObject->SetLocalPosition(0, uiSize);
 	topBorderObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(
 		topBorderObject.get(), blockWidth * amountOfColumns, blockHeight)); 
 
@@ -136,7 +140,7 @@ void load()
 	 
 	// Left border
 	auto leftBorderObject = std::make_unique<dae::GameObject>("Border");
-	leftBorderObject->SetLocalPosition(0, 65);
+	leftBorderObject->SetLocalPosition(0, uiSize);
 	leftBorderObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>( 
 		leftBorderObject.get(), blockWidth, blockHeight * amountOfRows)); 
 
@@ -144,7 +148,7 @@ void load()
 
 	// Right border
 	auto rightBorderObject = std::make_unique<dae::GameObject>("Border");
-	rightBorderObject->SetLocalPosition(blockWidth * amountOfColumns, 65);
+	rightBorderObject->SetLocalPosition(blockWidth * amountOfColumns, uiSize);
 	rightBorderObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(
 		rightBorderObject.get(), blockWidth, blockHeight * amountOfRows));
 
@@ -158,7 +162,7 @@ void load()
 			for (int columnIdx = 1; columnIdx < amountOfColumns - 1; ++columnIdx)
 			{ 
 				auto blockObject = std::make_unique<dae::GameObject>("Border"); 
-				blockObject->SetLocalPosition((blockWidth * columnIdx) * 2, ((blockHeight * rowIdx) * 2) + 65); 
+				blockObject->SetLocalPosition((blockWidth * columnIdx) * 2, ((blockHeight * rowIdx) * 2) + uiSize);
 				blockObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>( 
 					blockObject.get(), blockWidth, blockHeight)); 
 				bombermanGameScene.Add(std::move(blockObject)); 
@@ -168,7 +172,7 @@ void load()
 
 	//BRICK
 	auto brickObject = std::make_unique<dae::GameObject>("Breakable");
-	brickObject->SetLocalPosition((2 * 16) * 2, ((3 * 16) * 2) + 65);
+	brickObject->SetLocalPosition((2 * 16) * 2, ((3 * 16) * 2) + uiSize);
 	brickObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(brickObject.get(), 2.f));
 	brickObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(brickObject.get(), 32.f, 32.f));
 
@@ -218,16 +222,29 @@ void load()
 	bombermanGameScene.Add(std::move(livesObjectBomberman));
 
 	//ENEMY
-	auto enemyObject = std::make_unique<dae::GameObject>("Enemy");
-	enemyObject->SetLocalPosition(30, 300);
+	auto balloomObject = std::make_unique<dae::GameObject>("Enemy");
+	balloomObject->SetLocalPosition(7 * 32, 288);
 
-	enemyObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(enemyObject.get()));
-	enemyObject->AddComponent<dae::ScoreComponent>(std::make_unique<dae::ScoreComponent>(enemyObject.get()));
-	enemyObject->AddComponent<dae::HealthComponent>(std::make_unique<dae::HealthComponent>(enemyObject.get()));
-	enemyObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(enemyObject.get(), 32.f, 32.f));
-	enemyObject->AddComponent<dae::EnemyComponent>(std::make_unique<dae::EnemyComponent>(enemyObject.get()));
+	balloomObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(balloomObject.get()));
+	balloomObject->AddComponent<dae::ScoreComponent>(std::make_unique<dae::ScoreComponent>(balloomObject.get()));
+	balloomObject->AddComponent<dae::HealthComponent>(std::make_unique<dae::HealthComponent>(balloomObject.get()));
+	balloomObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(balloomObject.get(), 32.f, 32.f));
+	balloomObject->AddComponent<dae::EnemyCollisionComponent>(std::make_unique<dae::EnemyCollisionComponent>(balloomObject.get()));
+	balloomObject->AddComponent<dae::RoamerBehaviorComponent>(std::make_unique<dae::RoamerBehaviorComponent>(
+					balloomObject.get(), 100.f, glm::vec3{ 0, -1 ,0 }));
 
-	enemyObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Enemies/Balloom.png"));
+	balloomObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Enemies/Balloom.png"));
+
+	/*auto onealObject = std::make_unique<dae::GameObject>("Enemy");
+	onealObject->SetLocalPosition(5 * 32, (4 * 32) + 65);
+
+	onealObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(onealObject.get(), 2.f));
+	onealObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(onealObject.get(), 32.f, 32.f));
+	onealObject->AddComponent<dae::EnemyCollisionComponent>(std::make_unique<dae::EnemyCollisionComponent>(onealObject.get()));
+	onealObject->AddComponent<dae::ChaserBehaviorComponent>(std::make_unique<dae::ChaserBehaviorComponent>(onealObject.get(), 130.f, bombermanObject.get()));
+
+	onealObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Enemies/Oneal.png"));
+	bombermanGameScene.Add(std::move(onealObject));*/
 
 	//--------------------
 	// SCENE.ADD PLEASE !!!!!!!!
@@ -244,13 +261,13 @@ void load()
 	// CONTROLLER
 	// ----------
 	std::unique_ptr<dae::MovementCommand> moveUpCommandBM{ std::make_unique<dae::MovementCommand>(
-		enemyObject.get(), glm::vec3{0, -1, 0}, 100.f) };
+		balloomObject.get(), glm::vec3{0, -1, 0}, 100.f) };
 	std::unique_ptr<dae::MovementCommand> moveDownCommandBM{ std::make_unique<dae::MovementCommand>(
-		enemyObject.get(), glm::vec3{0, 1, 0}, 100.f) };
+		balloomObject.get(), glm::vec3{0, 1, 0}, 100.f) };
 	std::unique_ptr<dae::MovementCommand> moveLeftCommandBM{ std::make_unique<dae::MovementCommand>(
-		enemyObject.get(), glm::vec3{-1, 0, 0}, 100.f) };
+		balloomObject.get(), glm::vec3{-1, 0, 0}, 100.f) };
 	std::unique_ptr<dae::MovementCommand> moveRightCommandBM{ std::make_unique<dae::MovementCommand>(
-		enemyObject.get(), glm::vec3{1, 0, 0}, 100.f) };
+		balloomObject.get(), glm::vec3{1, 0, 0}, 100.f) };
 
 	// CONTROLLER 1
 	input.AddControllerCommand(static_cast<int>(dae::Controller::AmountOfControllers::One),
@@ -263,12 +280,12 @@ void load()
 		dae::Controller::GamePad::Dpad_Right, dae::ButtonState::Is_Pressed, std::move(moveRightCommandBM));
 
 	input.AddControllerCommand(static_cast<int>(dae::Controller::AmountOfControllers::One), dae::Controller::GamePad::X,
-		dae::ButtonState::Is_Up, std::make_unique<dae::HealthCommand>(enemyObject.get()));
+		dae::ButtonState::Is_Up, std::make_unique<dae::HealthCommand>(balloomObject.get()));
 
 	input.AddControllerCommand(static_cast<int>(dae::Controller::AmountOfControllers::One), dae::Controller::GamePad::A,
-		dae::ButtonState::Is_Up, std::make_unique<dae::ScoreCommand>(enemyObject.get(), scoreIncrementBy10));
+		dae::ButtonState::Is_Up, std::make_unique<dae::ScoreCommand>(balloomObject.get(), scoreIncrementBy10));
 	input.AddControllerCommand(static_cast<int>(dae::Controller::AmountOfControllers::One), dae::Controller::GamePad::B,
-		dae::ButtonState::Is_Up, std::make_unique<dae::ScoreCommand>(enemyObject.get(), scoreIncrementBy100));
+		dae::ButtonState::Is_Up, std::make_unique<dae::ScoreCommand>(balloomObject.get(), scoreIncrementBy100));
 
 	// KEYBOARD
 	// --------
@@ -295,7 +312,7 @@ void load()
 
 	input.AddKeyboardCommand(SDL_SCANCODE_SPACE, dae::ButtonState::Is_Up, std::make_unique<dae::BombCommand>(bombermanObject.get()));
 
-	bombermanGameScene.Add(std::move(enemyObject));
+	bombermanGameScene.Add(std::move(balloomObject));
 	bombermanGameScene.Add(std::move(bombermanObject));
 }
 

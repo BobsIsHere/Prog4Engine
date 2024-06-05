@@ -1,8 +1,6 @@
 #include "MovementCommand.h"
 #include "GameObject.h"
 #include "DeltaTime.h"
-#include "AudioServiceLocator.h"
-#include "AudioSystem.h"
 
 dae::MovementCommand::MovementCommand(GameObject* actor, glm::vec3 direction, float speed) :
 	GameActorCommand{ actor },

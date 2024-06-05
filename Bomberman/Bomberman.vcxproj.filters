@@ -25,6 +25,9 @@
     <Filter Include="GameState">
       <UniqueIdentifier>{3f03dca3-92c4-421f-b4bf-c1639b9073c6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SubComponents\EmenyComponents">
+      <UniqueIdentifier>{e63fda7b-e1e3-495b-b66f-4f528593fa65}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bomberman.cpp">
@@ -87,11 +90,17 @@
     <ClCompile Include="PlayerComponent.cpp">
       <Filter>SubComponents</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyComponent.cpp">
-      <Filter>SubComponents</Filter>
-    </ClCompile>
     <ClCompile Include="BombDisplay.cpp">
       <Filter>SubDisplays</Filter>
+    </ClCompile>
+    <ClCompile Include="ChaserBehaviorComponent.cpp">
+      <Filter>SubComponents\EmenyComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyCollisionComponent.cpp">
+      <Filter>SubComponents\EmenyComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="RoamerBehaviorComponent.cpp">
+      <Filter>SubComponents\EmenyComponents</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -152,11 +161,17 @@
     <ClInclude Include="PlayerComponent.h">
       <Filter>SubComponents</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyComponent.h">
-      <Filter>SubComponents</Filter>
-    </ClInclude>
     <ClInclude Include="BombDisplay.h">
       <Filter>SubDisplays</Filter>
+    </ClInclude>
+    <ClInclude Include="ChaserBehaviorComponent.h">
+      <Filter>SubComponents\EmenyComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyCollisionComponent.h">
+      <Filter>SubComponents\EmenyComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="RoamerBehaviorComponent.h">
+      <Filter>SubComponents\EmenyComponents</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
