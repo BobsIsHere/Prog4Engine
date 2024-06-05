@@ -6,7 +6,7 @@
 
 dae::ExplosionComponent::ExplosionComponent(GameObject* pGameObject) :
 	UpdateComponent( pGameObject ),
-	m_ExplosionDuration{ 0.5f },
+	m_ExplosionDuration{ 1.f },
 	m_AnimationTimer{ 0.f }
 {
 }
@@ -22,7 +22,7 @@ void dae::ExplosionComponent::Update()
 	if (m_AnimationTimer >= m_ExplosionDuration)
 	{
 		GetGameObject()->SetForRemoval();
-		std::cout << "Is set for removal explosion" << std::endl;
+		std::cout << "Set for removal" << std::endl; 
 	}
 }
 

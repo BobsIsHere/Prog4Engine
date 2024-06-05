@@ -46,12 +46,13 @@
 #include "AudioServiceLocator.h"
 #include "AudioLogSystem.h"
 #include "GameAudioSystem.h"
+#include "NullAudioSystem.h"
 
 #include <iostream>
 
 void load()
 {
-	dae::AudioServiceLocator::RegisterSoundSystem(std::make_unique<dae::AudioLogSystem>(std::make_unique<dae::GameAudioSystem>()));
+	dae::AudioServiceLocator::RegisterSoundSystem(std::make_unique<dae::AudioLogSystem>(std::make_unique<dae::NullAudioSystem>()));
 	auto& resourceManager = dae::ResourceManager::GetInstance();
 
 	auto font = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
