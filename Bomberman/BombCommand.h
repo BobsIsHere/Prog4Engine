@@ -15,5 +15,8 @@ namespace dae
 		BombCommand& operator=(BombCommand&& other) = delete;
 
 		virtual void Execute() override;
+
+	private:
+		bool m_IsOnScreen;
 	};
 }

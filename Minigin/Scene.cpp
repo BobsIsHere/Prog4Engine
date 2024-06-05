@@ -35,7 +35,7 @@ void Scene::Update()
 		object->Update();
 	}
 
-	for (int objectIdx = 0; objectIdx < m_pObjects.size(); ++objectIdx)
+	for (size_t objectIdx = 0; objectIdx < m_pObjects.size(); ++objectIdx)
 	{
 		auto& object = m_pObjects[objectIdx];
 

@@ -109,7 +109,10 @@ void dae::GameObject::SetPositionDirty()
 
 	for (auto& child : m_pChildren)
 	{
-		child->SetPositionDirty(); 
+		if (child != nullptr)
+		{
+			child->SetPositionDirty();
+		}
 	}
 }
 

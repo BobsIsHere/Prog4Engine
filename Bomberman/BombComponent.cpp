@@ -23,7 +23,10 @@ dae::BombComponent::~BombComponent()
 
 void dae::BombComponent::Update()
 {
-	BombTimer();
+	if (GetGameObject() != nullptr)
+	{
+		BombTimer();
+	}
 }
 
 void dae::BombComponent::StartBombTimer() 
@@ -41,31 +44,31 @@ void dae::BombComponent::ExplodeBomb()
 	middleExplosionObject->AddComponent<ExplosionComponent>(std::make_unique<ExplosionComponent>(middleExplosionObject.get()));
 	middleExplosionObject->AddComponent<TextureComponent>(std::make_unique<TextureComponent>(middleExplosionObject.get(), 2.f));
 	middleExplosionObject->GetComponent<TextureComponent>()->SetTexture("ExplosionMiddle.png");
-	middleExplosionObject->SetParent(GetGameObject(), false);
+	middleExplosionObject->SetLocalPosition(GetGameObject()->GetLocalPosition()); 
 
 	SceneManager::GetInstance().GetActiveScene()->Add(std::move(middleExplosionObject));
 
-	// Side Explosion Object
-	for (int idx = 0; idx < 4; ++idx) 
-	{
-		auto sideExplosionObject = std::make_unique<GameObject>("Explosion");
-		sideExplosionObject->AddComponent<ExplosionComponent>(std::make_unique<ExplosionComponent>(sideExplosionObject.get()));
-		sideExplosionObject->AddComponent<TextureComponent>(std::make_unique<TextureComponent>(sideExplosionObject.get(), 2.f));
-		sideExplosionObject->GetComponent<TextureComponent>()->SetTexture("ExplosionSide.png");
-		sideExplosionObject->SetParent(GetGameObject(), false);
+	//// Side Explosion Object
+	//for (int idx = 0; idx < 4; ++idx) 
+	//{
+	//	auto sideExplosionObject = std::make_unique<GameObject>("Explosion");
+	//	sideExplosionObject->AddComponent<ExplosionComponent>(std::make_unique<ExplosionComponent>(sideExplosionObject.get()));
+	//	sideExplosionObject->AddComponent<TextureComponent>(std::make_unique<TextureComponent>(sideExplosionObject.get(), 2.f));
+	//	sideExplosionObject->GetComponent<TextureComponent>()->SetTexture("ExplosionSide.png");
+	//	sideExplosionObject->SetParent(GetGameObject(), false);
 
-		// Set side explosion position with some offset
-		glm::vec3 offset{ glm::vec3(idx % 2 == 0 ? -16 : 16, idx / 2 == 0 ? -16 : 16, 0) }; 
-		sideExplosionObject->SetLocalPosition(GetGameObject()->GetLocalPosition() + offset);  
+	//	// Set side explosion position with some offset
+	//	glm::vec3 offset{ glm::vec3(idx % 2 == 0 ? -16 : 16, idx / 2 == 0 ? -16 : 16, 0) }; 
+	//	sideExplosionObject->SetLocalPosition(offset);  
 
-		std::cout << "Explosion position: " << sideExplosionObject->GetLocalPosition().x << ", " << sideExplosionObject->GetLocalPosition().y << std::endl; 
+	//	std::cout << "Explosion position: " << sideExplosionObject->GetLocalPosition().x << ", " << sideExplosionObject->GetLocalPosition().y << std::endl; 
 
-		// Add side explosion object to the scene
-		SceneManager::GetInstance().GetActiveScene()->Add(std::move(sideExplosionObject));
-	}
+	//	// Add side explosion object to the scene
+	//	SceneManager::GetInstance().GetActiveScene()->Add(std::move(sideExplosionObject));
+	//}
 
 	dae::AudioServiceLocator::GetAudioSystem().PlaySoundEffect("../Data/Audio/BombermanExplosion.wav", 0.75f);
-
+	
 	GetGameObject()->SetParent(nullptr, false);
 	GetGameObject()->SetForRemoval();
 	std::cout << "Is set for removal bomb" << std::endl;

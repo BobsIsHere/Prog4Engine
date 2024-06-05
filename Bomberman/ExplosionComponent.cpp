@@ -17,11 +17,6 @@ dae::ExplosionComponent::~ExplosionComponent()
 
 void dae::ExplosionComponent::Update()
 {
-	if (GetGameObject()->GetParent() == nullptr)
-	{
-		return;
-	}
-	
 	m_AnimationTimer += DeltaTime::GetInstance().GetDeltaTime();
 
 	if (m_AnimationTimer >= m_ExplosionDuration)
