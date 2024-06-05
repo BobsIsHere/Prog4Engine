@@ -21,7 +21,7 @@ void dae::RoamerBehaviorComponent::Update()
 {
 	m_ElapsedTime += DeltaTime::GetInstance().GetDeltaTime();
 
-	if (m_ElapsedTime >= m_DecisionTime and IsAlignedWithGrid())
+	if (m_ElapsedTime >= m_DecisionTime)
 	{
 		// Providing a seed value
 		srand((unsigned)time(NULL));
@@ -52,11 +52,8 @@ void dae::RoamerBehaviorComponent::Update()
 		m_ElapsedTime = 0.f;
 	}
 	
-	if (IsAlignedWithGrid()) 
-	{
-		const std::unique_ptr<MovementCommand> movementCommand{ std::make_unique<MovementCommand>(GetGameObject(), m_MoveDirection, m_Speed) };
-		movementCommand->Execute();
-	}
+	const std::unique_ptr<MovementCommand> movementCommand{ std::make_unique<MovementCommand>(GetGameObject(), m_MoveDirection, m_Speed) };
+	movementCommand->Execute();
 }
 
 void dae::RoamerBehaviorComponent::SetDirection(const glm::vec3& direction)
