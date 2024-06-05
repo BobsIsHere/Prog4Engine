@@ -1,7 +1,8 @@
+#include <iostream>
 #include "ExplosionComponent.h"
+#include "CollisionSystem.h"
 #include "GameObject.h"
 #include "DeltaTime.h"
-#include <iostream>
 
 dae::ExplosionComponent::ExplosionComponent(GameObject* pGameObject) :
 	UpdateComponent( pGameObject ),
@@ -25,7 +26,6 @@ void dae::ExplosionComponent::Update()
 
 	if (m_AnimationTimer >= m_ExplosionDuration)
 	{
-		GetGameObject()->SetParent(nullptr, false);
 		GetGameObject()->SetForRemoval();
 		std::cout << "Is set for removal explosion" << std::endl;
 	}
@@ -33,4 +33,30 @@ void dae::ExplosionComponent::Update()
 
 void dae::ExplosionComponent::CheckCollision()
 {
+	auto& collisionInstance = CollisionSystem::GetInstance();
+
+	if (GetGameObject()->GetObjectTypeIdentifier() == "Explosion")
+	{
+		for (auto gameObject : collisionInstance.GetAllGameObjects())
+		{
+			if (collisionInstance.IsColliding(GetGameObject(), gameObject))
+			{
+				if (gameObject->GetObjectTypeIdentifier() == "Player") 
+				{
+					//Bomberman loses a life
+					//Bomberman respawns
+					//Reload level
+				}
+				else if (gameObject->GetObjectTypeIdentifier() == "Enemy")
+				{
+					//Enemy dies
+					//Bomberman gains points
+				}
+				else if (gameObject->GetObjectTypeIdentifier() == "Breakable")
+				{
+					//Block disappears
+				}
+			}
+		}
+	}
 }

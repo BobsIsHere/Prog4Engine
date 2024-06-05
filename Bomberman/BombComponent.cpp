@@ -37,7 +37,7 @@ void dae::BombComponent::StartBombTimer()
 void dae::BombComponent::ExplodeBomb()
 {
 	// Middle Explosion Object
-	auto middleExplosionObject = std::make_unique<GameObject>(); 
+	auto middleExplosionObject = std::make_unique<GameObject>("Explosion");
 	middleExplosionObject->AddComponent<ExplosionComponent>(std::make_unique<ExplosionComponent>(middleExplosionObject.get()));
 	middleExplosionObject->AddComponent<TextureComponent>(std::make_unique<TextureComponent>(middleExplosionObject.get(), 2.f));
 	middleExplosionObject->GetComponent<TextureComponent>()->SetTexture("ExplosionMiddle.png");
@@ -48,7 +48,7 @@ void dae::BombComponent::ExplodeBomb()
 	// Side Explosion Object
 	for (int idx = 0; idx < 3; ++idx) 
 	{
-		auto sideExplosionObject = std::make_unique<GameObject>();
+		auto sideExplosionObject = std::make_unique<GameObject>("Explosion");
 		sideExplosionObject->AddComponent<ExplosionComponent>(std::make_unique<ExplosionComponent>(sideExplosionObject.get()));
 		sideExplosionObject->AddComponent<TextureComponent>(std::make_unique<TextureComponent>(sideExplosionObject.get(), 2.f));
 		sideExplosionObject->GetComponent<TextureComponent>()->SetTexture("ExplosionSide.png");

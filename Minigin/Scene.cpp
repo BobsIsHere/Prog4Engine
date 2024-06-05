@@ -35,9 +35,11 @@ void Scene::Update()
 		object->Update();
 	}
 
-	for (auto& object : m_pObjects)
+	for (int objectIdx = 0; objectIdx < m_pObjects.size(); ++objectIdx)
 	{
-		if (object->GetIsSetForRemoval()) 
+		auto& object = m_pObjects[objectIdx];
+
+		if (object->GetIsSetForRemoval())  
 		{
 			// If the object has no parent, set its children's parent to nullptr
 			if (object->GetParent() == nullptr) 
