@@ -6,8 +6,6 @@
 namespace dae
 {
 	class GameObject;
-	class Observer;
-	class Subject;
 
 	class BombComponent final : public UpdateComponent
 	{
@@ -22,15 +20,11 @@ namespace dae
 
 		virtual void Update() override;
 
-		void AddObserver(Observer* observer);
-
 		void StartBombTimer();
 		void ExplodeBomb();
 
 	private:
 		void BombTimer();
-
-		std::unique_ptr<Subject> m_pSubject;
 
 		std::chrono::high_resolution_clock::time_point m_StartTime;
 

@@ -18,7 +18,15 @@ dae::BombCommand::~BombCommand()
 
 void dae::BombCommand::Execute()
 {
+	const int gridsize{ 32 };
+
+	auto bombermanPosition{ GetGameActor()->GetLocalPosition() };
+
+	float bombX{ std::round(bombermanPosition.x / gridsize) * gridsize };
+	float bombY{ std::round(bombermanPosition.y / gridsize) * gridsize };
+
 	auto bombObject = std::make_unique<GameObject>();
+	bombObject->SetLocalPosition(glm::vec3{ bombX, bombY, 0 });
 	bombObject->AddComponent<BombComponent>(std::make_unique<BombComponent>(bombObject.get()));
 	bombObject->AddComponent<TextureComponent>(std::make_unique<TextureComponent>(bombObject.get(), 2.f));
 

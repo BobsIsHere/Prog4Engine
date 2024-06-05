@@ -28,6 +28,9 @@
     <Filter Include="SubComponents\EmenyComponents">
       <UniqueIdentifier>{e63fda7b-e1e3-495b-b66f-4f528593fa65}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SubComponents\BombComponents">
+      <UniqueIdentifier>{db293608-dd3a-4829-9d41-f2611bf50ca8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bomberman.cpp">
@@ -44,9 +47,6 @@
     </ClCompile>
     <ClCompile Include="ScoreCommand.cpp">
       <Filter>SubCommands</Filter>
-    </ClCompile>
-    <ClCompile Include="BombComponent.cpp">
-      <Filter>SubComponents</Filter>
     </ClCompile>
     <ClCompile Include="FPSComponent.cpp">
       <Filter>SubComponents</Filter>
@@ -102,6 +102,12 @@
     <ClCompile Include="RoamerBehaviorComponent.cpp">
       <Filter>SubComponents\EmenyComponents</Filter>
     </ClCompile>
+    <ClCompile Include="BombComponent.cpp">
+      <Filter>SubComponents\BombComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="ExplosionComponent.cpp">
+      <Filter>SubComponents\BombComponents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HealthCommand.h">
@@ -115,9 +121,6 @@
     </ClInclude>
     <ClInclude Include="BombCommand.h">
       <Filter>SubCommands</Filter>
-    </ClInclude>
-    <ClInclude Include="BombComponent.h">
-      <Filter>SubComponents</Filter>
     </ClInclude>
     <ClInclude Include="FPSComponent.h">
       <Filter>SubComponents</Filter>
@@ -172,6 +175,12 @@
     </ClInclude>
     <ClInclude Include="RoamerBehaviorComponent.h">
       <Filter>SubComponents\EmenyComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="BombComponent.h">
+      <Filter>SubComponents\BombComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="ExplosionComponent.h">
+      <Filter>SubComponents\BombComponents</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

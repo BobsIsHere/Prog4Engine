@@ -2,13 +2,9 @@
 #include "GameAudioSystem.h"
 #include "BombComponent.h"
 #include "GameObject.h"
-#include "Observer.h"
-#include "Subject.h"
-#include <iostream>
 
 dae::BombComponent::BombComponent(GameObject* pGameObject) :
 	UpdateComponent{ pGameObject },
-	m_pSubject{ std::make_unique<Subject>() }, 
 	m_IsTimerRunning{ false },
 	m_StartTime{},
 	m_GridSize{ 32 },
@@ -23,11 +19,6 @@ dae::BombComponent::~BombComponent()
 void dae::BombComponent::Update()
 {
 	BombTimer();
-}
-
-void dae::BombComponent::AddObserver(Observer* observer)
-{
-	m_pSubject->AddObserver(observer);
 }
 
 void dae::BombComponent::StartBombTimer() 
