@@ -1,3 +1,4 @@
+#include <iostream>
 #include "AudioServiceLocator.h"
 #include "ExplosionComponent.h"
 #include "TextureComponent.h"
@@ -6,7 +7,6 @@
 #include "SceneManager.h"
 #include "GameObject.h"
 #include "Scene.h"
-#include <iostream>
 
 dae::BombComponent::BombComponent(GameObject* pGameObject) :
 	UpdateComponent{ pGameObject },
@@ -46,7 +46,7 @@ void dae::BombComponent::ExplodeBomb()
 	SceneManager::GetInstance().GetActiveScene()->Add(std::move(middleExplosionObject));
 
 	// Side Explosion Object
-	for (int idx = 0; idx < 3; ++idx) 
+	for (int idx = 0; idx < 4; ++idx) 
 	{
 		auto sideExplosionObject = std::make_unique<GameObject>("Explosion");
 		sideExplosionObject->AddComponent<ExplosionComponent>(std::make_unique<ExplosionComponent>(sideExplosionObject.get()));
@@ -55,8 +55,10 @@ void dae::BombComponent::ExplodeBomb()
 		sideExplosionObject->SetParent(GetGameObject(), false);
 
 		// Set side explosion position with some offset
-		glm::vec3 offset = glm::vec3(idx % 2 == 0 ? -16 : 16, idx / 2 == 0 ? -16 : 16, 0); 
+		glm::vec3 offset{ glm::vec3(idx % 2 == 0 ? -16 : 16, idx / 2 == 0 ? -16 : 16, 0) }; 
 		sideExplosionObject->SetLocalPosition(GetGameObject()->GetLocalPosition() + offset);  
+
+		std::cout << "Explosion position: " << sideExplosionObject->GetLocalPosition().x << ", " << sideExplosionObject->GetLocalPosition().y << std::endl; 
 
 		// Add side explosion object to the scene
 		SceneManager::GetInstance().GetActiveScene()->Add(std::move(sideExplosionObject));
