@@ -16,6 +16,9 @@ namespace dae
 		bool CanSpawnBomb() const;
 		void IncreaseBombLimit(int amount);
 
+		void IncreaseExplosionRange(int amount);
+		int GetExplosionRange() const;
+
 	private:
 		friend class Singleton<BombManager>;
 
@@ -24,6 +27,7 @@ namespace dae
 
 		int m_MaxBombs;
 		int m_CurrentBombs;
+		int m_ExplosionRange;
 		std::vector<BombComponent*> m_pBombs; 
 	};
 }

@@ -191,6 +191,12 @@ void load()
 	bombPowerUpObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("ExtraBombPowerUp.png"));
 
 	auto flamePowerUpObject = std::make_unique<dae::GameObject>("FlamePowerUp");
+	flamePowerUpObject->SetLocalPosition(5 * 32, (4 * 32) + 65);
+	flamePowerUpObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(flamePowerUpObject.get(), 2.f));
+	flamePowerUpObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(flamePowerUpObject.get(), 32.f, 32.f));
+	flamePowerUpObject->AddComponent<dae::PowerUpDisplay>(std::make_unique<dae::PowerUpDisplay>(flamePowerUpObject.get()));
+
+	flamePowerUpObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("FlamesPowerUp.png"));
 
 	auto detonatorPowerUpObject = std::make_unique<dae::GameObject>("DetonatorPowerUp");
 
@@ -233,10 +239,12 @@ void load()
 	bombermanObject->GetComponent<dae::HealthComponent>()->AddObserver(livesObjectBomberman->GetComponent<dae::HealthDisplay>());
 	bombermanObject->GetComponent<dae::ScoreComponent>()->AddObserver(scoreObjectBomberman->GetComponent<dae::ScoreDisplay>());
 	bombermanObject->GetComponent<dae::PlayerComponent>()->AddObserver(bombPowerUpObject->GetComponent<dae::PowerUpDisplay>());
+	bombermanObject->GetComponent<dae::PlayerComponent>()->AddObserver(flamePowerUpObject->GetComponent<dae::PowerUpDisplay>());
 
 	bombermanGameScene.Add(std::move(scoreObjectBomberman));
 	bombermanGameScene.Add(std::move(livesObjectBomberman));
 	bombermanGameScene.Add(std::move(bombPowerUpObject));
+	bombermanGameScene.Add(std::move(flamePowerUpObject));
 
 	//ENEMY
 	auto balloomObject = std::make_unique<dae::GameObject>("Enemy");

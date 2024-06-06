@@ -23,6 +23,7 @@ void dae::PowerUpDisplay::Notify(GameObject*, Event event)
 		break;
 	case dae::Event::Event_Flame_PowerUp_PickedUp:
 		dae::AudioServiceLocator::GetAudioSystem().PlaySoundEffect("../Data/Audio/BombermanPowerUp.wav", 0.5f);
+		BombManager::GetInstance().IncreaseExplosionRange(1);
 		break;
 	case dae::Event::Event_Detonator_PowerUp_PickedUp:
 		dae::AudioServiceLocator::GetAudioSystem().PlaySoundEffect("../Data/Audio/BombermanPowerUp.wav", 0.5f);

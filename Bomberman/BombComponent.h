@@ -22,6 +22,7 @@ namespace dae
 
 		void StartBombTimer();
 		void ExplodeBomb();
+		void SetExplosionRange(int range); 
 
 	private:
 		void BombTimer();
@@ -31,6 +32,15 @@ namespace dae
 		bool m_IsTimerRunning;
 
 		const int m_GridSize;
+		int m_ExplosionRange;
 		float m_BombDuration;
+
+		const std::string m_ExplotionMiddleTexture{ "ExplosionMiddle.png" };
+		const std::string m_ExplotionHorizontalTexture{ "ExplosionHorizontal.png" };
+		const std::string m_ExplotionVerticalTexture{ "ExplosionVertical.png" };
+		const std::string m_ExplotionEndLeftTexture{ "ExplosionEndLeft.png" };
+		const std::string m_ExplotionEndRightTexture{ "ExplosionEndRight.png" };
+		const std::string m_ExplotionEndTopTexture{ "ExplosionEndTop.png" };
+		const std::string m_ExplotionEndBottomTexture{ "ExplosionEndBottom.png" };
 	};
 }

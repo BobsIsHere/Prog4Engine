@@ -18,7 +18,8 @@ dae::BombComponent::BombComponent(GameObject* pGameObject) :
 	m_IsTimerRunning{ false },
 	m_StartTime{},
 	m_GridSize{ 32 },
-	m_BombDuration{ 3.f }  
+	m_BombDuration{ 3.f },
+	m_ExplosionRange{ 1 }
 {
 }
 
@@ -46,61 +47,54 @@ void dae::BombComponent::ExplodeBomb()
 {
 	const float gridSize{ 32.f };   
 
-	// Middle Explosion Object
-	auto middleExplosionObject = std::make_unique<GameObject>("Explosion");
-	middleExplosionObject->AddComponent<ExplosionComponent>(std::make_unique<ExplosionComponent>(middleExplosionObject.get()));
-	middleExplosionObject->AddComponent<TextureComponent>(std::make_unique<TextureComponent>(middleExplosionObject.get(), 2.f));
-	middleExplosionObject->AddComponent<BoundingBoxComponent>(std::make_unique<BoundingBoxComponent>(middleExplosionObject.get(), 32.f, 32.f));
-	middleExplosionObject->GetComponent<TextureComponent>()->SetTexture("ExplosionMiddle.png");
-	middleExplosionObject->SetLocalPosition(GetGameObject()->GetLocalPosition()); 
+	// Function to create explosion object
+	auto CreateExplosion = [this](const std::string& texture, float x, float y)
+	{
+		auto explosionObject = std::make_unique<GameObject>("Explosion");
+		explosionObject->AddComponent<ExplosionComponent>(std::make_unique<ExplosionComponent>(explosionObject.get()));
+		explosionObject->AddComponent<TextureComponent>(std::make_unique<TextureComponent>(explosionObject.get(), 2.f));
+		explosionObject->AddComponent<BoundingBoxComponent>(std::make_unique<BoundingBoxComponent>(explosionObject.get(), 32.f, 32.f));
+		explosionObject->GetComponent<TextureComponent>()->SetTexture(texture);
+		explosionObject->SetLocalPosition(GetGameObject()->GetLocalPosition().x + x, GetGameObject()->GetLocalPosition().y + y); 
 
-	SceneManager::GetInstance().GetActiveScene()->Add(std::move(middleExplosionObject));
+		SceneManager::GetInstance().GetActiveScene()->Add(std::move(explosionObject));
+	};
 
-	// Top Explosion Object
-	auto topExplosionObject = std::make_unique<GameObject>("Explosion");
-	topExplosionObject->AddComponent<ExplosionComponent>(std::make_unique<ExplosionComponent>(topExplosionObject.get()));
-	topExplosionObject->AddComponent<TextureComponent>(std::make_unique<TextureComponent>(topExplosionObject.get(), 2.f));
-	topExplosionObject->AddComponent<BoundingBoxComponent>(std::make_unique<BoundingBoxComponent>(topExplosionObject.get(), 32.f, 32.f));
-	topExplosionObject->GetComponent<TextureComponent>()->SetTexture("ExplosionTop.png");
-	topExplosionObject->SetLocalPosition(GetGameObject()->GetLocalPosition().x, GetGameObject()->GetLocalPosition().y + (-gridSize)); 
+	// Create middle explosion object
+	CreateExplosion(m_ExplotionMiddleTexture, 0.f, 0.f);
 
-	SceneManager::GetInstance().GetActiveScene()->Add(std::move(topExplosionObject));
+	// Create explosion in all directions based on explosion range
+	for (size_t idx = 1; idx <= m_ExplosionRange; ++idx) 
+	{
+		float offset{ gridSize * idx }; 
 
-	// Bottom Explosion Object
-	auto bottomExplosionObject = std::make_unique<GameObject>("Explosion");
-	bottomExplosionObject->AddComponent<ExplosionComponent>(std::make_unique<ExplosionComponent>(bottomExplosionObject.get()));
-	bottomExplosionObject->AddComponent<TextureComponent>(std::make_unique<TextureComponent>(bottomExplosionObject.get(), 2.f));
-	bottomExplosionObject->AddComponent<BoundingBoxComponent>(std::make_unique<BoundingBoxComponent>(bottomExplosionObject.get(), 32.f, 32.f));
-	bottomExplosionObject->GetComponent<TextureComponent>()->SetTexture("ExplosionBottom.png");
-	bottomExplosionObject->SetLocalPosition(GetGameObject()->GetLocalPosition().x, GetGameObject()->GetLocalPosition().y + gridSize); 
+		// Top
+		std::string topTexture{ idx == m_ExplosionRange ? m_ExplotionEndTopTexture : m_ExplotionVerticalTexture }; 
+		CreateExplosion(topTexture, 0.f, -offset);
 
-	SceneManager::GetInstance().GetActiveScene()->Add(std::move(bottomExplosionObject));
+		// Bottom
+		std::string bottomTexture{ idx == m_ExplosionRange ? m_ExplotionEndBottomTexture : m_ExplotionVerticalTexture };
+		CreateExplosion(bottomTexture, 0.f, offset);
 
-	// Right Explosion Object
-	auto rightExplosionObject = std::make_unique<GameObject>("Explosion");
-	rightExplosionObject->AddComponent<ExplosionComponent>(std::make_unique<ExplosionComponent>(rightExplosionObject.get()));
-	rightExplosionObject->AddComponent<TextureComponent>(std::make_unique<TextureComponent>(rightExplosionObject.get(), 2.f));
-	rightExplosionObject->AddComponent<BoundingBoxComponent>(std::make_unique<BoundingBoxComponent>(rightExplosionObject.get(), 32.f, 32.f));
-	rightExplosionObject->GetComponent<TextureComponent>()->SetTexture("ExplosionRight.png");
-	rightExplosionObject->SetLocalPosition(GetGameObject()->GetLocalPosition().x + gridSize, GetGameObject()->GetLocalPosition().y);
+		// Right
+		std::string rightTexture{ idx == m_ExplosionRange ? m_ExplotionEndRightTexture : m_ExplotionHorizontalTexture };
+		CreateExplosion(rightTexture, offset, 0.f);
 
-	SceneManager::GetInstance().GetActiveScene()->Add(std::move(rightExplosionObject));
-
-	// Left Explosion Object
-	auto leftExplosionObject = std::make_unique<GameObject>("Explosion");
-	leftExplosionObject->AddComponent<ExplosionComponent>(std::make_unique<ExplosionComponent>(leftExplosionObject.get()));
-	leftExplosionObject->AddComponent<TextureComponent>(std::make_unique<TextureComponent>(leftExplosionObject.get(), 2.f));
-	leftExplosionObject->AddComponent<BoundingBoxComponent>(std::make_unique<BoundingBoxComponent>(leftExplosionObject.get(), 32.f, 32.f));
-	leftExplosionObject->GetComponent<TextureComponent>()->SetTexture("ExplosionLeft.png");
-	leftExplosionObject->SetLocalPosition(GetGameObject()->GetLocalPosition().x + (-gridSize), GetGameObject()->GetLocalPosition().y); 
-
-	SceneManager::GetInstance().GetActiveScene()->Add(std::move(leftExplosionObject));
+		// Left
+		std::string leftTexture{ idx == m_ExplosionRange ? m_ExplotionEndLeftTexture : m_ExplotionHorizontalTexture };
+		CreateExplosion(leftTexture, -offset, 0.f);
+	}
 
 	dae::AudioServiceLocator::GetAudioSystem().PlaySoundEffect("../Data/Audio/BombermanExplosion.wav", 0.75f);
 	dae::BombManager::GetInstance().RemoveBomb(this);
 	
 	GetGameObject()->SetParent(nullptr, false);
 	GetGameObject()->SetForRemoval();
+}
+
+void dae::BombComponent::SetExplosionRange(int range)
+{
+	m_ExplosionRange = range;
 }
 
 void dae::BombComponent::BombTimer()
