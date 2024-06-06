@@ -61,6 +61,8 @@ void dae::GameObject::SetLocalPosition(glm::vec3 pos)
 	SetPositionDirty();
 }
 
+//TODO: LOOK OVER FUNCTION	
+//CHILD POSITION NOT FULLY CORRECT
 void dae::GameObject::SetParent(GameObject* pParent, bool keepWorldPosition)
 {
 	if (m_pParent == pParent || pParent == this)  
@@ -78,16 +80,22 @@ void dae::GameObject::SetParent(GameObject* pParent, bool keepWorldPosition)
 
 	if (pParent == nullptr)
 	{
-		SetLocalPosition(GetWorldPosition().x, GetWorldPosition().y); 
+		if (m_pTransformComponent)
+		{
+			SetLocalPosition(GetWorldPosition().x, GetWorldPosition().y); 
+		}
 	}
 	else
 	{
 		if (keepWorldPosition)
 		{
-			SetLocalPosition(GetWorldPosition().x - pParent->GetWorldPosition().x, GetWorldPosition().y - pParent->GetWorldPosition().y);
+			SetLocalPosition(GetWorldPosition().x - pParent->GetWorldPosition().x, GetWorldPosition().y - pParent->GetWorldPosition().y); 
+			SetPositionDirty(); 
 		}
-
-		SetPositionDirty();
+		else
+		{
+			SetLocalPosition(GetLocalPosition()); 
+		}
 	}
 
 	if (m_pParent)

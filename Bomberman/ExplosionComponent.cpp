@@ -17,12 +17,16 @@ dae::ExplosionComponent::~ExplosionComponent()
 
 void dae::ExplosionComponent::Update()
 {
-	m_AnimationTimer += DeltaTime::GetInstance().GetDeltaTime();
-
-	if (m_AnimationTimer >= m_ExplosionDuration)
+	// TODO : Temporary fix for the explosion animation
+	if (!GetGameObject()->GetIsSetForRemoval())
 	{
-		GetGameObject()->SetForRemoval();
-		std::cout << "Set for removal" << std::endl; 
+		m_AnimationTimer += DeltaTime::GetInstance().GetDeltaTime();
+
+		if (m_AnimationTimer >= m_ExplosionDuration)
+		{
+			GetGameObject()->SetForRemoval();
+			std::cout << "Set for removal" << std::endl;
+		}
 	}
 }
 

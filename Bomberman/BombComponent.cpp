@@ -50,47 +50,41 @@ void dae::BombComponent::ExplodeBomb()
 
 	SceneManager::GetInstance().GetActiveScene()->Add(std::move(middleExplosionObject));
 
-	// Side Explosion Object
-	for (size_t idx = 0; idx < 4; ++idx)   
-	{
-		auto sideExplosionObject = std::make_unique<GameObject>("Explosion");
-		sideExplosionObject->AddComponent<ExplosionComponent>(std::make_unique<ExplosionComponent>(sideExplosionObject.get()));
-		sideExplosionObject->AddComponent<TextureComponent>(std::make_unique<TextureComponent>(sideExplosionObject.get(), 2.f));
-		sideExplosionObject->SetParent(GetGameObject(), false); 
+	// Top Explosion Object
+	auto topExplosionObject = std::make_unique<GameObject>("Explosion");
+	topExplosionObject->AddComponent<ExplosionComponent>(std::make_unique<ExplosionComponent>(topExplosionObject.get()));
+	topExplosionObject->AddComponent<TextureComponent>(std::make_unique<TextureComponent>(topExplosionObject.get(), 2.f));
+	topExplosionObject->GetComponent<TextureComponent>()->SetTexture("ExplosionTop.png");
+	topExplosionObject->SetLocalPosition(GetGameObject()->GetLocalPosition().x, GetGameObject()->GetLocalPosition().y + (-gridSize)); 
 
-		float offsetX{}; 
-		float offsetY{}; 
+	SceneManager::GetInstance().GetActiveScene()->Add(std::move(topExplosionObject));
 
-		switch (idx)
-		{
-		// Top
-		case 0:
-			offsetY = -gridSize;
-			sideExplosionObject->GetComponent<TextureComponent>()->SetTexture("ExplosionTop.png");
-			break;
-		// Right
-		case 1:
-			offsetX = gridSize;  
-			sideExplosionObject->GetComponent<TextureComponent>()->SetTexture("ExplosionRight.png");
-			break;
-		// Bottom
-		case 2:
-			offsetY = gridSize; 
-			sideExplosionObject->GetComponent<TextureComponent>()->SetTexture("ExplosionBottom.png");
-			break;
-		// Left
-		case 3:
-			offsetX = -gridSize; 
-			sideExplosionObject->GetComponent<TextureComponent>()->SetTexture("ExplosionLeft.png");
-			break;
-		}
-		
-		sideExplosionObject->SetLocalPosition(offsetX, offsetY);   
-		std::cout << "Explosion position: " << sideExplosionObject->GetLocalPosition().x << ", " << sideExplosionObject->GetLocalPosition().y << std::endl;   
+	// Bottom Explosion Object
+	auto bottomExplosionObject = std::make_unique<GameObject>("Explosion");
+	bottomExplosionObject->AddComponent<ExplosionComponent>(std::make_unique<ExplosionComponent>(bottomExplosionObject.get()));
+	bottomExplosionObject->AddComponent<TextureComponent>(std::make_unique<TextureComponent>(bottomExplosionObject.get(), 2.f));
+	bottomExplosionObject->GetComponent<TextureComponent>()->SetTexture("ExplosionBottom.png");
+	bottomExplosionObject->SetLocalPosition(GetGameObject()->GetLocalPosition().x, GetGameObject()->GetLocalPosition().y + gridSize); 
 
-		// Add side explosion object to the scene
-		SceneManager::GetInstance().GetActiveScene()->Add(std::move(sideExplosionObject));
-	}
+	SceneManager::GetInstance().GetActiveScene()->Add(std::move(bottomExplosionObject));
+
+	// Right Explosion Object
+	auto rightExplosionObject = std::make_unique<GameObject>("Explosion");
+	rightExplosionObject->AddComponent<ExplosionComponent>(std::make_unique<ExplosionComponent>(rightExplosionObject.get()));
+	rightExplosionObject->AddComponent<TextureComponent>(std::make_unique<TextureComponent>(rightExplosionObject.get(), 2.f));
+	rightExplosionObject->GetComponent<TextureComponent>()->SetTexture("ExplosionRight.png");
+	rightExplosionObject->SetLocalPosition(GetGameObject()->GetLocalPosition().x + gridSize, GetGameObject()->GetLocalPosition().y);
+
+	SceneManager::GetInstance().GetActiveScene()->Add(std::move(rightExplosionObject));
+
+	// Left Explosion Object
+	auto leftExplosionObject = std::make_unique<GameObject>("Explosion");
+	leftExplosionObject->AddComponent<ExplosionComponent>(std::make_unique<ExplosionComponent>(leftExplosionObject.get()));
+	leftExplosionObject->AddComponent<TextureComponent>(std::make_unique<TextureComponent>(leftExplosionObject.get(), 2.f));
+	leftExplosionObject->GetComponent<TextureComponent>()->SetTexture("ExplosionLeft.png");
+	leftExplosionObject->SetLocalPosition(GetGameObject()->GetLocalPosition().x + (-gridSize), GetGameObject()->GetLocalPosition().y); 
+
+	SceneManager::GetInstance().GetActiveScene()->Add(std::move(leftExplosionObject));
 
 	dae::AudioServiceLocator::GetAudioSystem().PlaySoundEffect("../Data/Audio/BombermanExplosion.wav", 0.75f);
 	
