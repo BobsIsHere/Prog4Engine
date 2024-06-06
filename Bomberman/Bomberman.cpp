@@ -177,6 +177,8 @@ void load()
 	brickObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(brickObject.get(), 2.f));
 	brickObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(brickObject.get(), 32.f, 32.f));
 
+	std::cout << brickObject->GetWorldPosition().x << ", " << brickObject->GetWorldPosition().y << std::endl;
+
 	brickObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Brick.png"));
 	bombermanGameScene.Add(std::move(brickObject));
 

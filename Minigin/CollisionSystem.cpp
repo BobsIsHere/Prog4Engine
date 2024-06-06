@@ -28,6 +28,18 @@ std::vector<dae::GameObject*> dae::CollisionSystem::GetAllGameObjects() const
 
 bool dae::CollisionSystem::IsColliding(GameObject* a, GameObject* b) const
 {
+	// Check for nullptr
+	if (!a || !b)
+	{
+		return false;
+	}
+
+	// Check if either object is set for removal
+	if (a->GetIsSetForRemoval() || b->GetIsSetForRemoval())
+	{
+		return false;
+	}
+
 	if (a->HasComponent<BoundingBoxComponent>() and b->HasComponent<BoundingBoxComponent>()) 
 	{
 		const auto aBoundingBox = a->GetComponent<BoundingBoxComponent>()->GetBoundingBox();

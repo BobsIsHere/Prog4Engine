@@ -17,6 +17,8 @@ dae::ExplosionComponent::~ExplosionComponent()
 
 void dae::ExplosionComponent::Update()
 {
+	CheckCollision();
+
 	// TODO : Temporary fix for the explosion animation
 	if (!GetGameObject()->GetIsSetForRemoval())
 	{
@@ -24,8 +26,8 @@ void dae::ExplosionComponent::Update()
 
 		if (m_AnimationTimer >= m_ExplosionDuration)
 		{
+			CollisionSystem::GetInstance().RemoveGameObject(GetGameObject());
 			GetGameObject()->SetForRemoval();
-			std::cout << "Set for removal" << std::endl;
 		}
 	}
 }
@@ -50,10 +52,14 @@ void dae::ExplosionComponent::CheckCollision()
 				{
 					//Enemy dies
 					//Bomberman gains points
+					CollisionSystem::GetInstance().RemoveGameObject(gameObject);
+					gameObject->SetForRemoval();
 				}
 				else if (gameObject->GetObjectTypeIdentifier() == "Breakable")
 				{
 					//Block disappears
+					CollisionSystem::GetInstance().RemoveGameObject(gameObject);
+					gameObject->SetForRemoval(); 
 				}
 			}
 		}
