@@ -108,6 +108,12 @@
     <ClCompile Include="ExplosionComponent.cpp">
       <Filter>SubComponents\BombComponents</Filter>
     </ClCompile>
+    <ClCompile Include="BombManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PowerUpDisplay.cpp">
+      <Filter>SubDisplays</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HealthCommand.h">
@@ -181,6 +187,12 @@
     </ClInclude>
     <ClInclude Include="ExplosionComponent.h">
       <Filter>SubComponents\BombComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="BombManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerUpDisplay.h">
+      <Filter>SubDisplays</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

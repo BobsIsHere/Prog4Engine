@@ -9,7 +9,10 @@ namespace dae
 		Event_Player_Died,
 		Event_Score_Changed,
 		Event_Bomb_Dropped,
-		Event_Bomb_Exploded
+		Event_Bomb_Exploded,
+		Event_Extra_Bomb_PowerUp_PickedUp,
+		Event_Flame_PowerUp_PickedUp,
+		Event_Detonator_PowerUp_PickedUp
 	};
 	
 	class Observer

@@ -4,7 +4,7 @@
 
 namespace dae 
 {
-	class Gameobject;
+	class GameObject;
 
 	class HealthDisplay final : public Observer, public Component
 	{

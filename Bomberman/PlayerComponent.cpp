@@ -2,9 +2,12 @@
 #include "PlayerComponent.h"
 #include "CollisionSystem.h"
 #include "GameObject.h"
+#include "Observer.h"
+#include "Subject.h"
 
 dae::PlayerComponent::PlayerComponent(GameObject* pGameObject) :
-	UpdateComponent(pGameObject)
+	UpdateComponent(pGameObject),
+	m_pSubject{ std::make_unique<Subject>() }
 {
 }
 
@@ -28,10 +31,32 @@ void dae::PlayerComponent::Update()
 					//Bomberman respawns
 					//Reload level
 				}
-				else if (gameObject->GetObjectTypeIdentifier() == "PowerUp")
+				else if (gameObject->GetObjectTypeIdentifier() == "BombPowerUp")
 				{
 					//Bomberman gains a power-up
+					m_pSubject->NotifyObservers(GetGameObject(), Event::Event_Extra_Bomb_PowerUp_PickedUp);  
+
 					//Power-up disappears
+					CollisionSystem::GetInstance().RemoveGameObject(gameObject);
+					gameObject->SetForRemoval();
+				}
+				else if (gameObject->GetObjectTypeIdentifier() == "FlamePowerUp")
+				{
+					//Bomberman gains a power-up
+					m_pSubject->NotifyObservers(GetGameObject(), Event::Event_Flame_PowerUp_PickedUp); 
+
+					//Power-up disappears
+					CollisionSystem::GetInstance().RemoveGameObject(gameObject);
+					gameObject->SetForRemoval(); 
+				}
+				else if (gameObject->GetObjectTypeIdentifier() == "DetonatorPowerUp") 
+				{
+					//Bomberman gains a power-up
+					m_pSubject->NotifyObservers(GetGameObject(), Event::Event_Detonator_PowerUp_PickedUp);  
+
+					//Power-up disappears
+					CollisionSystem::GetInstance().RemoveGameObject(gameObject);
+					gameObject->SetForRemoval();  
 				}
 				else if (gameObject->GetObjectTypeIdentifier() == "Border" or gameObject->GetObjectTypeIdentifier() == "Breakable")
 				{
@@ -72,4 +97,9 @@ void dae::PlayerComponent::Update()
 			}
 		}
 	}
+}
+
+void dae::PlayerComponent::AddObserver(Observer* observer)
+{
+	m_pSubject->AddObserver(observer);
 }

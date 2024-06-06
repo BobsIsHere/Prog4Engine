@@ -169,6 +169,7 @@
     <ClCompile Include="BombComponent.cpp" />
     <ClCompile Include="BombDisplay.cpp" />
     <ClCompile Include="Bomberman.cpp" />
+    <ClCompile Include="BombManager.cpp" />
     <ClCompile Include="CameraComponent.cpp" />
     <ClCompile Include="ChaserBehaviorComponent.cpp" />
     <ClCompile Include="EnemyCollisionComponent.cpp" />
@@ -179,6 +180,7 @@
     <ClCompile Include="HealthDisplay.cpp" />
     <ClCompile Include="MovementCommand.cpp" />
     <ClCompile Include="PlayerComponent.cpp" />
+    <ClCompile Include="PowerUpDisplay.cpp" />
     <ClCompile Include="RoamerBehaviorComponent.cpp" />
     <ClCompile Include="RotationComponent.cpp" />
     <ClCompile Include="ScoreCommand.cpp" />
@@ -195,6 +197,7 @@
     <ClInclude Include="BombCommand.h" />
     <ClInclude Include="BombComponent.h" />
     <ClInclude Include="BombDisplay.h" />
+    <ClInclude Include="BombManager.h" />
     <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="ChaserBehaviorComponent.h" />
     <ClInclude Include="EnemyCollisionComponent.h" />
@@ -205,6 +208,7 @@
     <ClInclude Include="HealthDisplay.h" />
     <ClInclude Include="MovementCommand.h" />
     <ClInclude Include="PlayerComponent.h" />
+    <ClInclude Include="PowerUpDisplay.h" />
     <ClInclude Include="RoamerBehaviorComponent.h" />
     <ClInclude Include="RotationComponent.h" />
     <ClInclude Include="ScoreCommand.h" />

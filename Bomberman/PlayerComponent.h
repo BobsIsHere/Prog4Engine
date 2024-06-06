@@ -3,6 +3,9 @@
 
 namespace dae
 {
+	class Subject;
+	class Observer;
+
 	class PlayerComponent final : public UpdateComponent
 	{
 	public:
@@ -15,5 +18,9 @@ namespace dae
 		PlayerComponent& operator=(PlayerComponent&& other) = delete;
 
 		virtual void Update() override;
+		void AddObserver(Observer* observer);
+
+	private:
+		std::unique_ptr<Subject> m_pSubject; 
 	};
 }

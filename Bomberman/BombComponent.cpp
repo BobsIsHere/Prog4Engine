@@ -1,13 +1,17 @@
-#include <iostream>
 #include "BoundingBoxComponent.h"
-#include "AudioServiceLocator.h"
 #include "ExplosionComponent.h"
 #include "TextureComponent.h"
-#include "GameAudioSystem.h"
 #include "BombComponent.h"
-#include "SceneManager.h"
+#include "BombManager.h"
 #include "GameObject.h"
+
+// Scene
+#include "SceneManager.h"
 #include "Scene.h"
+
+// Audio
+#include "AudioServiceLocator.h"
+#include "GameAudioSystem.h"
 
 dae::BombComponent::BombComponent(GameObject* pGameObject) :
 	UpdateComponent{ pGameObject },
@@ -50,8 +54,6 @@ void dae::BombComponent::ExplodeBomb()
 	middleExplosionObject->GetComponent<TextureComponent>()->SetTexture("ExplosionMiddle.png");
 	middleExplosionObject->SetLocalPosition(GetGameObject()->GetLocalPosition()); 
 
-	std::cout << middleExplosionObject->GetWorldPosition().x << ", " << middleExplosionObject->GetWorldPosition().y << std::endl;
-
 	SceneManager::GetInstance().GetActiveScene()->Add(std::move(middleExplosionObject));
 
 	// Top Explosion Object
@@ -61,8 +63,6 @@ void dae::BombComponent::ExplodeBomb()
 	topExplosionObject->AddComponent<BoundingBoxComponent>(std::make_unique<BoundingBoxComponent>(topExplosionObject.get(), 32.f, 32.f));
 	topExplosionObject->GetComponent<TextureComponent>()->SetTexture("ExplosionTop.png");
 	topExplosionObject->SetLocalPosition(GetGameObject()->GetLocalPosition().x, GetGameObject()->GetLocalPosition().y + (-gridSize)); 
-
-	std::cout << topExplosionObject->GetWorldPosition().x << ", " << topExplosionObject->GetWorldPosition().y << std::endl;
 
 	SceneManager::GetInstance().GetActiveScene()->Add(std::move(topExplosionObject));
 
@@ -74,8 +74,6 @@ void dae::BombComponent::ExplodeBomb()
 	bottomExplosionObject->GetComponent<TextureComponent>()->SetTexture("ExplosionBottom.png");
 	bottomExplosionObject->SetLocalPosition(GetGameObject()->GetLocalPosition().x, GetGameObject()->GetLocalPosition().y + gridSize); 
 
-	std::cout << bottomExplosionObject->GetWorldPosition().x << ", " << bottomExplosionObject->GetWorldPosition().y << std::endl;
-
 	SceneManager::GetInstance().GetActiveScene()->Add(std::move(bottomExplosionObject));
 
 	// Right Explosion Object
@@ -85,8 +83,6 @@ void dae::BombComponent::ExplodeBomb()
 	rightExplosionObject->AddComponent<BoundingBoxComponent>(std::make_unique<BoundingBoxComponent>(rightExplosionObject.get(), 32.f, 32.f));
 	rightExplosionObject->GetComponent<TextureComponent>()->SetTexture("ExplosionRight.png");
 	rightExplosionObject->SetLocalPosition(GetGameObject()->GetLocalPosition().x + gridSize, GetGameObject()->GetLocalPosition().y);
-
-	std::cout << rightExplosionObject->GetWorldPosition().x << ", " << rightExplosionObject->GetWorldPosition().y << std::endl;
 
 	SceneManager::GetInstance().GetActiveScene()->Add(std::move(rightExplosionObject));
 
@@ -98,11 +94,10 @@ void dae::BombComponent::ExplodeBomb()
 	leftExplosionObject->GetComponent<TextureComponent>()->SetTexture("ExplosionLeft.png");
 	leftExplosionObject->SetLocalPosition(GetGameObject()->GetLocalPosition().x + (-gridSize), GetGameObject()->GetLocalPosition().y); 
 
-	std::cout << leftExplosionObject->GetWorldPosition().x << ", " << leftExplosionObject->GetWorldPosition().y << std::endl;
-
 	SceneManager::GetInstance().GetActiveScene()->Add(std::move(leftExplosionObject));
 
 	dae::AudioServiceLocator::GetAudioSystem().PlaySoundEffect("../Data/Audio/BombermanExplosion.wav", 0.75f);
+	dae::BombManager::GetInstance().RemoveBomb(this);
 	
 	GetGameObject()->SetParent(nullptr, false);
 	GetGameObject()->SetForRemoval();
