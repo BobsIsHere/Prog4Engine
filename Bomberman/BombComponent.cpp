@@ -65,7 +65,7 @@ void dae::BombComponent::ExplodeBomb()
 	CreateExplosion(m_ExplotionMiddleTexture, 0.f, 0.f);
 
 	// Create explosion in all directions based on explosion range
-	for (size_t idx = 1; idx <= m_ExplosionRange; ++idx) 
+	for (int idx = 1; idx <= m_ExplosionRange; ++idx) 
 	{
 		float offset{ gridSize * idx }; 
 
