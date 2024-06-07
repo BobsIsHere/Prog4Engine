@@ -23,6 +23,8 @@ namespace dae
 		void StartBombTimer();
 		void ExplodeBomb();
 		void SetExplosionRange(int range); 
+		void DetonateBomb();
+		void SetCanDetonate(bool canDetonate);
 
 	private:
 		void BombTimer();
@@ -30,6 +32,7 @@ namespace dae
 		std::chrono::high_resolution_clock::time_point m_StartTime;
 
 		bool m_IsTimerRunning;
+		bool m_CanDetonate;
 
 		const int m_GridSize;
 		int m_ExplosionRange;

@@ -31,6 +31,9 @@
     <Filter Include="SubComponents\BombComponents">
       <UniqueIdentifier>{db293608-dd3a-4829-9d41-f2611bf50ca8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SubDisplays\PowerUpDisplays">
+      <UniqueIdentifier>{eb8c1d0f-6c43-40d2-928b-3a6fc197bb96}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bomberman.cpp">
@@ -111,8 +114,17 @@
     <ClCompile Include="BombManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PowerUpDisplay.cpp">
-      <Filter>SubDisplays</Filter>
+    <ClCompile Include="DetonateCommand.cpp">
+      <Filter>SubCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="BombPowerUpDisplay.cpp">
+      <Filter>SubDisplays\PowerUpDisplays</Filter>
+    </ClCompile>
+    <ClCompile Include="FlamesPowerUpDisplay.cpp">
+      <Filter>SubDisplays\PowerUpDisplays</Filter>
+    </ClCompile>
+    <ClCompile Include="DetonatorPowerUpDisplay.cpp">
+      <Filter>SubDisplays\PowerUpDisplays</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -191,8 +203,17 @@
     <ClInclude Include="BombManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PowerUpDisplay.h">
-      <Filter>SubDisplays</Filter>
+    <ClInclude Include="DetonateCommand.h">
+      <Filter>SubCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="BombPowerUpDisplay.h">
+      <Filter>SubDisplays\PowerUpDisplays</Filter>
+    </ClInclude>
+    <ClInclude Include="FlamesPowerUpDisplay.h">
+      <Filter>SubDisplays\PowerUpDisplays</Filter>
+    </ClInclude>
+    <ClInclude Include="DetonatorPowerUpDisplay.h">
+      <Filter>SubDisplays\PowerUpDisplays</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

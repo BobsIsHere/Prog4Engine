@@ -19,12 +19,16 @@ namespace dae
 		void IncreaseExplosionRange(int amount);
 		int GetExplosionRange() const;
 
+		void EnableDetonator(bool enable);
+		void DetonateAllBombs();
+
 	private:
 		friend class Singleton<BombManager>;
 
 		BombManager();
 		virtual ~BombManager();
 
+		bool m_DetonatorEnabled;
 		int m_MaxBombs;
 		int m_CurrentBombs;
 		int m_ExplosionRange;

@@ -1,16 +1,16 @@
 #pragma once
-#include "Observer.h"
 #include "Component.h"
+#include "Observer.h"
 
 namespace dae
 {
 	class GameObject; 
 
-	class PowerUpDisplay final : public Observer, public Component
+	class BombPowerUpDisplay final : public Observer, public Component
 	{
 	public:
-		PowerUpDisplay(GameObject* pGameObject);
-		virtual ~PowerUpDisplay();
+		BombPowerUpDisplay(GameObject* pGameObject);
+		virtual ~BombPowerUpDisplay();
 
 		virtual void Render() const {};
 		virtual void Update() {}; 

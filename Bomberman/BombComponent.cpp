@@ -19,7 +19,8 @@ dae::BombComponent::BombComponent(GameObject* pGameObject) :
 	m_StartTime{},
 	m_GridSize{ 32 },
 	m_BombDuration{ 3.f },
-	m_ExplosionRange{ 1 }
+	m_ExplosionRange{ 0 },
+	m_CanDetonate{}
 {
 }
 
@@ -28,10 +29,10 @@ dae::BombComponent::~BombComponent()
 }
 
 void dae::BombComponent::Update()
-{
-	if (GetGameObject() != nullptr)
+{ 
+	if (!m_CanDetonate) 
 	{
-		BombTimer();
+		BombTimer(); 
 	}
 }
 
@@ -97,9 +98,19 @@ void dae::BombComponent::SetExplosionRange(int range)
 	m_ExplosionRange = range;
 }
 
+void dae::BombComponent::DetonateBomb()
+{
+	ExplodeBomb();
+}
+
+void dae::BombComponent::SetCanDetonate(bool canDetonate)
+{
+	m_CanDetonate = canDetonate;
+}
+
 void dae::BombComponent::BombTimer()
 {
-	if (m_IsTimerRunning)
+	if (m_IsTimerRunning and !m_CanDetonate)
 	{
 		const auto currentTime = std::chrono::high_resolution_clock::now();
 		const auto duration = std::chrono::duration_cast<std::chrono::seconds>(currentTime - m_StartTime).count();

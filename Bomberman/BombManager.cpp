@@ -5,7 +5,8 @@
 dae::BombManager::BombManager() :
 	m_MaxBombs{ 1 },
 	m_CurrentBombs{ 0 },
-	m_ExplosionRange{ 0 }
+	m_ExplosionRange{ 1 },
+	m_DetonatorEnabled{ false }
 {
 }
 
@@ -17,7 +18,9 @@ void dae::BombManager::AddBomb(BombComponent* bomb)
 {
 	if (CanSpawnBomb())
 	{
-		bomb->SetExplosionRange(m_ExplosionRange); 
+		bomb->SetExplosionRange(m_ExplosionRange);  
+		bomb->SetCanDetonate(m_DetonatorEnabled);
+
 		m_pBombs.push_back(bomb);
 		++m_CurrentBombs;
 	}
@@ -52,4 +55,20 @@ void dae::BombManager::IncreaseExplosionRange(int amount)
 int dae::BombManager::GetExplosionRange() const
 {
 	return m_ExplosionRange;
+}
+
+void dae::BombManager::EnableDetonator(bool enable)
+{
+	m_DetonatorEnabled = enable;
+}
+
+void dae::BombManager::DetonateAllBombs()
+{
+	if (m_DetonatorEnabled)
+	{
+		for (auto bomb : m_pBombs)
+		{
+			bomb->DetonateBomb();
+		}
+	}
 }

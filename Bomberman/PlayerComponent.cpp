@@ -1,4 +1,7 @@
+#include "DetonatorPowerUpDisplay.h"
+#include "FlamesPowerUpDisplay.h"
 #include "BoundingBoxComponent.h"
+#include "BombPowerUpDisplay.h"
 #include "PlayerComponent.h"
 #include "CollisionSystem.h"
 #include "GameObject.h"
@@ -38,6 +41,7 @@ void dae::PlayerComponent::Update()
 
 					//Power-up disappears
 					CollisionSystem::GetInstance().RemoveGameObject(gameObject);
+					m_pSubject->RemoveObserver(gameObject->GetComponent<dae::BombPowerUpDisplay>());
 					gameObject->SetForRemoval();
 				}
 				else if (gameObject->GetObjectTypeIdentifier() == "FlamePowerUp")
@@ -47,6 +51,7 @@ void dae::PlayerComponent::Update()
 
 					//Power-up disappears
 					CollisionSystem::GetInstance().RemoveGameObject(gameObject);
+					m_pSubject->RemoveObserver(gameObject->GetComponent<dae::FlamesPowerUpDisplay>());
 					gameObject->SetForRemoval(); 
 				}
 				else if (gameObject->GetObjectTypeIdentifier() == "DetonatorPowerUp") 
@@ -56,6 +61,7 @@ void dae::PlayerComponent::Update()
 
 					//Power-up disappears
 					CollisionSystem::GetInstance().RemoveGameObject(gameObject);
+					m_pSubject->RemoveObserver(gameObject->GetComponent<dae::DetonatorPowerUpDisplay>());
 					gameObject->SetForRemoval();  
 				}
 				else if (gameObject->GetObjectTypeIdentifier() == "Border" or gameObject->GetObjectTypeIdentifier() == "Breakable")
