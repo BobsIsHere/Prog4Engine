@@ -14,6 +14,7 @@
 #include "GameObject.h"
 #include "Controller.h"
 #include "Renderer.h"
+#include "GameStateUpdater.h"
 
 //Components
 #include "TextComponent.h"
@@ -358,6 +359,7 @@ void load()
 int main(int, char* []) 
 {
 	dae::Minigin engine("../Data/");
-	engine.Run(load);
+	std::unique_ptr<dae::GameStateUpdater> gameStateUpdater{ std::make_unique<dae::GameStateUpdater>() };
+	engine.Run(load, gameStateUpdater.get());
 	return 0;
 }

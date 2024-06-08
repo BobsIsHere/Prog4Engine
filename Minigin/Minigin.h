@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <functional>
+#include "IUpdateableObject.h"
 
 namespace dae
 {
@@ -15,6 +16,6 @@ namespace dae
 		Minigin& operator=(const Minigin& other) = delete;
 		Minigin& operator=(Minigin&& other) = delete;
 
-		void Run(const std::function<void()>& load);
+		void Run(const std::function<void()>& load, IUpdateableObject* updateable = {});
 	};
 }

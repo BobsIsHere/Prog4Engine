@@ -17,13 +17,13 @@ namespace dae
 		void Render();
 
 		void SetActiveScene(const std::string& name);
-		std::shared_ptr<Scene> GetActiveScene() const { return m_ActiveScene; }
+		std::shared_ptr<Scene> GetActiveScene() const { return m_pActiveScene; }
 
 	private:
 		friend class Singleton<SceneManager>;
 		SceneManager() = default;
 
-		std::shared_ptr<Scene> m_ActiveScene; 
-		std::vector<std::shared_ptr<Scene>> m_Scenes; 
+		std::shared_ptr<Scene> m_pActiveScene; 
+		std::vector<std::shared_ptr<Scene>> m_pScenes; 
 	};
 }

@@ -72,21 +72,6 @@
     <ClCompile Include="CameraComponent.cpp">
       <Filter>SubComponents</Filter>
     </ClCompile>
-    <ClCompile Include="..\Minigin\GameStateManager.cpp">
-      <Filter>GameState</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Minigin\HighscoreState.cpp">
-      <Filter>GameState</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Minigin\MenuState.cpp">
-      <Filter>GameState</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Minigin\PlayingState.cpp">
-      <Filter>GameState</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Minigin\StageState.cpp">
-      <Filter>GameState</Filter>
-    </ClCompile>
     <ClCompile Include="..\Minigin\BoundingBoxComponent.cpp">
       <Filter>SubComponents</Filter>
     </ClCompile>
@@ -129,6 +114,27 @@
     <ClCompile Include="EnemyBehaviorComponent.cpp">
       <Filter>SubComponents\EmenyComponents</Filter>
     </ClCompile>
+    <ClCompile Include="LevelFailedState.cpp">
+      <Filter>GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelCompleteState.cpp">
+      <Filter>GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStateManager.cpp">
+      <Filter>GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="HighscoreState.cpp">
+      <Filter>GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuState.cpp">
+      <Filter>GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayingState.cpp">
+      <Filter>GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="StageState.cpp">
+      <Filter>GameState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HealthCommand.h">
@@ -163,21 +169,6 @@
     </ClInclude>
     <ClInclude Include="CameraComponent.h">
       <Filter>SubComponents</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Minigin\GameStateManager.h">
-      <Filter>GameState</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Minigin\HighscoreState.h">
-      <Filter>GameState</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Minigin\MenuState.h">
-      <Filter>GameState</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Minigin\PlayingState.h">
-      <Filter>GameState</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Minigin\StageState.h">
-      <Filter>GameState</Filter>
     </ClInclude>
     <ClInclude Include="..\Minigin\BoundingBoxComponent.h">
       <Filter>SubComponents</Filter>
@@ -220,6 +211,30 @@
     </ClInclude>
     <ClInclude Include="EnemyBehaviorComponent.h">
       <Filter>SubComponents\EmenyComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelFailedState.h">
+      <Filter>GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelCompleteState.h">
+      <Filter>GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStateManager.h">
+      <Filter>GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="HighscoreState.h">
+      <Filter>GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuState.h">
+      <Filter>GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayingState.h">
+      <Filter>GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="StageState.h">
+      <Filter>GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStateUpdater.h">
+      <Filter>GameState</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

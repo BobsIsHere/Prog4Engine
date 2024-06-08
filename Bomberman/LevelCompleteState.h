@@ -3,11 +3,11 @@
 
 namespace dae
 {
-	class PlayingState final : public GameStateInterface
+	class LevelCompleteState final : public GameStateInterface
 	{
 	public:
-		PlayingState() = default;
-		virtual ~PlayingState() = default;
+		LevelCompleteState() = default;
+		virtual ~LevelCompleteState() = default;
 
 		virtual void Update() override;
 		virtual void Render() override;
@@ -16,6 +16,7 @@ namespace dae
 		virtual GameStateInterface* HandleInput() override;
 
 	private:
-
+		const float m_TimeToWait = 3.f;
+		float m_AccumulatedTime = 0.f;
 	};
 }

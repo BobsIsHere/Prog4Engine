@@ -160,11 +160,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Minigin\BoundingBoxComponent.cpp" />
-    <ClCompile Include="..\Minigin\GameStateManager.cpp" />
-    <ClCompile Include="..\Minigin\HighscoreState.cpp" />
-    <ClCompile Include="..\Minigin\MenuState.cpp" />
-    <ClCompile Include="..\Minigin\PlayingState.cpp" />
-    <ClCompile Include="..\Minigin\StageState.cpp" />
     <ClCompile Include="BombCommand.cpp" />
     <ClCompile Include="BombComponent.cpp" />
     <ClCompile Include="BombDisplay.cpp" />
@@ -179,25 +174,27 @@
     <ClCompile Include="ExplosionComponent.cpp" />
     <ClCompile Include="FlamesPowerUpDisplay.cpp" />
     <ClCompile Include="FPSComponent.cpp" />
+    <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="HealthCommand.cpp" />
     <ClCompile Include="HealthComponent.cpp" />
     <ClCompile Include="HealthDisplay.cpp" />
+    <ClCompile Include="HighscoreState.cpp" />
+    <ClCompile Include="LevelCompleteState.cpp" />
+    <ClCompile Include="LevelFailedState.cpp" />
+    <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="MovementCommand.cpp" />
     <ClCompile Include="PlayerComponent.cpp" />
     <ClCompile Include="BombPowerUpDisplay.cpp" />
+    <ClCompile Include="PlayingState.cpp" />
     <ClCompile Include="RoamerBehaviorComponent.cpp" />
     <ClCompile Include="RotationComponent.cpp" />
     <ClCompile Include="ScoreCommand.cpp" />
     <ClCompile Include="ScoreComponent.cpp" />
     <ClCompile Include="ScoreDisplay.cpp" />
+    <ClCompile Include="StageState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Minigin\BoundingBoxComponent.h" />
-    <ClInclude Include="..\Minigin\GameStateManager.h" />
-    <ClInclude Include="..\Minigin\HighscoreState.h" />
-    <ClInclude Include="..\Minigin\MenuState.h" />
-    <ClInclude Include="..\Minigin\PlayingState.h" />
-    <ClInclude Include="..\Minigin\StageState.h" />
     <ClInclude Include="BombCommand.h" />
     <ClInclude Include="BombComponent.h" />
     <ClInclude Include="BombDisplay.h" />
@@ -211,17 +208,25 @@
     <ClInclude Include="ExplosionComponent.h" />
     <ClInclude Include="FlamesPowerUpDisplay.h" />
     <ClInclude Include="FPSComponent.h" />
+    <ClInclude Include="GameStateManager.h" />
+    <ClInclude Include="GameStateUpdater.h" />
     <ClInclude Include="HealthCommand.h" />
     <ClInclude Include="HealthComponent.h" />
     <ClInclude Include="HealthDisplay.h" />
+    <ClInclude Include="HighscoreState.h" />
+    <ClInclude Include="LevelCompleteState.h" />
+    <ClInclude Include="LevelFailedState.h" />
+    <ClInclude Include="MenuState.h" />
     <ClInclude Include="MovementCommand.h" />
     <ClInclude Include="PlayerComponent.h" />
     <ClInclude Include="BombPowerUpDisplay.h" />
+    <ClInclude Include="PlayingState.h" />
     <ClInclude Include="RoamerBehaviorComponent.h" />
     <ClInclude Include="RotationComponent.h" />
     <ClInclude Include="ScoreCommand.h" />
     <ClInclude Include="ScoreComponent.h" />
     <ClInclude Include="ScoreDisplay.h" />
+    <ClInclude Include="StageState.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

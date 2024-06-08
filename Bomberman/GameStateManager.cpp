@@ -15,6 +15,7 @@ dae::GameStateManager::~GameStateManager()
 void dae::GameStateManager::Update()
 {
 	m_pCurrentState->Update();
+	HandleInput();
 }
 
 void dae::GameStateManager::Render()

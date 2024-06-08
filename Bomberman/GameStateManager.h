@@ -9,7 +9,7 @@ namespace dae
 	class GameStateManager final : public Singleton<GameStateManager>
 	{
 	public:
-		void Update();
+		virtual void Update();
 		void Render();
 		void HandleInput();
 

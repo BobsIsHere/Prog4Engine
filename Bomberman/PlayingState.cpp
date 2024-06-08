@@ -1,9 +1,10 @@
 #include "AudioServiceLocator.h"
+#include "LevelCompleteState.h"
 #include "GameAudioSystem.h"
+#include "HighscoreState.h"
 #include "InputManager.h"
 #include "SceneManager.h"
 #include "PlayingState.h"
-#include "HighscoreState.h"
 #include "Renderer.h"
 
 void dae::PlayingState::Update()
@@ -28,10 +29,16 @@ void dae::PlayingState::OnExit()
 
 dae::GameStateInterface* dae::PlayingState::HandleInput()
 {
-	if (InputManager::GetInstance().IsKeyDown(SDL_SCANCODE_H))
+	if (IsWinConditionMet())
 	{
-		return new HighscoreState(); 
+		return new dae::LevelCompleteState;
 	}
 
 	return nullptr;
+}
+
+bool dae::PlayingState::IsWinConditionMet() const
+{
+
+	return false;
 }
