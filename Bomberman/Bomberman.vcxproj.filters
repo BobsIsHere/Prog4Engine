@@ -126,6 +126,9 @@
     <ClCompile Include="DetonatorPowerUpDisplay.cpp">
       <Filter>SubDisplays\PowerUpDisplays</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyBehaviorComponent.cpp">
+      <Filter>SubComponents\EmenyComponents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HealthCommand.h">
@@ -214,6 +217,9 @@
     </ClInclude>
     <ClInclude Include="DetonatorPowerUpDisplay.h">
       <Filter>SubDisplays\PowerUpDisplays</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBehaviorComponent.h">
+      <Filter>SubComponents\EmenyComponents</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

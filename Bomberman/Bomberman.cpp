@@ -267,7 +267,7 @@ void load()
 	balloomObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(balloomObject.get(), 32.f, 32.f));
 	balloomObject->AddComponent<dae::EnemyCollisionComponent>(std::make_unique<dae::EnemyCollisionComponent>(balloomObject.get()));
 	balloomObject->AddComponent<dae::RoamerBehaviorComponent>(std::make_unique<dae::RoamerBehaviorComponent>(
-					balloomObject.get(), 100.f, glm::vec3{ 0, -1 ,0 }));
+					balloomObject.get(), 100.f));
 
 	balloomObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Enemies/Balloom.png"));
 

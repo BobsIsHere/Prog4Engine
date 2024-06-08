@@ -82,12 +82,12 @@ void dae::EnemyCollisionComponent::Update()
 
 void dae::EnemyCollisionComponent::ChangeDirection(const glm::vec3& direction)
 {
-	if (GetGameObject()->HasComponent<RoamerBehaviorComponent>()) 
+	if (GetGameObject()->HasComponent<RoamerBehaviorComponent>())
 	{
 		GetGameObject()->GetComponent<RoamerBehaviorComponent>()->SetDirection(direction);
 	}
-	else if (GetGameObject()->HasComponent<ChaserBehaviorComponent>()) 
+	else if (GetGameObject()->HasComponent<ChaserBehaviorComponent>())
 	{
-		GetGameObject()->GetComponent<ChaserBehaviorComponent>()->SetDirection(direction); 
+		GetGameObject()->GetComponent<ChaserBehaviorComponent>()->SetDirection(direction);
 	}
 }
