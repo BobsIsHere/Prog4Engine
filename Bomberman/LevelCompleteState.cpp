@@ -27,7 +27,8 @@ dae::GameStateInterface* dae::LevelCompleteState::HandleInput()
 {
 	if (m_TimeToWait <= m_AccumulatedTime)
 	{
-		return new StageState();
+		++m_StageNumber;
+		return new StageState(m_StageNumber);
 	}
 
 	return nullptr;

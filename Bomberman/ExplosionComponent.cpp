@@ -1,6 +1,7 @@
 #include <iostream>
 #include "ExplosionComponent.h"
 #include "CollisionSystem.h"
+#include "EnemyManager.h"
 #include "GameObject.h"
 #include "DeltaTime.h"
 
@@ -52,6 +53,7 @@ void dae::ExplosionComponent::CheckCollision()
 				{
 					//Enemy dies
 					//Bomberman gains points
+					EnemyManager::GetInstance().RemoveEnemy(gameObject);
 					CollisionSystem::GetInstance().RemoveGameObject(gameObject);
 					gameObject->SetForRemoval();
 				}

@@ -1,12 +1,14 @@
 #pragma once
+#include <memory>
 #include "GameStateInterface.h"
+#include "TextComponent.h"
 
 namespace dae
 {
 	class StageState final : public GameStateInterface
 	{
 	public:
-		StageState();
+		StageState(const int stageNumber);
 		virtual ~StageState();
 
 		virtual void Update() override;
@@ -18,5 +20,7 @@ namespace dae
 	private:
 		int m_StageNumber;
 		float m_SwitchingStateTimer;
+
+		std::unique_ptr<TextComponent> m_pStageText; 
 	};
 }

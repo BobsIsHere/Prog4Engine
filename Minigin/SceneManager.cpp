@@ -17,12 +17,34 @@ void dae::SceneManager::SetActiveScene(const std::string& name)
 	{
 		if (scene->GetSceneName() == name)
 		{
+			m_pPrevScene = m_pActiveScene;
 			m_pActiveScene = scene;
 			return;
 		}
 	}
 
 	throw std::runtime_error("No scene with name " + name + " found");
+}
+
+dae::Scene& dae::SceneManager::GetNextScene(const std::string sceneName)
+{
+	bool returnNext = false;
+	// Loop through all scenes
+	for (const auto& s : m_pScenes)
+	{
+		// If we are the scene to be returned
+		if (returnNext)
+		{
+			return *s;
+		}
+		// If the current scene is the active scene
+		if (s->GetSceneName() == sceneName)
+		{
+			// Then we must return the next scene
+			returnNext = true;
+		}
+	}
+	return *m_pScenes.front();
 }
 
 dae::Scene& dae::SceneManager::CreateScene(const std::string& name)

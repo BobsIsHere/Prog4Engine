@@ -6,7 +6,7 @@ namespace dae
 	class PlayingState final : public GameStateInterface
 	{
 	public:
-		PlayingState() = default;
+		PlayingState();
 		virtual ~PlayingState() = default;
 
 		virtual void Update() override;

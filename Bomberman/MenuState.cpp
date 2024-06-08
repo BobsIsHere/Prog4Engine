@@ -28,7 +28,7 @@ dae::GameStateInterface* dae::MenuState::HandleInput()
 {
 	if (InputManager::GetInstance().IsKeyDown(SDL_SCANCODE_RETURN))
 	{
-		return new StageState();
+		return new StageState(1);
 	}
 
 	return nullptr;

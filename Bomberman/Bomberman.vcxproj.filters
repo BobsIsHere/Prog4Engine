@@ -135,6 +135,9 @@
     <ClCompile Include="StageState.cpp">
       <Filter>GameState</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HealthCommand.h">
@@ -235,6 +238,9 @@
     </ClInclude>
     <ClInclude Include="GameStateUpdater.h">
       <Filter>GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyManager.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

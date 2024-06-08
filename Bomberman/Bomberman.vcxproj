@@ -171,6 +171,7 @@
     <ClCompile Include="DetonatorPowerUpDisplay.cpp" />
     <ClCompile Include="EnemyBehaviorComponent.cpp" />
     <ClCompile Include="EnemyCollisionComponent.cpp" />
+    <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="ExplosionComponent.cpp" />
     <ClCompile Include="FlamesPowerUpDisplay.cpp" />
     <ClCompile Include="FPSComponent.cpp" />
@@ -205,6 +206,7 @@
     <ClInclude Include="DetonatorPowerUpDisplay.h" />
     <ClInclude Include="EnemyBehaviorComponent.h" />
     <ClInclude Include="EnemyCollisionComponent.h" />
+    <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="ExplosionComponent.h" />
     <ClInclude Include="FlamesPowerUpDisplay.h" />
     <ClInclude Include="FPSComponent.h" />

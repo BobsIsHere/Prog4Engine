@@ -16,6 +16,8 @@ namespace dae
 		virtual GameStateInterface* HandleInput() override;
 
 	private:
+		int m_StageNumber = 1;
+
 		const float m_TimeToWait = 3.f;
 		float m_AccumulatedTime = 0.f;
 	};
