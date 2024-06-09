@@ -418,8 +418,8 @@ void load()
 		}
 
 		//BRICKS
-		//dae::LevelLoader::GetInstance().Initialize("../Data/Level2.txt", bombermanLevel2); 
-		//dae::LevelLoader::GetInstance().LoadLevel(); 
+		dae::LevelLoader::GetInstance().Initialize("../Data/Level2.txt", bombermanLevel2); 
+		dae::LevelLoader::GetInstance().LoadLevel(); 
 
 		//POWER-UP
 		auto bombPowerUpObject = std::make_unique<dae::GameObject>("BombPowerUp");
