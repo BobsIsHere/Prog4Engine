@@ -47,6 +47,6 @@ dae::GameStateInterface* dae::PlayingState::HandleInput()
 
 bool dae::PlayingState::IsWinConditionMet() const
 {
-	const auto& enemyManager = dae::EnemyManager::GetInstance();
+	auto& enemyManager = dae::EnemyManager::GetInstance();
 	return enemyManager.AllEnemiesDead();
 }
