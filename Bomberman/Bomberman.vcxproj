@@ -182,6 +182,7 @@
     <ClCompile Include="HighscoreState.cpp" />
     <ClCompile Include="LevelCompleteState.cpp" />
     <ClCompile Include="LevelFailedState.cpp" />
+    <ClCompile Include="LevelLoader.cpp" />
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="MovementCommand.cpp" />
     <ClCompile Include="PlayerComponent.cpp" />
@@ -218,6 +219,7 @@
     <ClInclude Include="HighscoreState.h" />
     <ClInclude Include="LevelCompleteState.h" />
     <ClInclude Include="LevelFailedState.h" />
+    <ClInclude Include="LevelLoader.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="MovementCommand.h" />
     <ClInclude Include="PlayerComponent.h" />
