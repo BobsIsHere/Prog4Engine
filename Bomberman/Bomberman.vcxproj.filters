@@ -25,14 +25,14 @@
     <Filter Include="GameState">
       <UniqueIdentifier>{3f03dca3-92c4-421f-b4bf-c1639b9073c6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SubComponents\EmenyComponents">
-      <UniqueIdentifier>{e63fda7b-e1e3-495b-b66f-4f528593fa65}</UniqueIdentifier>
-    </Filter>
     <Filter Include="SubComponents\BombComponents">
       <UniqueIdentifier>{db293608-dd3a-4829-9d41-f2611bf50ca8}</UniqueIdentifier>
     </Filter>
     <Filter Include="SubDisplays\PowerUpDisplays">
       <UniqueIdentifier>{eb8c1d0f-6c43-40d2-928b-3a6fc197bb96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SubComponents\EnemyComponents">
+      <UniqueIdentifier>{e63fda7b-e1e3-495b-b66f-4f528593fa65}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -82,13 +82,13 @@
       <Filter>SubDisplays</Filter>
     </ClCompile>
     <ClCompile Include="ChaserBehaviorComponent.cpp">
-      <Filter>SubComponents\EmenyComponents</Filter>
+      <Filter>SubComponents\EnemyComponents</Filter>
     </ClCompile>
     <ClCompile Include="EnemyCollisionComponent.cpp">
-      <Filter>SubComponents\EmenyComponents</Filter>
+      <Filter>SubComponents\EnemyComponents</Filter>
     </ClCompile>
     <ClCompile Include="RoamerBehaviorComponent.cpp">
-      <Filter>SubComponents\EmenyComponents</Filter>
+      <Filter>SubComponents\EnemyComponents</Filter>
     </ClCompile>
     <ClCompile Include="BombComponent.cpp">
       <Filter>SubComponents\BombComponents</Filter>
@@ -112,7 +112,7 @@
       <Filter>SubDisplays\PowerUpDisplays</Filter>
     </ClCompile>
     <ClCompile Include="EnemyBehaviorComponent.cpp">
-      <Filter>SubComponents\EmenyComponents</Filter>
+      <Filter>SubComponents\EnemyComponents</Filter>
     </ClCompile>
     <ClCompile Include="LevelFailedState.cpp">
       <Filter>GameState</Filter>
@@ -186,13 +186,13 @@
       <Filter>SubDisplays</Filter>
     </ClInclude>
     <ClInclude Include="ChaserBehaviorComponent.h">
-      <Filter>SubComponents\EmenyComponents</Filter>
+      <Filter>SubComponents\EnemyComponents</Filter>
     </ClInclude>
     <ClInclude Include="EnemyCollisionComponent.h">
-      <Filter>SubComponents\EmenyComponents</Filter>
+      <Filter>SubComponents\EnemyComponents</Filter>
     </ClInclude>
     <ClInclude Include="RoamerBehaviorComponent.h">
-      <Filter>SubComponents\EmenyComponents</Filter>
+      <Filter>SubComponents\EnemyComponents</Filter>
     </ClInclude>
     <ClInclude Include="BombComponent.h">
       <Filter>SubComponents\BombComponents</Filter>
@@ -216,7 +216,7 @@
       <Filter>SubDisplays\PowerUpDisplays</Filter>
     </ClInclude>
     <ClInclude Include="EnemyBehaviorComponent.h">
-      <Filter>SubComponents\EmenyComponents</Filter>
+      <Filter>SubComponents\EnemyComponents</Filter>
     </ClInclude>
     <ClInclude Include="LevelFailedState.h">
       <Filter>GameState</Filter>

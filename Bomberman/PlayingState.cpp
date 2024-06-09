@@ -3,6 +3,7 @@
 #include "GameAudioSystem.h"
 #include "HighscoreState.h"
 #include "PlayingState.h"
+#include "InputManager.h"
 #include "EnemyManager.h"
 #include "Renderer.h"
 #include "Scene.h"
@@ -37,7 +38,7 @@ void dae::PlayingState::OnExit()
 
 dae::GameStateInterface* dae::PlayingState::HandleInput()
 {
-	if (IsWinConditionMet())
+	if (IsWinConditionMet() or InputManager::GetInstance().IsKeyDown(SDL_SCANCODE_F1))
 	{
 		return new dae::LevelCompleteState();
 	}

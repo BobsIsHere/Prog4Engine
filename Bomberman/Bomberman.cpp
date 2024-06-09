@@ -87,7 +87,7 @@ void load()
 	// LEVEL 1
 	// -------
 	{
-		auto& bombermanGameScene = dae::SceneManager::GetInstance().CreateScene("bombermanLevel1");
+		auto& bombermanLevel1 = dae::SceneManager::GetInstance().CreateScene("bombermanLevel1");
 		auto& enemyManager = dae::EnemyManager::GetInstance();
 
 		//BACKGROUND
@@ -95,7 +95,7 @@ void load()
 		gameObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(gameObject.get(), 2.f));
 		gameObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Background.png"));
 		gameObject->SetLocalPosition(0, uiSize);
-		bombermanGameScene.Add(std::move(gameObject));
+		bombermanLevel1.Add(std::move(gameObject));
 
 		//WALLS
 		const float blockWidth{ 32.f };
@@ -110,7 +110,7 @@ void load()
 		topBorderObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(
 			topBorderObject.get(), blockWidth * amountOfColumns, blockHeight));
 
-		bombermanGameScene.Add(std::move(topBorderObject));
+		bombermanLevel1.Add(std::move(topBorderObject));
 
 		// Bottom border
 		auto bottomBorderObject = std::make_unique<dae::GameObject>("Border");
@@ -118,7 +118,7 @@ void load()
 		bottomBorderObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(
 			bottomBorderObject.get(), blockWidth * amountOfColumns, blockHeight));
 
-		bombermanGameScene.Add(std::move(bottomBorderObject));
+		bombermanLevel1.Add(std::move(bottomBorderObject));
 
 		// Left border
 		auto leftBorderObject = std::make_unique<dae::GameObject>("Border");
@@ -126,7 +126,7 @@ void load()
 		leftBorderObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(
 			leftBorderObject.get(), blockWidth, blockHeight * amountOfRows));
 
-		bombermanGameScene.Add(std::move(leftBorderObject));
+		bombermanLevel1.Add(std::move(leftBorderObject));
 
 		// Right border
 		auto rightBorderObject = std::make_unique<dae::GameObject>("Border");
@@ -134,7 +134,7 @@ void load()
 		rightBorderObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(
 			rightBorderObject.get(), blockWidth, blockHeight * amountOfRows));
 
-		bombermanGameScene.Add(std::move(rightBorderObject));
+		bombermanLevel1.Add(std::move(rightBorderObject));
 
 		// INNER BLOCKS
 		for (int rowIdx = 1; rowIdx < amountOfRows; ++rowIdx)
@@ -147,13 +147,13 @@ void load()
 					blockObject->SetLocalPosition((blockWidth * columnIdx) * 2, ((blockHeight * rowIdx) * 2) + uiSize);
 					blockObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(
 						blockObject.get(), blockWidth, blockHeight));
-					bombermanGameScene.Add(std::move(blockObject));
+					bombermanLevel1.Add(std::move(blockObject));
 				}
 			}
 		}
 
 		//BRICKS
-		dae::LevelLoader::GetInstance().Initialize("../Data/Level1.txt", bombermanGameScene);
+		dae::LevelLoader::GetInstance().Initialize("../Data/Level1.txt", bombermanLevel1);
 		dae::LevelLoader::GetInstance().LoadLevel();  
 
 		//POWER-UP
@@ -190,7 +190,7 @@ void load()
 
 		timerObject->GetComponent<dae::TextComponent>()->SetFont(bombermanFont);
 		timerObject->GetComponent<dae::TimerComponent>()->SetTimeLimit(200.f);
-		bombermanGameScene.Add(std::move(timerObject));
+		bombermanLevel1.Add(std::move(timerObject));
 
 		// LIVES & SCORE BOMBERMAN DISPLAY
 		auto scoreObjectBomberman = std::make_unique<dae::GameObject>();
@@ -209,7 +209,7 @@ void load()
 
 		//BOMBERMAN 
 		auto bombermanObject = std::make_unique<dae::GameObject>("Player");
-		bombermanObject->SetLocalPosition(70, 300);
+		bombermanObject->SetLocalPosition((1 * 32), (1 * 32) + uiSize); 
 		bombermanObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(bombermanObject.get()));
 		bombermanObject->AddComponent<dae::HealthComponent>(std::make_unique<dae::HealthComponent>(bombermanObject.get(), 3));
 		bombermanObject->AddComponent<dae::ScoreComponent>(std::make_unique<dae::ScoreComponent>(bombermanObject.get()));
@@ -223,11 +223,11 @@ void load()
 		bombermanObject->GetComponent<dae::PlayerComponent>()->AddObserver(flamePowerUpObject->GetComponent<dae::FlamesPowerUpDisplay>());
 		bombermanObject->GetComponent<dae::PlayerComponent>()->AddObserver(detonatorPowerUpObject->GetComponent<dae::DetonatorPowerUpDisplay>());
 
-		bombermanGameScene.Add(std::move(scoreObjectBomberman));
-		bombermanGameScene.Add(std::move(livesObjectBomberman));
-		bombermanGameScene.Add(std::move(bombPowerUpObject));
-		bombermanGameScene.Add(std::move(flamePowerUpObject));
-		bombermanGameScene.Add(std::move(detonatorPowerUpObject));
+		bombermanLevel1.Add(std::move(scoreObjectBomberman));
+		bombermanLevel1.Add(std::move(livesObjectBomberman));
+		bombermanLevel1.Add(std::move(bombPowerUpObject));
+		bombermanLevel1.Add(std::move(flamePowerUpObject));
+		bombermanLevel1.Add(std::move(detonatorPowerUpObject));
 
 		//ENEMY 2
 		auto balloomObject = std::make_unique<dae::GameObject>("Enemy");
@@ -282,7 +282,7 @@ void load()
 		doorObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(doorObject.get(), 32.f, 32.f));
 
 		doorObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Door.png"));
-		bombermanGameScene.Add(std::move(doorObject));
+		bombermanLevel1.Add(std::move(doorObject));
 
 		//--------------------
 		// SCENE.ADD PLEASE !!!!!!!!
@@ -343,16 +343,16 @@ void load()
 		input.AddKeyboardCommand(SDL_SCANCODE_SPACE, dae::ButtonState::Is_Up, std::make_unique<dae::BombCommand>(bombermanObject.get()));
 		input.AddKeyboardCommand(SDL_SCANCODE_B, dae::ButtonState::Is_Up, std::make_unique<dae::DetonateCommand>(bombermanObject.get()));
 
-		bombermanGameScene.Add(std::move(balloomObject));
-		bombermanGameScene.Add(std::move(balloomObject2));
-		bombermanGameScene.Add(std::move(balloomObject3));
-		bombermanGameScene.Add(std::move(bombermanObject));
+		bombermanLevel1.Add(std::move(balloomObject));
+		bombermanLevel1.Add(std::move(balloomObject2));
+		bombermanLevel1.Add(std::move(balloomObject3));
+		bombermanLevel1.Add(std::move(bombermanObject)); 
 	}
 
 	// LEVEL 2
 	// -------
 	{
-		auto& bombermanGameScene = dae::SceneManager::GetInstance().CreateScene("bombermanLevel2");
+		auto& bombermanLevel2 = dae::SceneManager::GetInstance().CreateScene("bombermanLevel2");
 		auto& enemyManager = dae::EnemyManager::GetInstance();
 
 		//BACKGROUND
@@ -360,7 +360,7 @@ void load()
 		gameObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(gameObject.get(), 2.f));
 		gameObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Background.png"));
 		gameObject->SetLocalPosition(0, uiSize);
-		bombermanGameScene.Add(std::move(gameObject));
+		bombermanLevel2.Add(std::move(gameObject));
 
 		//WALLS
 		const float blockWidth{ 32.f };
@@ -375,7 +375,7 @@ void load()
 		topBorderObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(
 			topBorderObject.get(), blockWidth* amountOfColumns, blockHeight));
 
-		bombermanGameScene.Add(std::move(topBorderObject));
+		bombermanLevel2.Add(std::move(topBorderObject));
 
 		// Bottom border
 		auto bottomBorderObject = std::make_unique<dae::GameObject>("Border");
@@ -383,7 +383,7 @@ void load()
 		bottomBorderObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(
 			bottomBorderObject.get(), blockWidth* amountOfColumns, blockHeight));
 
-		bombermanGameScene.Add(std::move(bottomBorderObject));
+		bombermanLevel2.Add(std::move(bottomBorderObject));
 
 		// Left border
 		auto leftBorderObject = std::make_unique<dae::GameObject>("Border");
@@ -391,7 +391,7 @@ void load()
 		leftBorderObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(
 			leftBorderObject.get(), blockWidth, blockHeight* amountOfRows));
 
-		bombermanGameScene.Add(std::move(leftBorderObject));
+		bombermanLevel2.Add(std::move(leftBorderObject));
 
 		// Right border
 		auto rightBorderObject = std::make_unique<dae::GameObject>("Border");
@@ -399,7 +399,7 @@ void load()
 		rightBorderObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(
 			rightBorderObject.get(), blockWidth, blockHeight* amountOfRows));
 
-		bombermanGameScene.Add(std::move(rightBorderObject));
+		bombermanLevel2.Add(std::move(rightBorderObject));
 
 		// INNER BLOCKS
 		for (int rowIdx = 1; rowIdx < amountOfRows; ++rowIdx)
@@ -412,14 +412,14 @@ void load()
 					blockObject->SetLocalPosition((blockWidth * columnIdx) * 2, ((blockHeight * rowIdx) * 2) + uiSize);
 					blockObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(
 						blockObject.get(), blockWidth, blockHeight));
-					bombermanGameScene.Add(std::move(blockObject));
+					bombermanLevel2.Add(std::move(blockObject));
 				}
 			}
 		}
 
 		//BRICKS
-		dae::LevelLoader::GetInstance().Initialize("../Data/Level2.txt", bombermanGameScene); 
-		dae::LevelLoader::GetInstance().LoadLevel(); 
+		//dae::LevelLoader::GetInstance().Initialize("../Data/Level2.txt", bombermanLevel2); 
+		//dae::LevelLoader::GetInstance().LoadLevel(); 
 
 		//POWER-UP
 		auto bombPowerUpObject = std::make_unique<dae::GameObject>("BombPowerUp");
@@ -455,7 +455,7 @@ void load()
 
 		timerObject->GetComponent<dae::TextComponent>()->SetFont(bombermanFont);
 		timerObject->GetComponent<dae::TimerComponent>()->SetTimeLimit(200.f);
-		bombermanGameScene.Add(std::move(timerObject));
+		bombermanLevel2.Add(std::move(timerObject));
 
 		// LIVES & SCORE BOMBERMAN PLAYER 1 DISPLAY
 		auto scoreObjectPlayer1 = std::make_unique<dae::GameObject>();
@@ -478,11 +478,11 @@ void load()
 		livesObjectPlayer2->AddComponent<dae::TextComponent>(std::make_unique<dae::TextComponent>(livesObjectPlayer2.get()));
 		livesObjectPlayer2->AddComponent<dae::HealthDisplay>(std::make_unique<dae::HealthDisplay>(livesObjectPlayer2.get()));
 		livesObjectPlayer2->GetComponent<dae::TextComponent>()->SetFont(bombermanFont);
-		livesObjectPlayer2->SetLocalPosition(400, 25);
+		livesObjectPlayer2->SetLocalPosition(450, 25);
 
 		//BOMBERMAN PLAYER 1
 		auto player1 = std::make_unique<dae::GameObject>("Player");
-		player1->SetLocalPosition(70, 300);
+		player1->SetLocalPosition(1 * 32, (1 * 32) + uiSize);
 		player1->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(player1.get()));
 		player1->AddComponent<dae::HealthComponent>(std::make_unique<dae::HealthComponent>(player1.get(), 3));
 		player1->AddComponent<dae::ScoreComponent>(std::make_unique<dae::ScoreComponent>(player1.get()));
@@ -496,11 +496,11 @@ void load()
 		player1->GetComponent<dae::PlayerComponent>()->AddObserver(flamePowerUpObject->GetComponent<dae::FlamesPowerUpDisplay>());
 		player1->GetComponent<dae::PlayerComponent>()->AddObserver(detonatorPowerUpObject->GetComponent<dae::DetonatorPowerUpDisplay>());
 
-		bombermanGameScene.Add(std::move(livesObjectPlayer1));
+		bombermanLevel2.Add(std::move(livesObjectPlayer1));
 
 		//BOMBERMAN PLAYER 2
 		auto player2 = std::make_unique<dae::GameObject>("Player2");
-		player2->SetLocalPosition(50, 300);
+		player2->SetLocalPosition(15 * 32, (1 * 32) + uiSize);
 		player2->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(player2.get()));
 		player2->AddComponent<dae::HealthComponent>(std::make_unique<dae::HealthComponent>(player2.get(), 3));
 		player2->AddComponent<dae::ScoreComponent>(std::make_unique<dae::ScoreComponent>(player2.get()));
@@ -514,11 +514,11 @@ void load()
 		player2->GetComponent<dae::PlayerComponent>()->AddObserver(flamePowerUpObject->GetComponent<dae::FlamesPowerUpDisplay>());
 		player2->GetComponent<dae::PlayerComponent>()->AddObserver(detonatorPowerUpObject->GetComponent<dae::DetonatorPowerUpDisplay>());
 
-		bombermanGameScene.Add(std::move(scoreObjectPlayer1));
-		bombermanGameScene.Add(std::move(livesObjectPlayer2));
-		bombermanGameScene.Add(std::move(bombPowerUpObject));
-		bombermanGameScene.Add(std::move(flamePowerUpObject));
-		bombermanGameScene.Add(std::move(detonatorPowerUpObject));
+		bombermanLevel2.Add(std::move(scoreObjectPlayer1));
+		bombermanLevel2.Add(std::move(livesObjectPlayer2));
+		bombermanLevel2.Add(std::move(bombPowerUpObject));
+		bombermanLevel2.Add(std::move(flamePowerUpObject));
+		bombermanLevel2.Add(std::move(detonatorPowerUpObject));
 
 		//ENEMY
 		auto balloomObject1 = std::make_unique<dae::GameObject>("Enemy");
@@ -553,13 +553,13 @@ void load()
 		enemyManager.AddEnemy(OnealObject1.get());
 		OnealObject1->SetLocalPosition(1 * 32, (5 * 32) + uiSize);
 
-		OnealObject1->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(OnealObject1.get()));
+		OnealObject1->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(OnealObject1.get(), 2.f));
 		OnealObject1->AddComponent<dae::ScoreComponent>(std::make_unique<dae::ScoreComponent>(OnealObject1.get()));
 		OnealObject1->AddComponent<dae::HealthComponent>(std::make_unique<dae::HealthComponent>(OnealObject1.get()));
 		OnealObject1->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(OnealObject1.get(), 32.f, 32.f));
 		OnealObject1->AddComponent<dae::EnemyCollisionComponent>(std::make_unique<dae::EnemyCollisionComponent>(OnealObject1.get()));
 		OnealObject1->AddComponent<dae::RoamerBehaviorComponent>(std::make_unique<dae::RoamerBehaviorComponent>(
-			OnealObject1.get(), 90.f));
+			OnealObject1.get(), 80.f));
 
 		OnealObject1->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Enemies/Oneal.png"));
 
@@ -567,13 +567,13 @@ void load()
 		enemyManager.AddEnemy(OnealObject2.get());
 		OnealObject2->SetLocalPosition(11 * 32, (9 * 32) + uiSize);
 
-		OnealObject2->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(OnealObject2.get()));
+		OnealObject2->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(OnealObject2.get(), 2.f));
 		OnealObject2->AddComponent<dae::ScoreComponent>(std::make_unique<dae::ScoreComponent>(OnealObject2.get()));
 		OnealObject2->AddComponent<dae::HealthComponent>(std::make_unique<dae::HealthComponent>(OnealObject2.get()));
 		OnealObject2->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(OnealObject2.get(), 32.f, 32.f));
 		OnealObject2->AddComponent<dae::EnemyCollisionComponent>(std::make_unique<dae::EnemyCollisionComponent>(OnealObject2.get()));
 		OnealObject2->AddComponent<dae::RoamerBehaviorComponent>(std::make_unique<dae::RoamerBehaviorComponent>(
-			OnealObject2.get(), 90.f));
+			OnealObject2.get(), 80.f));
 
 		OnealObject2->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Enemies/Oneal.png"));
 
@@ -585,7 +585,7 @@ void load()
 		doorObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(doorObject.get(), 32.f, 32.f));
 
 		doorObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Door.png"));
-		bombermanGameScene.Add(std::move(doorObject));
+		bombermanLevel2.Add(std::move(doorObject));
 
 		//--------------------
 		// SCENE.ADD PLEASE !!!!!!!!
@@ -673,18 +673,18 @@ void load()
 		input.AddKeyboardCommand(SDL_SCANCODE_SPACE, dae::ButtonState::Is_Up, std::make_unique<dae::BombCommand>(player1.get()));
 		input.AddKeyboardCommand(SDL_SCANCODE_B, dae::ButtonState::Is_Up, std::make_unique<dae::DetonateCommand>(player1.get()));
 
-		bombermanGameScene.Add(std::move(balloomObject1)); 
-		bombermanGameScene.Add(std::move(balloomObject2)); 
-		bombermanGameScene.Add(std::move(OnealObject1)); 
-		bombermanGameScene.Add(std::move(OnealObject2)); 
-		bombermanGameScene.Add(std::move(player1));
-		bombermanGameScene.Add(std::move(player2));
+		bombermanLevel2.Add(std::move(balloomObject1)); 
+		bombermanLevel2.Add(std::move(balloomObject2)); 
+		bombermanLevel2.Add(std::move(OnealObject1)); 
+		bombermanLevel2.Add(std::move(OnealObject2)); 
+		bombermanLevel2.Add(std::move(player1));
+		bombermanLevel2.Add(std::move(player2));
 	}
 
 	// LEVEL 3
 	// -------
 	{
-		auto& bombermanGameScene = dae::SceneManager::GetInstance().CreateScene("bombermanLevel3");
+		auto& bombermanLevel3 = dae::SceneManager::GetInstance().CreateScene("bombermanLevel3"); 
 		auto& enemyManager = dae::EnemyManager::GetInstance();
 
 		//BACKGROUND
@@ -692,7 +692,7 @@ void load()
 		gameObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(gameObject.get(), 2.f));
 		gameObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Background.png"));
 		gameObject->SetLocalPosition(0, uiSize);
-		bombermanGameScene.Add(std::move(gameObject));
+		bombermanLevel3.Add(std::move(gameObject));
 
 		//WALLS
 		const float blockWidth{ 32.f };
@@ -707,7 +707,7 @@ void load()
 		topBorderObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(
 			topBorderObject.get(), blockWidth* amountOfColumns, blockHeight));
 
-		bombermanGameScene.Add(std::move(topBorderObject));
+		bombermanLevel3.Add(std::move(topBorderObject));
 
 		// Bottom border
 		auto bottomBorderObject = std::make_unique<dae::GameObject>("Border");
@@ -715,7 +715,7 @@ void load()
 		bottomBorderObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(
 			bottomBorderObject.get(), blockWidth* amountOfColumns, blockHeight));
 
-		bombermanGameScene.Add(std::move(bottomBorderObject));
+		bombermanLevel3.Add(std::move(bottomBorderObject));
 
 		// Left border
 		auto leftBorderObject = std::make_unique<dae::GameObject>("Border");
@@ -723,7 +723,7 @@ void load()
 		leftBorderObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(
 			leftBorderObject.get(), blockWidth, blockHeight* amountOfRows));
 
-		bombermanGameScene.Add(std::move(leftBorderObject));
+		bombermanLevel3.Add(std::move(leftBorderObject));
 
 		// Right border
 		auto rightBorderObject = std::make_unique<dae::GameObject>("Border");
@@ -731,7 +731,7 @@ void load()
 		rightBorderObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(
 			rightBorderObject.get(), blockWidth, blockHeight* amountOfRows));
 
-		bombermanGameScene.Add(std::move(rightBorderObject));
+		bombermanLevel3.Add(std::move(rightBorderObject));
 
 		// INNER BLOCKS
 		for (int rowIdx = 1; rowIdx < amountOfRows; ++rowIdx)
@@ -744,14 +744,14 @@ void load()
 					blockObject->SetLocalPosition((blockWidth * columnIdx) * 2, ((blockHeight * rowIdx) * 2) + uiSize);
 					blockObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(
 						blockObject.get(), blockWidth, blockHeight));
-					bombermanGameScene.Add(std::move(blockObject));
+					bombermanLevel3.Add(std::move(blockObject));
 				}
 			}
 		}
 
 		//BRICKS
-		dae::LevelLoader::GetInstance().Initialize("../Data/Level3.txt", bombermanGameScene);
-		dae::LevelLoader::GetInstance().LoadLevel(); 
+		dae::LevelLoader::GetInstance().Initialize("../Data/Level3.txt", bombermanLevel3);
+		dae::LevelLoader::GetInstance().LoadLevel();  
 
 		//POWER-UP
 		auto bombPowerUpObject = std::make_unique<dae::GameObject>("BombPowerUp");
@@ -787,7 +787,7 @@ void load()
 
 		timerObject->GetComponent<dae::TextComponent>()->SetFont(bombermanFont);
 		timerObject->GetComponent<dae::TimerComponent>()->SetTimeLimit(200.f);
-		bombermanGameScene.Add(std::move(timerObject));
+		bombermanLevel3.Add(std::move(timerObject));
 
 		// LIVES & SCORE BOMBERMAN PLAYER 1 DISPLAY
 		auto scoreObjectPlayer1 = std::make_unique<dae::GameObject>();
@@ -828,7 +828,7 @@ void load()
 		player1->GetComponent<dae::PlayerComponent>()->AddObserver(flamePowerUpObject->GetComponent<dae::FlamesPowerUpDisplay>());
 		player1->GetComponent<dae::PlayerComponent>()->AddObserver(detonatorPowerUpObject->GetComponent<dae::DetonatorPowerUpDisplay>());
 
-		bombermanGameScene.Add(std::move(livesObjectPlayer1));
+		bombermanLevel3.Add(std::move(livesObjectPlayer1));
 
 		//BOMBERMAN PLAYER 2
 		auto player2 = std::make_unique<dae::GameObject>("Player2");
@@ -841,11 +841,11 @@ void load()
 		player2->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Enemies/Balloom.png"));
 		player2->GetComponent<dae::HealthComponent>()->AddObserver(livesObjectPlayer2->GetComponent<dae::HealthDisplay>());
 
-		bombermanGameScene.Add(std::move(scoreObjectPlayer1));
-		bombermanGameScene.Add(std::move(livesObjectPlayer2));
-		bombermanGameScene.Add(std::move(bombPowerUpObject));
-		bombermanGameScene.Add(std::move(flamePowerUpObject));
-		bombermanGameScene.Add(std::move(detonatorPowerUpObject));
+		bombermanLevel3.Add(std::move(scoreObjectPlayer1));
+		bombermanLevel3.Add(std::move(livesObjectPlayer2));
+		bombermanLevel3.Add(std::move(bombPowerUpObject));
+		bombermanLevel3.Add(std::move(flamePowerUpObject));
+		bombermanLevel3.Add(std::move(detonatorPowerUpObject));
 
 		//ENEMY
 		auto balloomObject = std::make_unique<dae::GameObject>("Enemy");
@@ -866,13 +866,12 @@ void load()
 		enemyManager.AddEnemy(onealObject.get());
 		onealObject->SetLocalPosition(11 * 32, (11 * 32) + uiSize); 
 
-		onealObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(onealObject.get())); 
-		onealObject->AddComponent<dae::ScoreComponent>(std::make_unique<dae::ScoreComponent>(onealObject.get())); 
+		onealObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(onealObject.get(), 2.f)); 
 		onealObject->AddComponent<dae::HealthComponent>(std::make_unique<dae::HealthComponent>(onealObject.get())); 
 		onealObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(onealObject.get(), 32.f, 32.f)); 
 		onealObject->AddComponent<dae::EnemyCollisionComponent>(std::make_unique<dae::EnemyCollisionComponent>(onealObject.get())); 
 		onealObject->AddComponent<dae::RoamerBehaviorComponent>(std::make_unique<dae::RoamerBehaviorComponent>( 
-			onealObject.get(), 90.f));
+			onealObject.get(), 80.f));
 
 		onealObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Enemies/Oneal.png"));
 
@@ -880,29 +879,27 @@ void load()
 		enemyManager.AddEnemy(dollObject.get());
 		dollObject->SetLocalPosition(1 * 32, (9 * 32) + uiSize);
 
-		dollObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(dollObject.get()));
-		dollObject->AddComponent<dae::ScoreComponent>(std::make_unique<dae::ScoreComponent>(dollObject.get()));
+		dollObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(dollObject.get(), 2.f));
 		dollObject->AddComponent<dae::HealthComponent>(std::make_unique<dae::HealthComponent>(dollObject.get()));
 		dollObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(dollObject.get(), 32.f, 32.f));
 		dollObject->AddComponent<dae::EnemyCollisionComponent>(std::make_unique<dae::EnemyCollisionComponent>(dollObject.get()));
 		dollObject->AddComponent<dae::RoamerBehaviorComponent>(std::make_unique<dae::RoamerBehaviorComponent>(
-			dollObject.get(), 90.f)); 
+			dollObject.get(), 80.f)); 
 
-		dollObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Enemies/Oneal.png"));
+		dollObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Enemies/Doll.png"));
 
 		auto minvoObject = std::make_unique<dae::GameObject>("Enemy"); 
 		enemyManager.AddEnemy(minvoObject.get()); 
 		minvoObject->SetLocalPosition(7 * 32, (3 * 32) + uiSize);
 		 
-		minvoObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(minvoObject.get())); 
-		minvoObject->AddComponent<dae::ScoreComponent>(std::make_unique<dae::ScoreComponent>(minvoObject.get())); 
+		minvoObject->AddComponent<dae::TextureComponent>(std::make_unique<dae::TextureComponent>(minvoObject.get(), 2.f)); 
 		minvoObject->AddComponent<dae::HealthComponent>(std::make_unique<dae::HealthComponent>(minvoObject.get())); 
 		minvoObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(minvoObject.get(), 32.f, 32.f)); 
 		minvoObject->AddComponent<dae::EnemyCollisionComponent>(std::make_unique<dae::EnemyCollisionComponent>(minvoObject.get())); 
 		minvoObject->AddComponent<dae::RoamerBehaviorComponent>(std::make_unique<dae::RoamerBehaviorComponent>( 
-			minvoObject.get(), 90.f)); 
+			minvoObject.get(), 100.f)); 
 
-		minvoObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Enemies/Oneal.png")); 
+		minvoObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Enemies/Minvo.png")); 
 
 		//DOOR
 		auto doorObject = std::make_unique<dae::GameObject>("Door");
@@ -912,7 +909,7 @@ void load()
 		doorObject->AddComponent<dae::BoundingBoxComponent>(std::make_unique<dae::BoundingBoxComponent>(doorObject.get(), 32.f, 32.f));
 
 		doorObject->GetComponent<dae::TextureComponent>()->SetTexture(resourceManager.LoadTexture("Door.png"));
-		bombermanGameScene.Add(std::move(doorObject));
+		bombermanLevel3.Add(std::move(doorObject));
 
 		//--------------------
 		// SCENE.ADD PLEASE !!!!!!!!
@@ -992,8 +989,12 @@ void load()
 		input.AddKeyboardCommand(SDL_SCANCODE_SPACE, dae::ButtonState::Is_Up, std::make_unique<dae::BombCommand>(player1.get()));
 		input.AddKeyboardCommand(SDL_SCANCODE_B, dae::ButtonState::Is_Up, std::make_unique<dae::DetonateCommand>(player1.get()));
 
-		bombermanGameScene.Add(std::move(player1));
-		bombermanGameScene.Add(std::move(player2));
+		bombermanLevel3.Add(std::move(player1));
+		bombermanLevel3.Add(std::move(player2)); 
+		bombermanLevel3.Add(std::move(balloomObject)); 
+		bombermanLevel3.Add(std::move(onealObject));
+		bombermanLevel3.Add(std::move(dollObject)); 
+		bombermanLevel3.Add(std::move(minvoObject)); 
 	}
 
 	// -------------------------

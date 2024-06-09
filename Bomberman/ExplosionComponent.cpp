@@ -1,6 +1,8 @@
 #include <iostream>
 #include "ExplosionComponent.h"
 #include "CollisionSystem.h"
+#include "HealthDisplay.h"
+#include "ScoreDisplay.h"
 #include "EnemyManager.h"
 #include "GameObject.h"
 #include "DeltaTime.h"
