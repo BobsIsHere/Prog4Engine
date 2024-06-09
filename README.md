@@ -1,20 +1,19 @@
 # Engine specifics and Design choices
 So my engine is, of course, based on a Game Loop and an Update Loop. Next to that I have used numerous Components to implement specific behaviors. For example for my enemy, I have implemented 
-2 different components to simulate 2 different behaviors my enemies display. I can then assign to each enemy 1 specific behavior that they will then mimic on screen. 
+2 different components to simulate 2 different behaviors that my enemies display. I can then assign to each enemy 1 specific behavior that they will then mimic on screen. 
 I have also used Components for my Bomb mechanic and it's Explosion after the bomb has exploded. They are also used for more general things like my BoundingBox Component. The Components then
-adds a rectangle with a given width and height to the object so collision can be simulated on the GameObject.
+add a rectangle with a given width and height to the object so collisions can be simulated on the GameObject.
 
-Next to add, I also use the Observer pattern. This is used to broadcast and receive certain events that happen in-game. For example, if my player has picked up a specific Power-Up, then my 
-Bomb Component needs to know if it needs to extent the range of the explosion or if an extra bomb can be added to the scene via the BombManager. I have used the Observer Pattern over the EventQueue as in my mind broadcasting events and other classes receiving them seems like a logical way of sending out important information without classes being too tightly coupled.
+Next thing to add, I also use the Observer pattern. This is used to broadcast and receive certain events that happen in-game. For example, if my player has picked up a specific Power-Up, then my Bomb Component needs to know if it needs to extent the range of the explosion or if an extra bomb can be added to the scene via the BombManager. I have used the Observer Pattern over the EventQueue as in my mind broadcasting events and other classes receiving them seems like a logical way of sending out important information without classes being too tightly coupled.
 
 I also make use of several commands in my game. I mostly use them for receiving and responding to user input but I also have other examples that don't implement a command for a movement action.
 An example is my HealthCommand that decreases the score when the player hurts themselves.
 I also implement user input with these commands in combination with an InputManager class. This class is a singleton as I don't need multiple instances of this class present in the runtime of
 my project/ game. InputManager is picking up Keyboard and Controller user inputs, that are Pimpled away. My Movement Command is bound to the Keyboard and Controller Command so both can be used at the same time.
 
-I did implement 1 Event Queue pattern, and I have used this pattern for my Sound Engine. Together with some threading, it is a good way of receiving and transmitting sound without interupting the gameplay. I have split this engine up in multiple sound files. The Game Audio System is the class handeling incoming sounds and putting them on the queue. It also Pimpls away the SDL sound library I am using. The Game Audio System inherits from the abstract Audio System class. With this class I make multiple Audio systems with each different purposes like the Audio Log System that logs a message when music and soundeffects are played or stopped.
+I did implement 1 Event Queue pattern, and I have used this pattern for my Sound Engine. Together with some threading, it is a good way of receiving and transmitting sound without interupting the gameplay. I have split this engine up in multiple sound files. The Game Audio System is the class handling incoming sounds and putting them on the queue. It also Pimpls away the SDL sound library I am using. The Game Audio System inherits from the abstract Audio System class. With this class, I make multiple Audio systems with each a different purpose like the Audio Log System that logs a message when music and soundeffects are played or stopped.
 
-Lastely I have also implemented the State pattern. This is not part of my engine as I am using these states for switching between different game states. For example : MenuState, PlayingState, LevelCompleteState, HighScoreState, ...
+Lastly I have also implemented the State pattern. This is not part of my engine as I am using these states for switching between different game states. For example : MenuState, PlayingState, LevelCompleteState, HighScoreState, ...
 
 
 # Minigin
