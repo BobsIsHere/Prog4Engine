@@ -61,7 +61,7 @@
 
 void load()
 {
-	dae::AudioServiceLocator::RegisterSoundSystem(std::make_unique<dae::AudioLogSystem>(std::make_unique<dae::NullAudioSystem>())); 
+	dae::AudioServiceLocator::RegisterSoundSystem(std::make_unique<dae::AudioLogSystem>(std::make_unique<dae::GameAudioSystem>())); 
 	auto& resourceManager = dae::ResourceManager::GetInstance();
 
 	auto font = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
